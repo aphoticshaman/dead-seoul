@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>DEAD SEOUL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;700&family=Cinzel:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blood: #8b0000;
+            --blood-glow: rgba(139, 0, 0, 0.6);
+            --bone: #e8e0d5;
+            --void: #0a0808;
+            --ash: #1a1818;
+            --smoke: #2a2626;
+            --ghost: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: var(--void);
+            font-family: 'Noto Serif KR', serif;
+            color: var(--bone);
+            line-height: 1.8;
+        }
+
+        /* Black Mirror scan lines */
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.03) 2px,
+                rgba(0, 0, 0, 0.03) 4px
+            );
+        }
+
+        /* Vignette effect */
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            background: radial-gradient(
+                ellipse at center,
+                transparent 40%,
+                rgba(0, 0, 0, 0.8) 100%
+            );
+        }
+
+        /* Blood drip animation */
+        .blood-drip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 998;
+            background:
+                radial-gradient(ellipse at 15% 0%, var(--blood-glow) 0%, transparent 40%),
+                radial-gradient(ellipse at 85% 0%, rgba(100, 0, 0, 0.3) 0%, transparent 35%);
+            animation: bloodPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bloodPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Main container */
+        .game-container {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--smoke);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(10, 8, 8, 0.95) 0%, transparent 100%);
+        }
+
+        .title-small {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            color: var(--blood);
+        }
+
+        .progress-indicator {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(139, 0, 0, 0.6);
+        }
+
+        /* Content area */
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 1.5rem 4rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Section styling */
+        .section {
+            display: none;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Media containers */
+        .media-container {
+            margin: 2rem -1.5rem;
+            position: relative;
+        }
+
+        .media-container img,
+        .media-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .media-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                180deg,
+                var(--void) 0%,
+                transparent 15%,
+                transparent 85%,
+                var(--void) 100%
+            );
+            pointer-events: none;
+        }
+
+        /* Typography */
+        .section-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(139, 0, 0, 0.4);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--blood);
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
+        .narrative {
+            font-size: 1rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .narrative em {
+            font-style: italic;
+            color: rgba(232, 224, 213, 0.8);
+        }
+
+        .narrative strong {
+            font-weight: 700;
+            color: var(--bone);
+        }
+
+        .dialogue {
+            font-style: italic;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--blood);
+            margin: 1.5rem 0;
+            color: rgba(232, 224, 213, 0.9);
+        }
+
+        .thought {
+            color: rgba(139, 0, 0, 0.7);
+            font-style: italic;
+        }
+
+        /* Poetic interludes - Ryan's voice */
+        .poetic {
+            font-size: 0.95rem;
+            line-height: 2;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin: 2rem 0;
+            border-top: 1px solid rgba(139, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(139, 0, 0, 0.2);
+            color: rgba(232, 224, 213, 0.7);
+            font-style: italic;
+        }
+
+        /* Spicy content styling */
+        .spicy {
+            background: linear-gradient(90deg, transparent, rgba(139, 0, 0, 0.05), transparent);
+            padding: 1.5rem;
+            margin: 1.5rem -0.5rem;
+            border-radius: 4px;
+        }
+
+        /* Choices */
+        .choices {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--smoke);
+        }
+
+        .choices-header {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(139, 0, 0, 0.5);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .choice {
+            display: block;
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, rgba(139, 0, 0, 0.1), transparent);
+            border: 1px solid rgba(139, 0, 0, 0.3);
+            border-radius: 4px;
+            color: var(--bone);
+            font-family: 'Noto Serif KR', serif;
+            font-size: 0.95rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .choice::before {
+            content: '➤';
+            position: absolute;
+            left: -30px;
+            opacity: 0;
+            color: var(--blood);
+            transition: all 0.3s ease;
+        }
+
+        .choice:hover, .choice:active {
+            background: linear-gradient(90deg, rgba(139, 0, 0, 0.2), rgba(139, 0, 0, 0.05));
+            border-color: var(--blood);
+            padding-left: 2.5rem;
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.2);
+        }
+
+        .choice:hover::before, .choice:active::before {
+            left: 1rem;
+            opacity: 1;
+        }
+
+        /* Ending styling */
+        .ending {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .ending-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: rgba(139, 0, 0, 0.5);
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+        }
+
+        .ending-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--blood);
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 40px var(--blood-glow);
+        }
+
+        .ending-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: rgba(232, 224, 213, 0.8);
+        }
+
+        .restart-btn {
+            margin-top: 3rem;
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--blood);
+            color: var(--blood);
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            background: var(--blood);
+            color: var(--void);
+        }
+
+        /* Thread visualization */
+        .thread-indicator {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--smoke);
+            z-index: 100;
+            display: flex;
+        }
+
+        .thread {
+            flex: 1;
+            height: 100%;
+            transition: background 0.5s ease;
+        }
+
+        .thread.active {
+            background: var(--blood);
+        }
+
+        .thread.visited {
+            background: rgba(139, 0, 0, 0.4);
+        }
+
+        /* Connection reveal animation */
+        .connection-reveal {
+            animation: connectionPulse 2s ease-out;
+        }
+
+        @keyframes connectionPulse {
+            0% {
+                background: rgba(139, 0, 0, 0.3);
+                box-shadow: 0 0 50px var(--blood-glow);
+            }
+            100% {
+                background: transparent;
+                box-shadow: none;
+            }
+        }
+
+        /* Safari-specific */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                min-height: -webkit-fill-available;
+            }
+            .game-container {
+                height: -webkit-fill-available;
+            }
+        }
+
+        /* Loading state */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--void);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--blood);
+            letter-spacing: 0.3em;
+            animation: loadingPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading-text">INITIALIZING</div>
+    </div>
+
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <div class="blood-drip"></div>
+
+    <div class="game-container">
+        <header class="header">
+            <div class="title-small">DEAD SEOUL</div>
+            <div class="progress-indicator" id="progress">SEC 01</div>
+        </header>
+
+        <main class="content" id="content">
+            <!-- Sections injected by JavaScript -->
+        </main>
+
+        <div class="thread-indicator">
+            <div class="thread" id="thread-yuna" title="Yuna"></div>
+            <div class="thread" id="thread-minho" title="Minho"></div>
+            <div class="thread" id="thread-soojin" title="Soojin"></div>
+            <div class="thread" id="thread-yoo" title="Colonel Yoo"></div>
+        </div>
+    </div>
+
+    <script>
+        // DEAD SEOUL - Interactive CYOA Engine
+        // Black Mirror × Blue Bedlam × Ritchie Cascade
+
+        const GAME_DATA = {
+            // Section 1: THE LAST MORNING
+            1: {
+                title: "THE LAST MORNING",
+                thread: "yuna",
+                media: { type: "image", src: "/static/media/images/seoul_burning.jpg", alt: "Seoul skyline engulfed in flames" },
+                content: `
+                    <p class="narrative">The morning Seoul dies, you wake up late for work.</p>
+
+                    <p class="narrative">Your phone shows seventeen missed calls from an unknown number. Three from your mother. The television—you don't remember leaving it on—shows a news anchor crying.</p>
+
+                    <p class="dialogue">"—advised to stay indoors. Do not approach anyone exhibiting symptoms. The infection spreads through—"</p>
+
+                    <p class="narrative">Static.</p>
+
+                    <p class="narrative">Outside your window, Hongdae is burning. A helicopter spirals into the Han River like a signal bouncing off dead satellites—still transmitting to a frequency no one monitors anymore. And in the street five floors below, something that used to be a woman is doing something unspeakable to something that used to be a man.</p>
+
+                    <p class="narrative">Your phone buzzes. Unknown number. You answer.</p>
+
+                    <p class="dialogue">"Yuna." That voice. The one that still makes your stomach drop. "Where are you? Are you safe?"</p>
+
+                    <p class="narrative">Minho. After six months of silence. Calling now.</p>
+
+                    <p class="dialogue">"I'm—I'm in my apartment. Minho, what's—"</p>
+
+                    <p class="dialogue">"Listen to me. Don't go outside. Barricade your door. I'm coming for you." A crash. Screaming in the background. "I'm in Itaewon. I can be there in—"</p>
+
+                    <p class="narrative">The line dies.</p>
+
+                    <p class="narrative">He's coming for you. After everything. After the silence and the distance and the way he broke you like matter burning up on entry—brief and brilliant, making someone's wish real at the cost of its own light.</p>
+
+                    <p class="narrative thought">He's <em>coming for you</em>.</p>
+
+                    <p class="narrative">Something hot and complicated moves through your chest. You don't have time to name it.</p>
+
+                    <p class="narrative">The pounding starts on Mrs. Park's door down the hall.</p>
+                `,
+                choices: [
+                    { text: "Help Mrs. Park. You can't leave an old woman to die.", target: 2 },
+                    { text: "Barricade your door. Survival first. Minho said stay.", target: 3 },
+                    { text: "Grab a weapon and go. Don't wait to be saved.", target: 4 }
+                ]
+            },
+
+            // Section 2: THE NEIGHBOR
+            2: {
+                title: "THE NEIGHBOR",
+                thread: "yuna",
+                content: `
+                    <p class="narrative">You run to Mrs. Park's door.</p>
+
+                    <p class="narrative">The wood is already splintering. Whatever's on the other side is <em>strong</em>.</p>
+
+                    <p class="dialogue">"Mrs. Park! It's Yuna!"</p>
+
+                    <p class="narrative">The door cracks open. A wrinkled hand grabs your wrist with shocking force and yanks you inside. Mrs. Park—eighty-three, widowed, the woman who brings you soup when you work late—slams the door shut.</p>
+
+                    <p class="narrative">She's holding a fire extinguisher like a weapon. Her eyes are steady.</p>
+
+                    <p class="dialogue">"I was in the war, girl. The real one. I've seen worse."</p>
+
+                    <p class="narrative">The door shudders. Won't hold.</p>
+
+                    <p class="dialogue">"Fire escape," she says. "My hip won't make the climb. You go."</p>
+
+                    <p class="dialogue">"I'm not leaving you."</p>
+
+                    <p class="dialogue">"Yes you are." She presses something into your palm. A key. "Storage unit in Yeouido. My husband's emergency supplies. He was paranoid about the North." She smiles, savage and ancient. "Take it. Survive. Make them pay for every inch."</p>
+
+                    <div class="poetic">
+                        Binary stars orbit a center neither owns,<br>
+                        locked in gravitational dance,<br>
+                        too close to escape, too far to collide.<br>
+                        You burned bright in that shared space.
+                    </div>
+
+                    <p class="narrative">The door breaks.</p>
+
+                    <p class="narrative">She raises the extinguisher.</p>
+
+                    <p class="dialogue"><strong>"GO."</strong></p>
+                `,
+                choices: [
+                    { text: "Take the key and run. Honor her sacrifice.", target: 5 },
+                    { text: "Stay and fight beside her. Together or not at all.", target: 6 }
+                ]
+            },
+
+            // Section 3: THE BARRICADE
+            3: {
+                title: "THE BARRICADE",
+                thread: "minho",
+                content: `
+                    <p class="narrative">You drag everything you own against the door. Bookshelf. Desk. Mattress.</p>
+
+                    <p class="narrative">Then you wait.</p>
+
+                    <p class="narrative">Three hours in the dark. The sounds outside are... you don't have words. You learn not to hear them. You learn to be very, very still.</p>
+
+                    <p class="narrative">When the pounding comes, you freeze.</p>
+
+                    <p class="dialogue">"Yuna? Yuna, are you there? It's me."</p>
+
+                    <p class="narrative">Minho's voice. Through the door. Alive.</p>
+
+                    <p class="narrative">You tear apart the barricade with shaking hands. When the door opens, he's covered in blood—not his, he swears—and his eyes are wild.</p>
+
+                    <p class="narrative">But when he sees you, something in his face cracks open.</p>
+
+                    <p class="dialogue">"You're alive," he breathes. "You're—"</p>
+
+                    <p class="narrative">He doesn't finish. He crosses the room in two steps and his arms are around you, his face buried in your hair, his whole body shaking.</p>
+
+                    <p class="dialogue">"I thought I lost you," he says. "I thought—"</p>
+
+                    <p class="dialogue">"You left me." It comes out before you can stop it. Six months of hurt compressed into three words.</p>
+
+                    <p class="narrative">He pulls back. Meets your eyes.</p>
+
+                    <p class="dialogue">"I know. I know I did. And I'm sorry. I'm so fucking sorry." His hands come up to cup your face. Careful. Like you're something precious. "I was on my way back when it started. I had my resignation letter written. I was going to—"</p>
+
+                    <p class="narrative">An explosion rocks the building.</p>
+
+                    <p class="dialogue">"We have to move," he says. "Car's outside. There's a military safe zone in Bukhansan. We can talk there. We can—" He stops. His thumb traces your cheekbone. "Please. Just give me a chance to make this right."</p>
+                `,
+                choices: [
+                    { text: "Go with him. Whatever happened before, he came back.", target: 7 },
+                    { text: "Tell him you'll follow in your own way. Trust is earned.", target: 8 },
+                    { text: "Kiss him first. If the world is ending, stop wasting time.", target: 9 }
+                ]
+            },
+
+            // Section 4: THE HUNTER
+            4: {
+                title: "THE HUNTER",
+                thread: "soojin",
+                media: { type: "image", src: "/static/media/images/hallway.jpg", alt: "Flickering fluorescent lights in a bloody corridor" },
+                content: `
+                    <p class="narrative">You don't wait.</p>
+
+                    <p class="narrative">You grab the knife from your kitchen—the Japanese santoku your mother gave you—and slip into the hallway.</p>
+
+                    <p class="narrative">The lights are flickering. Something is moving at the far end, hunched over something wet.</p>
+
+                    <p class="narrative">It looks up. Its eyes are filmed white. Its mouth is red.</p>
+
+                    <p class="narrative">It runs at you.</p>
+
+                    <p class="narrative">You sidestep—muscle memory from the self-defense classes you took after a man followed you home last year—and drive the knife into its temple.</p>
+
+                    <p class="narrative">It drops.</p>
+
+                    <p class="narrative">You stare at the blood on your hands. At the thing you just did.</p>
+
+                    <p class="narrative thought">You don't feel guilty. That's what scares you.</p>
+
+                    <p class="narrative thought">You feel <em>alive</em>.</p>
+
+                    <p class="narrative">You make it to the stairwell. Three floors down, you find someone else: a woman, maybe thirty, fighting off two of them with a baseball bat. She moves like water—precise, devastating.</p>
+
+                    <p class="narrative">She sees you. Doesn't hesitate.</p>
+
+                    <p class="dialogue">"Behind me. <em>Move.</em>"</p>
+
+                    <p class="narrative">You move.</p>
+
+                    <p class="narrative">Together, you carve through six more before reaching the street. She pulls you into an alley, then through a back door, into the storage room of a convenience store.</p>
+
+                    <p class="dialogue">"Soojin," she says, catching her breath. "Former ROK Special Forces."</p>
+
+                    <p class="dialogue">"Yuna. Museum curator."</p>
+
+                    <p class="narrative">She looks you up and down. Cataloguing. Assessing.</p>
+
+                    <p class="dialogue">"You handled that knife like you knew what you were doing."</p>
+
+                    <p class="dialogue">"Beginner's luck."</p>
+
+                    <p class="dialogue">"Bullshit." Something flickers in her eyes. Not quite a smile. "You've got instincts. That's rare."</p>
+                `,
+                choices: [
+                    { text: "Ask about her plan. She clearly has one.", target: 10 },
+                    { text: "\"What happened to you? The discharge.\"", target: 11 },
+                    { text: "Say nothing. Just catch your breath. Let the silence speak.", target: 12 }
+                ]
+            },
+
+            // Section 7: THE REUNION (Minho Spicy Route)
+            7: {
+                title: "THE REUNION",
+                thread: "minho",
+                content: `
+                    <p class="narrative">You take his hand.</p>
+
+                    <p class="narrative">The drive to Bukhansan is terrifying. Minho drives like a man possessed, weaving through burning streets, running over things you try not to see.</p>
+
+                    <p class="dialogue">"I never stopped," he says, eyes on the road. "Loving you. I just forgot how to show it."</p>
+
+                    <p class="dialogue">"I know."</p>
+
+                    <p class="dialogue">"I was a coward. I was—"</p>
+
+                    <p class="dialogue">"Minho. Focus on driving."</p>
+
+                    <p class="narrative">Something almost like a smile crosses his face.</p>
+
+                    <p class="narrative">You reach the safe zone at dawn. Fences, guards, tents—maybe a thousand survivors.</p>
+
+                    <p class="narrative">Inside, you're assigned a tent. Shared. Someone's sense of humor.</p>
+
+                    <p class="narrative">Minho stands by the entrance, watching you. That intensity that used to make you forget how to breathe.</p>
+
+                    <p class="dialogue">"I know I have to earn you back," he says quietly. "I know words aren't enough."</p>
+
+                    <p class="dialogue">"Then stop talking."</p>
+
+                    <p class="narrative">He crosses the distance between you.</p>
+
+                    <div class="spicy">
+                        <p class="narrative">His hands find your waist, pulling you against him. His mouth finds your jaw, your neck, the spot behind your ear that makes your knees weak.</p>
+
+                        <p class="dialogue">"I've dreamed about this," he breathes against your skin. "Every night for six months."</p>
+
+                        <p class="dialogue">"Me too."</p>
+
+                        <p class="dialogue">"Tell me to stop." His hands slide lower. "Tell me to stop and I will."</p>
+
+                        <p class="dialogue">"Don't you dare."</p>
+
+                        <p class="narrative">He undresses you slowly. Not seductive—methodical. Like he's unwrapping something precious and refusing to be rushed.</p>
+
+                        <p class="dialogue">"I've thought about this," he says, fingers tracing your ribs. "Every inch of you. How I should have touched you. What I should have said."</p>
+
+                        <p class="dialogue">"What should you have said?"</p>
+
+                        <p class="narrative">His eyes meet yours. Dark, certain.</p>
+
+                        <p class="dialogue">"Stay. I should have said stay. I should have said you were the only thing that mattered. I should have said—" He presses his forehead to yours. "I should have said I love you. Every day. Until you believed it."</p>
+
+                        <p class="dialogue">"Say it now."</p>
+
+                        <p class="dialogue">"I love you." His hands are on your hips, pulling you against him, and you can feel exactly how much he means it. "I love you. I love you. I'm going to spend the rest of this fucking apocalypse proving it."</p>
+
+                        <p class="narrative">You kiss him to shut him up.</p>
+
+                        <p class="narrative">It's not gentle. Six months of anger and want and unspent grief pouring out through teeth and tongue. His hands are in your hair, your nails are down his back, and when he finally lifts you and lowers you onto the narrow cot, you don't care that the canvas walls are thin.</p>
+
+                        <p class="narrative thought">Let them hear.</p>
+
+                        <p class="dialogue">"Look at me," he says, pushing inside you inch by devastating inch. "I want to see your eyes when you fall apart."</p>
+
+                        <p class="narrative">You don't look away.</p>
+                    </div>
+
+                    <div class="poetic">
+                        Now you're giving me permission to drift<br>
+                        into someone else's gravity well,<br>
+                        coaching my descent toward new moons,<br>
+                        while I still write to you each day or night<br>
+                        like a signal bouncing off dead satellites.
+                    </div>
+
+                    <p class="narrative">When it's over, you're wrapped around each other, sweaty and breathless. His fingers trace patterns on your shoulder.</p>
+
+                    <p class="dialogue">"Stay," you whisper.</p>
+
+                    <p class="dialogue">"I'm not going anywhere. Not ever again."</p>
+                `,
+                choices: [
+                    { text: "Continue building this life with him.", target: 15 },
+                    { text: "Wonder if you're making a mistake...", target: 8 }
+                ]
+            },
+
+            // Section 9: THE KISS (Immediate Passion Ending)
+            9: {
+                title: "THE REKINDLED FLAME",
+                thread: "minho",
+                isEnding: true,
+                endingNumber: 1,
+                content: `
+                    <p class="narrative">You kiss him.</p>
+
+                    <p class="narrative">No warning. No preamble. You grab his collar and pull him down and take what you've wanted for six months.</p>
+
+                    <p class="narrative">He freezes for half a second. Then his hands are on you, desperate, bruising, and he's kissing you back like you're the only oxygen in a burning world.</p>
+
+                    <p class="dialogue">"Yuna—"</p>
+
+                    <p class="dialogue">"Shut up." You're already pulling at his jacket. "The world is ending. I'm not wasting another second."</p>
+
+                    <div class="spicy">
+                        <p class="narrative">You don't make it to the safe zone that night.</p>
+
+                        <p class="narrative">You pull him into an abandoned apartment, barricade the door, and take what you're owed.</p>
+
+                        <p class="narrative">He pushes you against the wall, his mouth on your throat, his hands everywhere.</p>
+
+                        <p class="dialogue">"I should apologize—"</p>
+
+                        <p class="dialogue">"Later."</p>
+
+                        <p class="dialogue">"I should explain—"</p>
+
+                        <p class="dialogue">"<em>Later.</em>"</p>
+
+                        <p class="dialogue">"I love you," he says, and swallows your response with another kiss.</p>
+                    </div>
+
+                    <p class="narrative">When you finally reach Bukhansan, three days later, you're different. The distance between you has closed. The silence has been filled—with words, with skin, with promises made in the dark.</p>
+
+                    <div class="ending">
+                        <div class="ending-number">ENDING 1 OF 8</div>
+                        <h2 class="ending-title">THE REKINDLED FLAME</h2>
+                        <div class="ending-text">
+                            <p>The world ended. But you found each other in the ashes.</p>
+                            <p>Six months later, you lead supply runs together. He follows you into danger without question. You follow him out.</p>
+                            <p>And every night, in the tent that's become yours, he proves what he couldn't say before:</p>
+                            <p><em>"I choose you. Every time. I choose you."</em></p>
+                        </div>
+                        <button class="restart-btn" onclick="restartGame()">BEGIN AGAIN</button>
+                    </div>
+                `,
+                choices: []
+            },
+
+            // Section 11: HER LOSS (Soojin Spicy Route)
+            11: {
+                title: "HER LOSS",
+                thread: "soojin",
+                content: `
+                    <p class="narrative">At 3 AM, she speaks into the darkness:</p>
+
+                    <p class="dialogue">"I was discharged for loving my CO. She didn't love me back the same way. At least, not publicly." A pause. "She was in Busan when this started."</p>
+
+                    <p class="dialogue">"Her loss," you say.</p>
+
+                    <p class="narrative">Soojin laughs—bitter, surprised.</p>
+
+                    <p class="dialogue">"You're the first person who's ever said that. Everyone else said 'that's too bad' or 'you should have been more careful.'"</p>
+
+                    <p class="dialogue">"Those people are idiots. And probably dead now."</p>
+
+                    <p class="narrative">She laughs again. This time it sounds real.</p>
+
+                    <p class="dialogue">"You're not what I expected," she says. "Most people I rescue... they break."</p>
+
+                    <p class="dialogue">"My father was in the Navy. He taught me something." You meet her eyes. "Fear is just love holding its breath."</p>
+
+                    <div class="poetic">
+                        Through a tangled tapestry,<br>
+                        dances a threaded needle,<br>
+                        fate nudged this way and that,<br>
+                        life is ever winding and woven,<br>
+                        paths are joined and broken,<br>
+                        connections are made,<br>
+                        even when words aren't spoken.
+                    </div>
+
+                    <p class="narrative">She's quiet for a long moment.</p>
+
+                    <p class="dialogue">"I like that," she finally says. "I'm going to steal it."</p>
+
+                    <p class="dialogue">"It's not stealing if I give it to you."</p>
+
+                    <p class="narrative">The silence between you changes. Thickens.</p>
+
+                    <p class="narrative">She moves first—or maybe you do. It doesn't matter. Her mouth finds yours in the dark, hungry and certain.</p>
+
+                    <p class="dialogue">"Tell me to stop," she breathes.</p>
+
+                    <p class="narrative">You pull her closer.</p>
+
+                    <div class="spicy">
+                        <p class="narrative">She kisses like she fights: no wasted motion, every touch intentional.</p>
+
+                        <p class="dialogue">"I don't do this," she says, pulling back. "Random hookups in the apocalypse. This isn't—"</p>
+
+                        <p class="dialogue">"Then what is it?"</p>
+
+                        <p class="narrative">Her eyes are silver in the darkness. "I don't know. But I want to find out."</p>
+
+                        <p class="narrative">She pushes you down onto the pile of blankets she'd arranged as a bed. Her hands are calloused, capable, and when they slide under your shirt, you gasp.</p>
+
+                        <p class="dialogue">"Sensitive," she murmurs. Not a question.</p>
+
+                        <p class="dialogue">"Shut up."</p>
+
+                        <p class="narrative">She grins. Wolfish. "Make me."</p>
+
+                        <p class="narrative">You try. You fail. She's stronger, faster, and she uses every advantage ruthlessly.</p>
+
+                        <p class="narrative">But she's also careful. She pauses at every new inch of skin, checks your eyes, waits for permission.</p>
+
+                        <p class="dialogue">"This okay?"</p>
+
+                        <p class="dialogue">"<em>Yes.</em>"</p>
+
+                        <p class="dialogue">"This?"</p>
+
+                        <p class="dialogue">"<em>Yes.</em>"</p>
+
+                        <p class="dialogue">"And this—" Her hand slides between your thighs. "This okay too?"</p>
+
+                        <p class="narrative">You answer with your body.</p>
+
+                        <p class="narrative">She takes her time. Learns you. Catalogues every sound you make like tactical intelligence.</p>
+
+                        <p class="narrative">When you finally break apart, gasping her name, she watches you through it with something like wonder.</p>
+
+                        <p class="dialogue">"Beautiful," she says. "Fucking beautiful."</p>
+
+                        <p class="dialogue">"Your turn."</p>
+
+                        <p class="dialogue">"You don't have to—"</p>
+
+                        <p class="dialogue">"I want to." You push yourself up. Push her down. "Lie back and let me."</p>
+
+                        <p class="narrative">She hesitates—just for a second. Then something in her relaxes.</p>
+
+                        <p class="dialogue">"Okay," she whispers. "Okay."</p>
+                    </div>
+
+                    <p class="narrative">When dawn comes, you're tangled together, her arm heavy across your waist.</p>
+
+                    <p class="dialogue">"Stay," she says.</p>
+
+                    <p class="narrative">You're not sure if she means right now or forever.</p>
+
+                    <p class="narrative">You decide it doesn't matter.</p>
+
+                    <p class="dialogue">"I'm staying."</p>
+                `,
+                choices: [
+                    { text: "Head to Japan together.", target: 19 },
+                    { text: "Ask about going back for her ex.", target: 10 }
+                ]
+            },
+
+            // Section 18: COLONEL YOO (WLW Authority Figure Route)
+            18: {
+                title: "THE CHOICE",
+                thread: "yoo",
+                content: `
+                    <p class="narrative">You kiss her.</p>
+
+                    <p class="narrative">She tastes like adrenaline and authority. Her hand tightens in your hair—not gentle, not asking—and she walks you backward until you hit the tent's center pole.</p>
+
+                    <p class="dialogue">"Decisive," she murmurs against your mouth. "Good."</p>
+
+                    <p class="dialogue">"Less talking."</p>
+
+                    <p class="dialogue">"Ordering me around?" She bites your lower lip. Hard enough to sting. "Brave."</p>
+
+                    <div class="spicy">
+                        <p class="narrative">Her hands are everywhere—pulling at your clothes, mapping your body with military precision. She knows what she's doing. She knows exactly where to touch.</p>
+
+                        <p class="dialogue">"This is just tonight," she says, pulling back. Her eyes are dark. "You understand that."</p>
+
+                        <p class="dialogue">"I understand."</p>
+
+                        <p class="dialogue">"And Minho?"</p>
+
+                        <p class="dialogue">"Isn't here."</p>
+
+                        <p class="narrative">She grins. It's predatory and beautiful.</p>
+
+                        <p class="dialogue">"Then let me show you what you've been missing."</p>
+
+                        <p class="narrative">She's not gentle. She doesn't apologize for it. Every touch is a demand: <em>give me this. Show me that. Let go.</em></p>
+
+                        <p class="narrative">When you finally break apart, she watches you with satisfaction.</p>
+
+                        <p class="dialogue">"Again," you gasp.</p>
+
+                        <p class="dialogue">"Say please."</p>
+
+                        <p class="narrative">You glare at her.</p>
+
+                        <p class="narrative">She laughs—genuine, surprised. "I like you," she says. "Yuna the museum curator." Her fingers trace down your stomach. "Since you asked so nicely..."</p>
+                    </div>
+
+                    <p class="narrative">You don't sleep.</p>
+
+                    <p class="narrative">In the morning, she's gone. A note on your pillow:</p>
+
+                    <p class="dialogue"><em>Same time tomorrow. If you want.<br>—Y.</em></p>
+
+                    <p class="narrative">You fold the note carefully. Tuck it into your pocket.</p>
+
+                    <p class="narrative">When Minho finds you at breakfast, he looks at you like he's seeing something new.</p>
+
+                    <p class="dialogue">"You seem different," he says.</p>
+
+                    <p class="dialogue">"Different how?"</p>
+
+                    <p class="dialogue">"I don't know." He studies you. "More... certain."</p>
+
+                    <p class="narrative">You smile. Don't explain.</p>
+
+                    <p class="narrative thought">Some things don't need explaining.</p>
+                `,
+                choices: [
+                    { text: "Keep seeing her in secret.", target: 23 },
+                    { text: "Tell Minho. See what happens.", target: 23 }
+                ]
+            },
+
+            // Section 19: THE CROSSING (Japan with Soojin)
+            19: {
+                title: "THE NEW LIFE",
+                thread: "soojin",
+                isEnding: true,
+                endingNumber: 4,
+                content: `
+                    <p class="narrative">The boat to Japan is everything Soojin promised: small, fast, dangerous.</p>
+
+                    <p class="narrative">You fight off infected at the docks. You navigate through storms. You hold each other through the crossing.</p>
+
+                    <p class="narrative">Japan is real. Japan is alive.</p>
+
+                    <p class="narrative">At the quarantine checkpoint, they ask your relationship.</p>
+
+                    <p class="narrative">Soojin looks at you. You look at her.</p>
+
+                    <p class="dialogue">"Partners," she says.</p>
+
+                    <p class="narrative">It sounds right.</p>
+
+                    <p class="narrative">Three months later, she gets word: Soyeon is alive. In a camp in Jeju. She wants Soojin to come back.</p>
+
+                    <p class="narrative">Your heart drops. "That's wonderful."</p>
+
+                    <p class="dialogue">"I told her no."</p>
+
+                    <p class="dialogue">"Why?"</p>
+
+                    <p class="dialogue">"Because I'm already with someone."</p>
+
+                    <p class="narrative">She crosses the distance between you. Takes your face in her hands.</p>
+
+                    <p class="dialogue">"I love you," she says. "I've been trying to figure out how to say it. Apparently the best I could manage is 'I chose you over the woman I spent years pining for.'"</p>
+
+                    <p class="narrative">You laugh. It's wet and messy and perfect.</p>
+
+                    <p class="dialogue">"That's the most romantic thing anyone's ever said to me."</p>
+
+                    <p class="dialogue">"I'm not a romantic person."</p>
+
+                    <p class="dialogue">"You are for me."</p>
+
+                    <div class="ending">
+                        <div class="ending-number">ENDING 4 OF 8</div>
+                        <h2 class="ending-title">THE NEW LIFE</h2>
+                        <div class="ending-text">
+                            <p>You build a life in Japan. Quiet. Ordinary. Extraordinary.</p>
+                            <p>Soojin learns to laugh. You learn to fight. Together, you become something neither of you expected:</p>
+                            <p><em>A home.</em></p>
+                        </div>
+                        <button class="restart-btn" onclick="restartGame()">BEGIN AGAIN</button>
+                    </div>
+                `,
+                choices: []
+            },
+
+            // Section 23: THE POLY ENDING
+            23: {
+                title: "THE THROUPLE",
+                thread: "yoo",
+                isEnding: true,
+                endingNumber: 6,
+                content: `
+                    <p class="narrative">It takes a month before Minho realizes something's different.</p>
+
+                    <p class="narrative">It takes two before he confronts you about it.</p>
+
+                    <p class="dialogue">"Colonel Yoo," he says flatly. "You and Colonel Yoo."</p>
+
+                    <p class="narrative">You don't lie. "Yes."</p>
+
+                    <p class="dialogue">"How long?"</p>
+
+                    <p class="dialogue">"Since the second night."</p>
+
+                    <p class="narrative">He's quiet for a long moment. Then:</p>
+
+                    <p class="dialogue">"Do you love her?"</p>
+
+                    <p class="dialogue">"I don't know. I like her. She makes me feel... powerful."</p>
+
+                    <p class="dialogue">"And me?"</p>
+
+                    <p class="narrative">You cross to him. Take his hands.</p>
+
+                    <p class="dialogue">"You make me feel loved. That's different. That's not less."</p>
+
+                    <p class="narrative">He's struggling—you can see it. The old Minho would have walked away. The old Minho would have made this about his pride.</p>
+
+                    <p class="narrative">The new Minho looks at you.</p>
+
+                    <p class="dialogue">"I don't know how to do this," he admits.</p>
+
+                    <p class="dialogue">"Neither do I. But I'd rather figure it out than lose you."</p>
+
+                    <p class="dialogue">"And her?"</p>
+
+                    <p class="dialogue">"She's... interested. If you are."</p>
+
+                    <p class="narrative">His eyebrows rise. "Interested in what?"</p>
+
+                    <p class="dialogue">"In seeing if this can work. The three of us."</p>
+
+                    <p class="narrative">He's silent for so long you think you've broken something irreparable.</p>
+
+                    <p class="narrative">Then: "I'll talk to her."</p>
+
+                    <div class="poetic">
+                        All those shooting stars we counted:<br>
+                        matter burning up on entry,<br>
+                        brief and brilliant,<br>
+                        making someone's wish real<br>
+                        at the cost of its own light.
+                    </div>
+
+                    <p class="narrative">One year later. It's not easy. It's never easy.</p>
+
+                    <p class="narrative">But somewhere between supply runs and strategy meetings and tangled limbs in a tent that's become too small, you figure it out.</p>
+
+                    <p class="dialogue">"This is insane," Yoo says one night, sandwiched between you and Minho.</p>
+
+                    <p class="dialogue">"Completely," he agrees.</p>
+
+                    <p class="dialogue">"Absolutely," you add.</p>
+
+                    <p class="narrative">She kisses you. Then him. "I like insane."</p>
+
+                    <div class="ending">
+                        <div class="ending-number">ENDING 6 OF 8</div>
+                        <h2 class="ending-title">THE THROUPLE</h2>
+                        <div class="ending-text">
+                            <p>The world ended. But you found two people who made the ruins feel like home.</p>
+                            <p>Minho gives you steadiness. Yoo gives you fire. Together, they give you everything.</p>
+                            <p>And when people ask how it works—the three of you, the mess, the impossibility—you just smile.</p>
+                            <p><em>"We chose each other. Every day. That's all it takes."</em></p>
+                        </div>
+                        <button class="restart-btn" onclick="restartGame()">BEGIN AGAIN</button>
+                    </div>
+                `,
+                choices: []
+            },
+
+            // More sections would continue here...
+            // Adding key connection points
+
+            5: {
+                title: "THE KEY",
+                thread: "yuna",
+                content: `
+                    <p class="narrative">You run.</p>
+
+                    <p class="narrative">The fire escape groans but holds. Behind you, you hear the fire extinguisher connect—once, twice—and then nothing.</p>
+
+                    <p class="narrative">Mrs. Park's key is cold in your palm.</p>
+
+                    <p class="narrative">You make it to Yeouido by nightfall. The storage unit is exactly where she said. Inside: camping gear, MREs, a shortwave radio, and a locked case at the back.</p>
+
+                    <p class="narrative">Three handguns. Full magazines.</p>
+
+                    <p class="narrative thought">Her husband was <em>very</em> paranoid.</p>
+
+                    <p class="narrative">The radio crackles. A voice—young, desperate.</p>
+
+                    <p class="dialogue"><em>"If anyone can hear this, we're at Seoul Station. Forty survivors. Running out of supplies. Please—if you can help—"</em></p>
+
+                    <p class="narrative">You have enough supplies for one person to last months. Or forty people to last days.</p>
+
+                    <p class="narrative thought">Mrs. Park didn't save you so you could save yourself.</p>
+                `,
+                choices: [
+                    { text: "Go to Seoul Station. Share what you have.", target: 13 },
+                    { text: "Stay alone. Survive. Build something in the ruins.", target: 14 }
+                ]
+            },
+
+            13: {
+                title: "THE DISPATCHER",
+                thread: "yuna",
+                isEnding: true,
+                endingNumber: 2,
+                content: `
+                    <p class="narrative">You go.</p>
+
+                    <p class="narrative">Mrs. Park didn't save you so you could save yourself.</p>
+
+                    <p class="narrative">Seoul Station is worse than you imagined: forty-three people crammed into a ticket office, barricaded with vending machines. The children are too quiet. The adults are losing hope.</p>
+
+                    <p class="narrative">When you walk in with supplies, they stare at you like you're salvation.</p>
+
+                    <p class="dialogue">"Who are you?" the leader asks—a former transit officer named Mr. Bae.</p>
+
+                    <p class="dialogue">"Someone who got lucky."</p>
+
+                    <p class="narrative">You stay. You organize. You build something.</p>
+
+                    <p class="narrative">By spring, Seoul Station is the heart of a network—survivor groups connected by scavenged radios and dangerous supply runs.</p>
+
+                    <p class="narrative">And somewhere along the way, you fall in love.</p>
+
+                    <p class="narrative">Not with one person. With the work. With the impossible, stubborn act of keeping people alive.</p>
+
+                    <div class="ending">
+                        <div class="ending-number">ENDING 2 OF 8</div>
+                        <h2 class="ending-title">THE DISPATCHER</h2>
+                        <div class="ending-text">
+                            <p>They call you the Dispatcher. The voice on the radio. The one who coordinates rescues and shares resources and refuses to let anyone die alone.</p>
+                            <p>Years later, when they write the history of the Seoul Reclamation, they won't know your face.</p>
+                            <p>But they'll quote your words:</p>
+                            <p><em>"This is Dispatcher Yuna, Seoul Station. If you can hear this, you're not alone."</em></p>
+                        </div>
+                        <button class="restart-btn" onclick="restartGame()">BEGIN AGAIN</button>
+                    </div>
+                `,
+                choices: []
+            },
+
+            15: {
+                title: "THE SURVIVORS",
+                thread: "minho",
+                isEnding: true,
+                endingNumber: 3,
+                content: `
+                    <p class="narrative">Three months in the safe zone. Three months of learning to be together again—really together, not the shadow of a relationship you had before.</p>
+
+                    <p class="narrative">He's different now. Softer in some ways, harder in others. He doesn't take anything for granted.</p>
+
+                    <p class="dialogue">"I have nightmares," he admits one night, lying beside you. "About being too late. About finding your door broken open and—"</p>
+
+                    <p class="dialogue">"I'm here." You press your palm to his chest. Feel his heart beating. "I'm here."</p>
+
+                    <p class="narrative">When the call comes to lead a supply run, you both volunteer.</p>
+
+                    <p class="dialogue">"You don't have to," he says. "You could stay—"</p>
+
+                    <p class="dialogue">"We do this together or not at all."</p>
+
+                    <p class="narrative">Something flickers in his eyes. Pride, maybe. Or love.</p>
+
+                    <p class="dialogue">"Together," he agrees.</p>
+
+                    <div class="ending">
+                        <div class="ending-number">ENDING 3 OF 8</div>
+                        <h2 class="ending-title">THE SURVIVORS</h2>
+                        <div class="ending-text">
+                            <p>You fight together. Build together. Lead together.</p>
+                            <p>When the safe zone becomes a city, you're on the council. When the city becomes a nation, you're its founders.</p>
+                            <p>And every night, in the home you built from nothing, he holds you like you're everything.</p>
+                            <p><em>"I choose you," he whispers. "Forever. I choose you."</em></p>
+                        </div>
+                        <button class="restart-btn" onclick="restartGame()">BEGIN AGAIN</button>
+                    </div>
+                `,
+                choices: []
+            }
+        };
+
+        // Game State
+        let gameState = {
+            currentSection: 1,
+            history: [],
+            endings: [],
+            threadsVisited: new Set()
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load saved state
+            const saved = {{ save_data | safe }};
+            if (saved && saved.currentSection) {
+                gameState = {
+                    ...saved,
+                    threadsVisited: new Set(saved.threadsVisited || [])
+                };
+            }
+
+            // Hide loading
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+                renderSection(gameState.currentSection);
+            }, 1000);
+        });
+
+        function renderSection(sectionId) {
+            const section = GAME_DATA[sectionId];
+            if (!section) {
+                console.error('Section not found:', sectionId);
+                return;
+            }
+
+            gameState.currentSection = sectionId;
+            gameState.threadsVisited.add(section.thread);
+
+            // Update progress indicator
+            document.getElementById('progress').textContent =
+                section.isEnding ? 'END' : `SEC ${String(sectionId).padStart(2, '0')}`;
+
+            // Update thread indicators
+            updateThreads();
+
+            // Build section HTML
+            let html = `
+                <div class="section active" id="section-${sectionId}">
+                    <div class="section-number">SECTION ${sectionId}</div>
+                    <h2 class="section-title">${section.title}</h2>
+            `;
+
+            // Add media if present
+            if (section.media) {
+                if (section.media.type === 'image') {
+                    html += `
+                        <div class="media-container">
+                            <img src="${section.media.src}" alt="${section.media.alt}"
+                                 onerror="this.style.display='none'">
+                        </div>
+                    `;
+                } else if (section.media.type === 'video') {
+                    html += `
+                        <div class="media-container">
+                            <video src="${section.media.src}" autoplay muted loop playsinline></video>
+                        </div>
+                    `;
+                }
+            }
+
+            // Add content
+            html += section.content;
+
+            // Add choices if not ending
+            if (section.choices && section.choices.length > 0) {
+                html += `
+                    <div class="choices">
+                        <div class="choices-header">What do you do?</div>
+                `;
+
+                section.choices.forEach((choice, index) => {
+                    html += `
+                        <button class="choice" onclick="makeChoice(${choice.target})">
+                            ${choice.text}
+                        </button>
+                    `;
+                });
+
+                html += `</div>`;
+            }
+
+            html += `</div>`;
+
+            // Render
+            document.getElementById('content').innerHTML = html;
+            document.getElementById('content').scrollTop = 0;
+
+            // Save state
+            saveGame();
+        }
+
+        function makeChoice(targetSection) {
+            gameState.history.push(gameState.currentSection);
+            renderSection(targetSection);
+
+            // Check for ending
+            const section = GAME_DATA[targetSection];
+            if (section && section.isEnding) {
+                gameState.endings.push(section.endingNumber);
+                saveGame();
+            }
+        }
+
+        function updateThreads() {
+            const threads = ['yuna', 'minho', 'soojin', 'yoo'];
+            const currentThread = GAME_DATA[gameState.currentSection]?.thread;
+
+            threads.forEach(thread => {
+                const el = document.getElementById(`thread-${thread}`);
+                el.classList.remove('active', 'visited');
+
+                if (thread === currentThread) {
+                    el.classList.add('active');
+                } else if (gameState.threadsVisited.has(thread)) {
+                    el.classList.add('visited');
+                }
+            });
+        }
+
+        function saveGame() {
+            const saveData = {
+                ...gameState,
+                threadsVisited: Array.from(gameState.threadsVisited)
+            };
+
+            // Save to server
+            fetch('/api/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(saveData)
+            });
+
+            // Also save to localStorage as backup
+            localStorage.setItem('deadseoul_save', JSON.stringify(saveData));
+        }
+
+        function restartGame() {
+            gameState = {
+                currentSection: 1,
+                history: [],
+                endings: gameState.endings, // Keep endings unlocked
+                threadsVisited: new Set()
+            };
+            saveGame();
+            renderSection(1);
+        }
+    </script>
+</body>
+</html>
