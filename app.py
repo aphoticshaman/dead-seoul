@@ -117,7 +117,31 @@ def logout():
 def game():
     """Main game interface."""
     player_id = session.get('player_id', 'default')
-    save_data = load_save(player_id)
+
+    # Handle reset parameter - start fresh
+    if request.args.get('reset') == '1':
+        save_path = SAVE_DIR / f"{player_id}.json"
+        if save_path.exists():
+            save_path.unlink()
+        track_event(player_id, 'reset', {'timestamp': datetime.now().isoformat()})
+        save_data = {'currentSection': 1, 'history': [], 'endings': []}
+    # Handle newgameplus parameter - keep endings, reset progress
+    elif request.args.get('newgameplus') == '1':
+        old_save = load_save(player_id)
+        save_data = {
+            'currentSection': 1,
+            'history': [],
+            'endings': old_save.get('endings', []),  # Keep endings
+            'playthrough': old_save.get('playthrough', 1) + 1  # Increment playthrough
+        }
+        # Save NG+ state
+        save_path = SAVE_DIR / f"{player_id}.json"
+        with open(save_path, 'w') as f:
+            json.dump(save_data, f)
+        track_event(player_id, 'new_game_plus', {'playthrough': save_data['playthrough']})
+    else:
+        save_data = load_save(player_id)
+
     return render_template('game.html',
                          save_data=json.dumps(save_data),
                          player_id=player_id,

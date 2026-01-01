@@ -2314,6 +2314,17 @@
                 html += `</div>`;
             }
 
+            // Add restart buttons for endings (if no choices or is ending)
+            if (section.isEnding || ((!choices || choices.length === 0) && !section.choices)) {
+                html += `
+                    <div class="ending-actions" style="margin-top: 2rem; text-align: center; display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+                        <a href="/game?newgameplus=1" class="restart-btn" style="text-decoration: none;">NEW GAME+ (Keep Endings)</a>
+                        <a href="/game?reset=1" class="restart-btn" style="text-decoration: none; opacity: 0.7;" onclick="return confirm('Start completely fresh? All progress will be lost.')">FRESH START</a>
+                        <a href="/dashboard" class="restart-btn" style="text-decoration: none; opacity: 0.5;">DASHBOARD</a>
+                    </div>
+                `;
+            }
+
             html += `</div>`;
 
             // Render

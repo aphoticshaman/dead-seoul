@@ -385,7 +385,8 @@
         <!-- Secondary Actions -->
         <div class="actions">
             {% if has_save %}
-            <a href="/game?reset=1" class="btn btn-secondary" onclick="return confirm('Start fresh? Your current progress will be lost.')">NEW GAME</a>
+            <a href="/game?newgameplus=1" class="btn btn-secondary">NEW GAME+ (Keep Endings)</a>
+            <a href="/game?reset=1" class="btn btn-secondary" style="opacity: 0.7;" onclick="return confirm('Start completely fresh? All progress will be lost.')">FRESH START</a>
             {% endif %}
             <a href="/collection" class="btn btn-secondary">SNOW GLOBE COLLECTION</a>
         </div>
