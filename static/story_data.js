@@ -4680,8 +4680,7 @@ const STORY_DATA = {
             { text: "\"Show me what you've got.\"", target: 18 },
             { text: "Pull away.", target: 16 }
         ]
-    }
-};
+    },
 
 // ═══════════════════════════════════════════════════════════════
     // EXPANDED CONTENT - THE WEB DEEPENS
