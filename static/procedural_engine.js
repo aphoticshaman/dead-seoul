@@ -1,8 +1,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// PROCEDURAL ENGINE - Roguelike × Diablo DNA
+// PROCEDURAL ENGINE - Seed System
 // ═══════════════════════════════════════════════════════════════════════════
 // Seeds encode history. Runs are unique. Death has meaning.
-// Affixes modify encounters. Loot tables shift. The world remembers.
 // ═══════════════════════════════════════════════════════════════════════════
 
 const ProceduralEngine = {
@@ -129,13 +128,9 @@ const ProceduralEngine = {
     generateWorld(importedSeeds = []) {
         const worldState = {
             difficulty: 1,
-            modifiers: [],
             unlockedPaths: [],
-            bonusEncounters: [],
-            affixes: {},
-            lootTable: this.getBaseLootTable(),
             jinState: 'neutral',
-            globalEvents: []
+            playthrough: 1
         };
 
         // Each imported seed modifies the world
@@ -148,81 +143,19 @@ const ProceduralEngine = {
                 worldState.unlockedPaths.push('eden_shortcut', 'jin_true_ending');
             }
             if (decoded.endingCode === 'CURED') {
-                worldState.unlockedPaths.push('cure_knowledge', 'scientist_ally');
-            }
-            if (decoded.endingCode === 'ENSLV') {
-                worldState.modifiers.push('haunted_by_past');
-                worldState.globalEvents.push('escaped_slave_encounter');
+                worldState.unlockedPaths.push('cure_knowledge');
             }
 
             // High loyalty runs make Jin warmer
             if (decoded.loyalty >= 15) {
                 worldState.jinState = 'devoted';
-                worldState.bonusEncounters.push('jin_memory', 'jin_gift');
             }
 
-            // Betrayal runs add consequences
-            if (decoded.betrayals > 0) {
-                worldState.modifiers.push('reputation_precedes');
-                worldState.difficulty += decoded.betrayals;
-            }
-
-            // Multiple playthroughs add affixes
-            if (decoded.playthrough > 1) {
-                worldState.affixes['ng_plus'] = decoded.playthrough;
-            }
+            // Track playthrough count
+            worldState.playthrough = Math.max(worldState.playthrough, decoded.playthrough || 1);
         });
 
         return worldState;
-    },
-
-    // ═══════════════════════════════════════════════════════════════════════
-    // DIABLO-STYLE AFFIXES - Modifiers on encounters
-    // ═══════════════════════════════════════════════════════════════════════
-
-    affixPool: {
-        // Positive affixes (rewards)
-        blessed: { name: "Blessed", effect: "+1 loyalty on any choice", color: "gold" },
-        jinFavor: { name: "Jin's Favor", effect: "Jin trusts you faster", color: "pink" },
-        prophetic: { name: "Prophetic", effect: "See choice consequences", color: "purple" },
-        resourceful: { name: "Resourceful", effect: "Find extra supplies", color: "green" },
-
-        // Negative affixes (challenges)
-        cursed: { name: "Cursed", effect: "Bad luck follows you", color: "red" },
-        haunted: { name: "Haunted", effect: "Past choices echo", color: "gray" },
-        hunted: { name: "Hunted", effect: "Raiders track your path", color: "orange" },
-        timed: { name: "Timed", effect: "Choices have time limits", color: "blue" },
-
-        // Neutral affixes (variations)
-        altered: { name: "Altered", effect: "Familiar scenes feel different", color: "cyan" },
-        mirrored: { name: "Mirrored", effect: "Choices swap positions", color: "silver" },
-        hidden: { name: "Hidden", effect: "Some choices are invisible at first", color: "black" }
-    },
-
-    // Roll affixes for a section based on seed
-    rollAffixes(sectionId, playerState) {
-        const affixes = [];
-        const rng = this.seededRandom(playerState.seed + sectionId);
-
-        // 20% chance for any affix
-        if (rng < 0.2) {
-            const pool = Object.keys(this.affixPool);
-            const picked = pool[Math.floor(rng * 10) % pool.length];
-            affixes.push(this.affixPool[picked]);
-        }
-
-        // Guaranteed affixes based on state
-        if (playerState.betrayals > 0 && sectionId > 10) {
-            affixes.push(this.affixPool.haunted);
-        }
-        if (playerState.jinTrust >= 10) {
-            affixes.push(this.affixPool.jinFavor);
-        }
-        if (playerState.playthrough > 2) {
-            affixes.push(this.affixPool.prophetic);
-        }
-
-        return affixes;
     },
 
     // ═══════════════════════════════════════════════════════════════════════
@@ -312,37 +245,6 @@ const ProceduralEngine = {
         // Pick one randomly
         const rng = this.seededRandom(playerState.seed + Date.now());
         return candidates[Math.floor(rng * candidates.length)];
-    },
-
-    // ═══════════════════════════════════════════════════════════════════════
-    // LOOT TABLES - What you find changes based on history
-    // ═══════════════════════════════════════════════════════════════════════
-
-    getBaseLootTable() {
-        return {
-            common: ['bandages', 'canned_food', 'water', 'flashlight'],
-            uncommon: ['medkit', 'radio_parts', 'ammunition', 'map'],
-            rare: ['hazmat_suit', 'antibiotics', 'weapon_upgrade', 'jin_memento'],
-            legendary: ['cure_component', 'orca_frequency', 'eden_coordinates', 'jin_ring']
-        };
-    },
-
-    modifyLootTable(baseTable, worldState) {
-        const modified = { ...baseTable };
-
-        // High loyalty = better loot
-        if (worldState.jinState === 'devoted') {
-            modified.common = modified.uncommon;
-            modified.uncommon = modified.rare;
-        }
-
-        // Betrayal = worse loot
-        if (worldState.modifiers.includes('reputation_precedes')) {
-            modified.rare = modified.uncommon;
-            modified.legendary = modified.rare;
-        }
-
-        return modified;
     },
 
     // ═══════════════════════════════════════════════════════════════════════

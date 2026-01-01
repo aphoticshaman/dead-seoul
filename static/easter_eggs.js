@@ -29,6 +29,15 @@ const EasterEggs = {
         "A devil's trap painted on the floor. Salt in a circle. It didn't help. Nothing helps.",
         "Black wings painted on a wall. Charred at the edges. 'HELLO, DETECTIVE' written beneath.",
         "You hear clicking in the distance. Rhythmic. Searching.",
+        "A car sits abandoned on the highway. Keys in the ignition. Someone wrote 'BE QUIET AND DRIVE' in the dust on the hood.",
+        "Graffiti under a bridge: 'I DON'T EVER WANT TO FEEL LIKE I DID THAT DAY.' Someone else added: 'TAKE ME TO THE PLACE I LOVE.' A third hand crossed it out.",
+        "An old record player. One vinyl left in the sleeve. 'HURT' by Johnny Cash. The needle still works. You don't play it. Some pain is too real.",
+        "Bass drops echo from somewhere deep in the building. Impossible. The power's been dead for years. But you swear you hear 'LACRIMOSA' rattling the walls.",
+        "A setlist taped to a dressing room mirror: '1. Be Quiet and Drive 2. Digital Bath 3. Change.' The show never happened.",
+        "Someone spray-painted a white pony on the wall. Beneath it: 'AROUND THE FUR.' You don't know what it means. But someone did.",
+        "A karaoke machine still works somehow. The last song queued: 'Under the Bridge.' High score: R.C. — 100.",
+        "Poison bottles arranged carefully on a shelf. Pretty little things. Someone's collection before the end.",
+        "The bass hits you before you hear it. Apashe. Someone's apocalypse playlist is still running.",
         "Someone painted 'LOOK FOR THE LIGHT' on the wall. The paint is decades old.",
         "An acoustic guitar sits in the corner, missing two strings. Someone was learning to play. Someone who never finished.",
         "There are firefly symbols everywhere. A faction that believed in tomorrow.",
@@ -60,7 +69,93 @@ const EasterEggs = {
         "The Rattlers marked their territory here. Slavers. The lowest of the low.",
         "Santa Barbara. They say the coast is clear there. They always say that about somewhere.",
         "A guitar pick with a moth engraved on it. Someone loved this.",
-        "The aquarium is dark now, but you can still hear the ocean through the walls."
+        "The aquarium is dark now, but you can still hear the ocean through the walls.",
+
+        // Fortnite references
+        "A llama piñata sits untouched in the corner. Someone spray-painted 'LOOT' on the wall beside it. The joke died with its maker.",
+        "Building materials stacked everywhere: wood, brick, metal. Someone thought they could build their way to safety. They couldn't.",
+        "A victory royale trophy sits dust-covered on a shelf. '#1' engraved. Meaningless now.",
+        "Someone scrawled 'THE STORM IS COMING' on every wall. They weren't wrong.",
+        "A chest glows faintly in the abandoned house. You open it anyway. Old habit.",
+        "Dance instructions taped to a wall. 'Floss.' 'Orange Justice.' 'Default.' Someone kept their humor til the end.",
+
+        // Split Fiction references
+        "Two sets of footprints in the dust. They went different directions. They always do, eventually.",
+        "A manuscript lies scattered. 'CHAPTER 12: THE BETRAYAL.' The ending was never written.",
+        "Someone wrote 'CO-OP MODE DISABLED' in blood on the warehouse door. Partnership has its limits.",
+        "Two chairs face each other. One is overturned. The conversation did not end well.",
+        "A note: 'I trusted you with my story. You wrote me as the villain.'",
+        "Fiction and reality blurred here. The walls are half-written. The story never finished.",
+
+        // Grandma's Boy references
+        "A gaming chair set up in a basement. Energy drinks. Weed paraphernalia. Someone had their priorities straight til the end.",
+        "A monkey plushie sits on a couch. 'PLEASE SIT ON MY FACE' written beneath in sharpie. Someone had jokes.",
+        "A note: 'I can't believe you came on my mom.' Context: unknown. Probably better that way.",
+        "Robot legs propped against the wall. 'ADIOS, TURD NUGGETS' spraypainted above. A legend lived here.",
+        "Someone's grandma's house. Plastic on the furniture. Candy dishes. Somehow, untouched by the apocalypse.",
+        "A high score board: 'DEMONIK - ALEX - 999,999,999.' The game doesn't exist anymore. Neither does Alex.",
+
+        // Dying Light references (x10)
+        "The UV lights still work here. Someone understood the night. Someone smart.",
+        "A grappling hook hangs from a ledge. The perfect tool. Someone knew how to run.",
+        "Volatiles came through here. You can tell by the claw marks. And the screaming that still echoes in your head.",
+        "A safehouse. UV lights. Beds. Supplies. Someone built this right. Someone who understood Harran.",
+        "The Tower used to be sanctuary. Now it's just another tomb.",
+        "A note: 'Good Night. Good Luck.' The only rules that matter after dark.",
+        "Antizin vials scattered on the floor. Not enough. Never enough.",
+        "Crane was here. Or someone like him. A runner. A survivor. A monster in the making.",
+        "The quarantine failed. The walls came down. The virus won. It always does.",
+        "Parkour training dummies line the rooftop. Someone practiced. Someone got fast. Speed is survival.",
+        "A Bolter caught in the light. Frozen. Terrified. Even monsters fear something.",
+        "Night Hunter territory. You feel eyes on you. Inhuman eyes.",
+        "Someone rigged explosives to car alarms. Brilliant. Desperate. Both.",
+        "Rais controlled this sector. Warlords rise in chaos. Always.",
+        "'BE THE ZOMBIE' spraypainted on a wall. Someone lost their humanity. Someone embraced it.",
+        "The Old Town architecture. Beautiful once. Deathtraps now. Every ledge a lifeline.",
+        "A blueprint for a electrified blade. Someone got creative with murder.",
+        "Mother's Day. The most dangerous day. The children remember.",
+        "The Following led here. The countryside was supposed to be safe. It wasn't.",
+        "Aiden's mark scratched into stone. Another pilgrim passed through. Another survivor.",
+
+        // Dying Light 2 references
+        "Villedor in ruins. The city that forgot how to die.",
+        "Peacekeepers or Survivors? Someone wrote 'BOTH ARE WRONG' on the faction board.",
+        "The biomarker on your wrist pulses. Time matters now. Every second in darkness costs.",
+        "Paraglider straps hang from a tower. Someone learned to fly before they learned to fall.",
+        "Nightrunners were here. The bravest or the craziest. Same thing, really.",
+        "A GRE access key. Whatever they were hiding, it wasn't a cure.",
+        "Howler screech echoes. The chase begins. It always begins.",
+        "Windmills on the horizon. Power. Water. Life. Someone's fighting for the basics.",
+        "Lawan's tag on the wall. She was here. She survived. She always does.",
+        "The fish eye. Dealer of secrets. Even information has a price in hell.",
+
+        // Rick and Morty references
+        "A portal gun sits on a workbench. Green fluid leaking. 'WUBBA LUBBA DUB DUB' scratched beneath. Someone was in great pain.",
+        "Pickle jar on the counter. One pickle inside. Screaming. You close the jar.",
+        "A note: 'I'M PICKLE RIIIICK!' Underneath: 'Dad, please stop. This is serious.'",
+        "Szechuan sauce packets hoarded like gold. Someone had their priorities.",
+        "Plumbus instructions. You still don't know what it does. No one does.",
+        "Council of Ricks evacuation notice. They abandoned this dimension. Smart.",
+        "A butter robot sits motionless. 'WHAT IS MY PURPOSE?' scratched into its chassis.",
+        "'Get Schwifty' graffiti on the stadium. Someone faced death with nonsense. Respect.",
+        "Interdimensional cable box. Still works. The channels are... disturbing.",
+        "Mr. Meeseeks box. Empty. 'EXISTENCE IS PAIN' written 1000 times on the walls around it.",
+
+        // Mac Miller - Love Lost reference
+        "A record player. Mac Miller's 'Love Lost' on repeat. 'I wonder where the love has gone...' The apocalypse answered that question.",
+        "Blue Slide Park poster on the wall. Someone remembered better days. Simpler days.",
+        "A note: 'I been going through it, you been going through it, we been going through it.' Someone understood.",
+        "'Most Dope' tagged on the overpass. Someone kept the faith.",
+
+        // David Kushner - Daylight references
+        "Graffiti on the tunnel wall: 'TELL ME WHEN I'M GONNA FEEL AGAIN.' No one answered.",
+        "A note in shaky handwriting: 'I don't wanna let it show that I'm not always okay. I'm not always okay.' Someone understood the weight.",
+        "Someone wrote 'DAYLIGHT' above a bricked-up window. Irony. Or hope. Hard to tell the difference anymore.",
+
+        // Post Malone - Circles references
+        "A vinyl record spins on a dead turntable. The label reads 'CIRCLES.' Someone understood the pattern. Run around in circles til we're gone.",
+        "Graffiti on the highway overpass: 'WE COULDN'T BE DOWN.' Spraypainted over: 'IT'S ONLY ME WHAT YOU GOT LEFT.' Someone had a conversation here.",
+        "A note tucked into a steering wheel: 'Seasons changed and our love went cold.' The car never moved again."
     ],
 
     // Dialogue snippets that can be injected

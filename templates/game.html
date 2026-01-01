@@ -722,29 +722,9 @@
             to { text-shadow: 0 0 20px var(--blood), 0 0 40px var(--blood); }
         }
 
-        /* 22. FLOATING PARTICLES */
-        .particles {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 15;
-            overflow: hidden;
-        }
-        .particle {
-            position: absolute;
-            width: 4px; height: 4px;
-            background: var(--blood);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: particleFloat 15s linear infinite;
-        }
-        @keyframes particleFloat {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-100px) translateX(100px) rotate(720deg); opacity: 0; }
-        }
+        /* 22. FLOATING PARTICLES - DISABLED (performance) */
+        .particles { display: none; }
+        .particle { display: none; }
 
         /* 23. CURSOR EFFECTS - disabled for compatibility */
         /* Custom cursors disabled - use default */
@@ -2394,13 +2374,10 @@
                 MongooseEngine.recordChoice(gameState.currentSection, choiceData);
             }
 
-            // Learn in Adaptive Engine (updates behavioral profile)
+            // Reward positive choices (encourages loyalty, romance, courage)
             if (typeof AdaptiveEngine !== 'undefined') {
-                AdaptiveEngine.learn({
-                    sectionId: gameState.currentSection,
-                    choice: choiceData,
-                    target: targetSection,
-                    timestamp: Date.now()
+                AdaptiveEngine.reward({
+                    chosenOption: choiceData
                 });
             }
 
