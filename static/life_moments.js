@@ -504,6 +504,216 @@ const LifeMoments = {
     },
 
     // ═══════════════════════════════════════════════════════════════════════
+    // THE TATTOOS - Raven & Orca
+    // ═══════════════════════════════════════════════════════════════════════
+
+    tattoos: {
+        id: 'corresponding_tattoos',
+        trigger: 'high_commitment',
+        requiresJinTrust: 12,
+
+        discovery: {
+            content: `
+                <p class="narrative">The settlement has a tattoo artist. Before everything, she worked in Hongdae. Now she works with homemade ink and sterilized needles, marking the survivors who want to remember.</p>
+
+                <p class="narrative">Jin finds you staring at her work. Flash sheets pinned to the wall—traditional Korean designs, animals, symbols of the new world.</p>
+
+                <p class="narrative">"Thinking about it?" he asks.</p>
+
+                <p class="narrative">"Maybe." You trace a finger over a design. An orca, stylized, powerful. Apex predator. King of the ocean.</p>
+
+                <p class="narrative">Jin is quiet for a moment. Then: "I want a raven."</p>
+
+                <p class="narrative">You look at him. "Why a raven?"</p>
+
+                <p class="narrative">"Because." His eyes find yours. Dark. Intense. "It reminds me of you. The way you move. The way you watch. The way you survived."</p>
+
+                <p class="narrative">Your heart does something complicated.</p>
+
+                <p class="narrative">"Corresponding tattoos," you say slowly. "You know what that means."</p>
+
+                <p class="narrative">"I know exactly what it means." He takes your hand. "I want everyone to know. I want it permanent. I want it on my skin forever."</p>
+            `,
+            choices: [
+                {
+                    text: "Get the orca. Let him get the raven. Permanent.",
+                    outcome: "both_tattoo",
+                    jin: 5,
+                    loyalty: 3
+                },
+                {
+                    text: "\"We should think about this. It's forever.\"",
+                    outcome: "hesitate",
+                    jin: 0,
+                    loyalty: 0
+                }
+            ]
+        },
+
+        gettingInked: {
+            content: `
+                <p class="narrative jin-moment">The needle buzzes. Jin goes first—insists on it. The raven takes shape on his forearm, stylized, wings spread, eyes sharp. Watching. Protecting.</p>
+
+                <p class="narrative">"Your turn, little bird," he says when it's done. The words slip out like he's said them a thousand times. Like it's your name.</p>
+
+                <p class="narrative">Little bird. You didn't know you needed to be called that until he said it.</p>
+
+                <p class="narrative">The orca curves along your ribcage. Black and white. Apex predator. The one thing in the ocean that fears nothing. That protects its own.</p>
+
+                <p class="narrative">"Why an orca?" the artist asks.</p>
+
+                <p class="narrative">You glance at Jin. He's smiling—that rare, soft smile reserved only for you.</p>
+
+                <p class="narrative">"Because he's mine," you say. "And he's the most dangerous thing in the water."</p>
+
+                <p class="narrative">Jin laughs. Actually laughs. "I'm a seacow at best."</p>
+
+                <p class="narrative">"You're benthic," you counter. "Deep. Steady. The foundation everything else rests on."</p>
+
+                <p class="narrative">His eyes go soft. He understands. The words mean more than words.</p>
+
+                <p class="narrative">Later, when the ink is fresh and burning, he traces the orca with gentle fingers.</p>
+
+                <p class="narrative">"Permanent," he says.</p>
+
+                <p class="narrative">"Permanent," you agree.</p>
+
+                <p class="narrative">"Good." He kisses the tender skin beside it. "I was always going to be permanent. Now it's just official."</p>
+            `
+        },
+
+        jinRavenMoments: [
+            {
+                trigger: 'looking_at_tattoo',
+                content: `
+                    <p class="narrative jin-moment">Jin catches you staring at his raven tattoo while he sleeps. The wings seem to move with his breathing.</p>
+                    <p class="narrative">He opens one eye. "Creep."</p>
+                    <p class="narrative">"Your creep."</p>
+                    <p class="narrative">"Yeah." He pulls you down against him. "My little bird."</p>
+                `
+            },
+            {
+                trigger: 'protective',
+                content: `
+                    <p class="narrative jin-moment">"Touch her again," Jin says quietly, "and I'll show you what the raven means."</p>
+                    <p class="narrative">The threat doesn't land. Your orca tattoo does—right in the man's jaw.</p>
+                    <p class="narrative">Jin blinks. Then grins. "That works too."</p>
+                `
+            },
+            {
+                trigger: 'intimate',
+                content: `
+                    <p class="narrative jin-moment">His mouth traces the orca's curve. Each kiss deliberate. Worshipful.</p>
+                    <p class="narrative">"Mine," he murmurs against the ink. "This says you're mine."</p>
+                    <p class="narrative">Your fingers find his raven. "And this says you're mine."</p>
+                    <p class="narrative">"Always was. Just took you a while to claim me."</p>
+                `
+            }
+        ],
+
+        littleBirdMoments: [
+            "\"Come here, little bird. Let me see you.\"",
+            "\"Fly if you want. I'll always find you.\"",
+            "\"My little bird. My raven. My everything.\"",
+            "\"You're not caged. You're home. There's a difference.\"",
+            "\"Sing for me, little bird.\" His voice drops. \"Scream for me.\""
+        ],
+
+        // Get random little bird dialogue
+        getLittleBirdMoment() {
+            return this.littleBirdMoments[Math.floor(Math.random() * this.littleBirdMoments.length)];
+        }
+    },
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // SAFEWORD SYSTEM - For the dynamic
+    // ═══════════════════════════════════════════════════════════════════════
+
+    safewords: {
+        danger: 'seacow',      // Slow down
+        safe: 'benthic',       // Full stop
+
+        // Scene where this comes up
+        establishment: {
+            content: `
+                <p class="narrative jin-moment">Jin stops. Pulls back. His eyes search yours.</p>
+
+                <p class="narrative">"We need words," he says. "Before this goes further. I need to know you can stop me."</p>
+
+                <p class="narrative">"You'd stop if I asked."</p>
+
+                <p class="narrative">"I'd stop if you <em>told</em> me." His jaw tightens. "But in the moment—when things get intense—I need something clear. Something I can't misread."</p>
+
+                <p class="narrative">You think. "Seacow. If I need you to slow down."</p>
+
+                <p class="narrative">He almost smiles. "Seacow?"</p>
+
+                <p class="narrative">"It's ridiculous enough I'll never say it by accident."</p>
+
+                <p class="narrative">"And if you need me to stop completely?"</p>
+
+                <p class="narrative">"Benthic."</p>
+
+                <p class="narrative">Now he does smile. "The ocean floor?"</p>
+
+                <p class="narrative">"The foundation," you correct. "The deepest, safest place. Where everything is still."</p>
+
+                <p class="narrative">He kisses your forehead. Gentle. Reverent. "Seacow to slow. Benthic to stop. I'll remember. I'll always remember."</p>
+
+                <p class="narrative">"I know you will."</p>
+
+                <p class="narrative">"Good." His voice drops, darkens. "Because now that I know how to stop—I'm going to test exactly how far we can go."</p>
+            `
+        },
+
+        // Using the danger word
+        dangerWordScene: {
+            content: `
+                <p class="narrative jin-moment">His intensity is overwhelming. Too much, too fast, too—</p>
+
+                <p class="narrative">"Seacow," you breathe.</p>
+
+                <p class="narrative">Jin freezes instantly. His hands gentle. His breathing ragged but controlled.</p>
+
+                <p class="narrative">"I've got you." His voice is soft now, the edge gone. "I'm here. What do you need?"</p>
+
+                <p class="narrative">"Just... slower. Please."</p>
+
+                <p class="narrative">"Slower." He kisses your temple. Your cheek. The corner of your mouth. "I can do slower. I can do anything you need."</p>
+
+                <p class="narrative">He does. And when you're ready, when you nod, he continues—gentler this time. Reading every reaction. Checking in with his eyes.</p>
+
+                <p class="narrative">"Thank you for telling me," he says after. "Always tell me. Promise."</p>
+
+                <p class="narrative">"I promise."</p>
+            `
+        },
+
+        // The safeword as protection
+        safeWordScene: {
+            content: `
+                <p class="narrative jin-moment">It's too much. All of it. The world, the fear, the—</p>
+
+                <p class="narrative">"Benthic."</p>
+
+                <p class="narrative">Everything stops. Jin's hands move from claiming to cradling. He wraps around you like a shield.</p>
+
+                <p class="narrative">"I've got you. It's okay. We're done. We're completely done."</p>
+
+                <p class="narrative">No questions. No disappointment. Just safety. Just him.</p>
+
+                <p class="narrative">"I'm sorry—"</p>
+
+                <p class="narrative">"Don't." His voice is fierce. "Never apologize for that word. That word is sacred. That word means you trust me enough to use it."</p>
+
+                <p class="narrative">He holds you until your breathing steadies. Strokes your hair. Murmurs reassurances you can barely hear but feel in your bones.</p>
+
+                <p class="narrative">"The foundation," he says quietly. "The deepest, safest place. That's what you are to me too."</p>
+            `
+        }
+    },
+
+    // ═══════════════════════════════════════════════════════════════════════
     // UTILITY FUNCTIONS
     // ═══════════════════════════════════════════════════════════════════════
 
