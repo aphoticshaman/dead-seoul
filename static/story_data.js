@@ -9779,3 +9779,647 @@ if (typeof STORY_DATA !== 'undefined') {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { KORI_REACTOR_ZONE, MUTATED_INFECTED, STARVATION_SYSTEM, INJURY_SYSTEM };
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CHARACTER INTEGRATION - Hana, Minji, Seora
+// The ride-or-dies. The villain. The horror.
+// ═══════════════════════════════════════════════════════════════════════════
+
+const CHARACTER_SCENES = {
+
+    // ═══════════════════════════════════════════════════════════════
+    // HANA INTRODUCTION - "The Chaos"
+    // ═══════════════════════════════════════════════════════════════
+
+    hana_meet: {
+        id: "hana_meet",
+        title: "THE CHAOS",
+        thread: "companions",
+        content: `
+            <p class="narrative">The explosion comes from behind you. Not infected—too controlled. Too <em>intentional</em>.</p>
+
+            <p class="narrative">When the smoke clears, there's a woman standing in the debris. Short. Covered in scars. One eye milky-white, the other burning with something that looks like joy.</p>
+
+            <p class="narrative">She's holding a pipe bomb in each hand. Grinning like Christmas came early.</p>
+
+            <p class="dialogue">"THAT'S what I'm fucking talking about!" She kicks an infected corpse. Laughs. Spits blood. "You know how long I waited for the world to end? Twenty-three YEARS of bullshit and finally—FINALLY—I get to blow shit up without paperwork!"</p>
+
+            <p class="narrative">She notices you. The grin doesn't fade—it sharpens.</p>
+
+            <p class="dialogue">"Oh. Survivors. Neat." She tosses you something—a knife. Good weight. Military issue. "You know how to use that, or are you the screaming type?"</p>
+
+            <p class="narrative">Behind her, more infected are coming. She doesn't seem worried. She seems... excited.</p>
+
+            <p class="dialogue">"I'm Hana. Former Kkangpae—that's gangster to you civilians. Currently? I'm the best fucking friend you're ever gonna have." She cracks her knuckles. "You in or you running?"</p>
+        `,
+        jinReaction: `
+            <p class="narrative">Jin steps forward, hand on his weapon. "She's insane."</p>
+            <p class="dialogue">"Yeah, and?" Hana grins at him. "Pretty boy thinks he's better because he kills quiet? Honey, I was stacking bodies when you were learning multiplication."</p>
+            <p class="narrative">They stare at each other. Something passes between them—recognition. Two predators sizing each other up.</p>
+            <p class="dialogue">"Fine," Jin says. "But you follow MY lead in combat."</p>
+            <p class="dialogue">"Cute. You think you're in charge." Hana laughs. "I like him," she says to you. "He's delusional."</p>
+        `,
+        choices: [
+            { text: "Stay with Hana. She's terrifying, but she's alive.", target: "hana_trust", flags: { hana_recruited: true } },
+            { text: "Keep distance. She's too unpredictable.", target: "hana_wary", flags: { hana_wary: true } },
+            { text: "Ask about the Kkangpae. What did she do before?", target: "hana_past" }
+        ]
+    },
+
+    hana_trust: {
+        id: "hana_trust",
+        title: "THE CHAOS EMBRACED",
+        content: `
+            <p class="narrative">You grip the knife. Nod.</p>
+
+            <p class="narrative">Hana's grin splits her face. For a moment, behind the scars and the bloodlust, you see something else. Something almost... grateful.</p>
+
+            <p class="dialogue">"Smart choice. Most people run." She pulls out a machete that's seen better days—and worse ones. "Stick close. Kill what I point at. And if I tell you to run?"</p>
+
+            <p class="narrative">She leans in. The joking is gone.</p>
+
+            <p class="dialogue">"You fucking RUN. No looking back. No heroic bullshit. I don't die for people who die anyway. Understand?"</p>
+
+            <p class="narrative">You understand. This is her version of care. Her version of loyalty. It's violent and crude and absolutely, utterly genuine.</p>
+
+            <p class="dialogue">"Good." The grin returns. "Now let's go make some noise."</p>
+        `,
+        choices: [
+            { text: "Fight alongside Hana.", target: "hana_combat" },
+            { text: "Ask where she's heading.", target: "hana_destination" }
+        ]
+    },
+
+    hana_past: {
+        id: "hana_past",
+        title: "BEFORE THE BLOOD",
+        content: `
+            <p class="narrative">Hana's face flickers. Just for a moment.</p>
+
+            <p class="dialogue">"You really wanna know?" She's still killing—never stops killing—but her voice changes. "I ran collections. Protection. The usual." A pause. "And one time, I cut out a man's tongue because he talked to the wrong cop."</p>
+
+            <p class="narrative">She looks at you directly.</p>
+
+            <p class="dialogue">"I'm not a good person. Never was. Never will be. But you know what I am?" She gestures at the apocalypse around you. "Honest. Every piece of shit thing I've done? I did it looking people in the eye."</p>
+
+            <p class="dialogue">"That's more than most saints can say."</p>
+
+            <p class="narrative">She spits blood again. Grins.</p>
+
+            <p class="dialogue">"Still want my help?"</p>
+        `,
+        lesson: "Loyalty doesn't mean being the same. Real friends can be completely different and still die for you.",
+        choices: [
+            { text: "Yes. Honest monsters over polite snakes.", target: "hana_trust", flags: { hana_recruited: true, hana_history_known: true } },
+            { text: "I need to think about this.", target: "hana_wary" }
+        ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // MINJI INTRODUCTION - "The Stillness"
+    // ═══════════════════════════════════════════════════════════════
+
+    minji_meet: {
+        id: "minji_meet",
+        title: "THE STILLNESS",
+        thread: "companions",
+        content: `
+            <p class="narrative">You almost don't see her.</p>
+
+            <p class="narrative">She's standing in the shadows of the performance hall, still as a statue. Around her, three infected lie dead. No blood spray. No struggle. Just... still.</p>
+
+            <p class="narrative">She's wearing torn ballet slippers. A tutu stained brown. In her hands, two knives—held like extensions of her arms.</p>
+
+            <p class="narrative">She doesn't speak. Doesn't blink. Just watches you with eyes that have seen something worse than the end of the world.</p>
+
+            <p class="narrative">One of the infected behind you twitches. You didn't even see her move—but suddenly she's there, blade sliding through its skull like butter. Silent. Perfect.</p>
+
+            <p class="narrative">She returns to her position. Watches you again.</p>
+
+            <p class="narrative">Waiting.</p>
+        `,
+        jinReaction: `
+            <p class="narrative">Jin goes very still. Not afraid—respectful.</p>
+            <p class="dialogue">"National Ballet?" he asks quietly.</p>
+            <p class="narrative">The slightest nod.</p>
+            <p class="dialogue">"I saw you dance. Three years ago. Giselle." He pauses. "You were the best thing I've ever seen."</p>
+            <p class="narrative">Something flickers in her eyes. Pain. Memory. Loss.</p>
+            <p class="narrative">She inclines her head. The closest thing to acknowledgment she gives.</p>
+        `,
+        choices: [
+            { text: "Bow slightly. Show respect.", target: "minji_respect", flags: { minji_recruited: true } },
+            { text: "Say nothing. Let silence speak.", target: "minji_silence", flags: { minji_recruited: true } },
+            { text: "Ask her name.", target: "minji_speak" }
+        ]
+    },
+
+    minji_respect: {
+        id: "minji_respect",
+        title: "THE STILLNESS ACKNOWLEDGED",
+        content: `
+            <p class="narrative">You bow. Small. Respectful. The way you'd bow to an artist, not a warrior.</p>
+
+            <p class="narrative">Something shifts in her posture. The predator relaxes—just slightly. She returns the bow. Perfect form. A lifetime of discipline in one motion.</p>
+
+            <p class="narrative">Then she turns and walks deeper into the building. Pauses. Looks back at you once.</p>
+
+            <p class="narrative">An invitation.</p>
+
+            <p class="narrative">She never says a word. But somehow, you understand: she'll watch your back. She'll keep you alive. And she'll do it without ever needing to hear "thank you."</p>
+
+            <p class="narrative">Some people speak in words. Minji speaks in survival.</p>
+        `,
+        lesson: "Actions speak louder than words. Watch what people do, not what they say.",
+        choices: [
+            { text: "Follow her.", target: "minji_follow" },
+            { text: "Introduce Jin and the others.", target: "minji_group" }
+        ]
+    },
+
+    minji_silence: {
+        id: "minji_silence",
+        title: "UNDERSTANDING",
+        content: `
+            <p class="narrative">You say nothing. Stand still. Match her silence with your own.</p>
+
+            <p class="narrative">Seconds pass. A minute. The infected could come at any moment, but neither of you moves.</p>
+
+            <p class="narrative">Then—the ghost of a smile. So small you might have imagined it.</p>
+
+            <p class="narrative">She nods. Once. Turns and walks.</p>
+
+            <p class="narrative">You follow. No words needed. No explanations demanded.</p>
+
+            <p class="narrative">She speaks in actions. And her action says: <em>you're worth protecting.</em></p>
+        `,
+        choices: [
+            { text: "Move with her through the building.", target: "minji_follow" }
+        ]
+    },
+
+    minji_speaks: {
+        id: "minji_speaks",
+        title: "RARE WORDS",
+        thread: "companions",
+        requirement: "minji_recruited AND trust > 80 AND critical_moment",
+        content: `
+            <p class="narrative">Minji touches your arm. You freeze—she never touches anyone.</p>
+
+            <p class="narrative">Her lips move. A voice like rust on silk, unused for so long it hurts to hear.</p>
+
+            <p class="dialogue">"They were dancing."</p>
+
+            <p class="narrative">You wait.</p>
+
+            <p class="dialogue">"When it started. Opening night. Sleeping Beauty. I was Aurora." Her eyes are far away. "The screaming started in the audience. But we kept dancing. Because that's what we do. We perform. We pretend everything is beautiful while the world burns."</p>
+
+            <p class="narrative">She looks at her hands. The same hands that create art. The same hands that kill.</p>
+
+            <p class="dialogue">"I danced alone for an hour. On a stage of corpses. Finishing the show for an audience of the dead."</p>
+
+            <p class="narrative">She meets your eyes.</p>
+
+            <p class="dialogue">"You don't have to speak to me. But you should know: I will never stop dancing. Even when everything ends. That's what I am."</p>
+
+            <p class="narrative">She releases your arm. Returns to silence.</p>
+
+            <p class="narrative">But now you understand her. Completely.</p>
+        `,
+        choices: [
+            { text: "Squeeze her hand. No words needed.", target: "minji_bond" },
+            { text: "\"I'll make sure you get to dance again.\"", target: "minji_promise" }
+        ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // SEORA INTRODUCTION - "The Collector"
+    // ═══════════════════════════════════════════════════════════════
+
+    seora_reveal: {
+        id: "seora_reveal",
+        title: "THE COLLECTOR",
+        thread: "villain",
+        content: `
+            <p class="narrative">The compound is beautiful. Pristine. Untouched by the apocalypse—a bubble of the old world preserved in glass and steel.</p>
+
+            <p class="narrative">And in the center: cases. Dozens of them. Glass boxes big enough to hold a person.</p>
+
+            <p class="narrative">Some of them ARE holding people.</p>
+
+            <p class="narrative">They're alive. Dressed. Fed. Eyes empty. Like dolls on a shelf.</p>
+
+            <p class="dialogue">"Welcome."</p>
+
+            <p class="narrative">She steps out of the shadows. Elegant. Serene. A woman who looks like she's never raised her voice in her life. Cream silk blouse. Not a hair out of place.</p>
+
+            <p class="dialogue">"I'm Seora. This is my collection." She gestures at the glass boxes. "Beautiful, aren't they? Everyone here is special. Unique. Worth preserving."</p>
+
+            <p class="narrative">She steps closer. Studies your face.</p>
+
+            <p class="dialogue">"You're different. I knew it the moment I saw you. The way you move. The way you survive." She smiles. "I don't want to hurt you. I want to keep you safe. Forever."</p>
+
+            <p class="narrative">She gestures to an empty case.</p>
+
+            <p class="dialogue">"This one's been waiting for someone like you."</p>
+        `,
+        seesJin: `
+            <p class="narrative">Then she sees Jin.</p>
+
+            <p class="narrative">Everything changes. The calm shatters. For one moment—one terrible moment—you see what's underneath.</p>
+
+            <p class="dialogue">"You."</p>
+
+            <p class="narrative">Her voice is ice. Jin goes pale.</p>
+
+            <p class="dialogue">"Hello, Seora."</p>
+
+            <p class="dialogue">"You were MINE." She's trembling now. "My favorite. My most precious. And you LEFT. You BROKE OUT. And now..." She looks at you. Understanding dawns—and with it, rage. "Now I know why."</p>
+
+            <p class="dialogue">"You found someone else."</p>
+        `,
+        choices: [
+            { text: "Run. NOW.", target: "seora_escape" },
+            { text: "\"Let the people go. All of them.\"", target: "seora_confront" },
+            { text: "Ask Jin what happened between them.", target: "seora_history" }
+        ]
+    },
+
+    seora_history: {
+        id: "seora_history",
+        title: "THE FAVORITE",
+        content: `
+            <p class="narrative">Jin's jaw tightens.</p>
+
+            <p class="dialogue">"I was... collecting supplies. Early days. Got caught by her people." He doesn't look at Seora. "She didn't want to hurt me. Just... keep me. Like a pet. Like a trophy."</p>
+
+            <p class="narrative">Seora smiles. Cold. Beautiful.</p>
+
+            <p class="dialogue">"He was perfect. Strong but broken. Fighting but desperate. I gave him everything—safety, food, purpose. All he had to do was stay."</p>
+
+            <p class="dialogue">"You put me in a fucking cage," Jin says.</p>
+
+            <p class="dialogue">"A beautiful cage. With silk sheets and warm food and no infected trying to eat you." She touches her own cheek, dreamy. "You were so beautiful when you slept. Before you ruined everything."</p>
+
+            <p class="narrative">She looks at you. The dreaminess turns sharp.</p>
+
+            <p class="dialogue">"YOU ruined everything. You came for him. Broke my locks. Took my favorite." She steps forward. "Do you know how long I searched? How many people I killed looking for you both?"</p>
+
+            <p class="narrative">She smiles again. Wrong. Broken.</p>
+
+            <p class="dialogue">"But now you're here. Both of you. Together." She claps her hands. "It's like a gift."</p>
+        `,
+        choices: [
+            { text: "\"You'll never cage either of us again.\"", target: "seora_fight", flags: { seora_confronted: true } },
+            { text: "Look for weaknesses. Play along.", target: "seora_deceive" },
+            { text: "Try to reason with her.", target: "seora_talk" }
+        ]
+    },
+
+    seora_fight: {
+        id: "seora_fight",
+        title: "BREAKING THE COLLECTION",
+        thread: "villain",
+        content: `
+            <p class="narrative">Seora's smile doesn't fade. It grows.</p>
+
+            <p class="dialogue">"Oh, I hoped you'd say that." She snaps her fingers.</p>
+
+            <p class="narrative">The doors open. Her people flood in. The Smiler—a man whose face is stuck in a permanent grin, eyes dead as stones. Joon—military precision, no emotion. And behind them, the Hounds. The Dolls. The Teeth.</p>
+
+            <p class="dialogue">"Break them," Seora says calmly. "But don't kill them. I want them alive. I want them to understand."</p>
+
+            <p class="narrative">Jin draws his weapon. Hana laughs somewhere behind you. Minji melts into the shadows.</p>
+
+            <p class="narrative">This is it. The fight you've been running from since you escaped the first time.</p>
+
+            <p class="narrative">This time, there's no sneaking out. This time, you finish it.</p>
+        `,
+        choices: [
+            { text: "Target Seora directly. End the head.", target: "seora_assassination" },
+            { text: "Free the people in the cases. Chaos is your ally.", target: "seora_liberation" },
+            { text: "Retreat strategically. Fight another day.", target: "seora_retreat" }
+        ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // HORROR SCENES - Integrated from 5D Model
+    // ═══════════════════════════════════════════════════════════════
+
+    horror_the_gift: {
+        id: "horror_the_gift",
+        title: "THE COAT",
+        thread: "horror",
+        content: `
+            <p class="narrative">The survivor gives you a coat. Warm. Well-made. Smells faintly of lavender.</p>
+
+            <p class="dialogue">"My daughter made it," he says, smiling. "Before everything. She was so talented."</p>
+
+            <p class="narrative">You wear it through the cold nights. It saves your life more than once. You think of his daughter, somewhere safe, talented and kind.</p>
+
+            <p class="narrative">Later—much later—you find the workshop. The tanning racks. The small bones.</p>
+
+            <p class="narrative">The coat is leather. Soft. Hand-stitched.</p>
+
+            <p class="narrative">His daughter didn't make the coat.</p>
+
+            <p class="narrative">His daughter IS the coat.</p>
+
+            <p class="narrative">You're wearing her.</p>
+        `,
+        horror_note: "Retroactive horror. The kindness was real. The gift was real. And now you can never unknow what it cost.",
+        choices: [
+            { text: "Burn the coat. Burn everything.", target: "horror_aftermath" },
+            { text: "Say nothing. Keep wearing it. Survive.", target: "horror_complicity" }
+        ]
+    },
+
+    horror_the_nursery: {
+        id: "horror_the_nursery",
+        title: "THE NURSERY",
+        thread: "horror",
+        content: `
+            <p class="narrative">The crying leads you to the nursery.</p>
+
+            <p class="narrative">A baby. Alive. Reaching for you with tiny hands. You pick it up, and it stops crying. Nestles against your chest. Perfect. Innocent.</p>
+
+            <p class="narrative">The bite mark on its ankle is small. Fresh.</p>
+
+            <p class="narrative">You have maybe three hours before the infection takes hold. Three hours where this baby is still a baby. Still innocent. Still savable.</p>
+
+            <p class="narrative">There is no cure.</p>
+
+            <p class="narrative">It looks up at you. Smiles. Reaches for your face.</p>
+
+            <p class="narrative">What do you do with three hours and an ending you can't change?</p>
+        `,
+        horror_note: "The corruption of innocence. No monsters here—just the universe's indifference to suffering.",
+        choices: [
+            { text: "Stay with it. Hold it. Love it until the end.", target: "nursery_mercy" },
+            { text: "Make it quick. Before it knows what's happening.", target: "nursery_end" },
+            { text: "Leave it. You can't carry this weight.", target: "nursery_abandon" }
+        ]
+    },
+
+    horror_the_meal: {
+        id: "horror_the_meal",
+        title: "THE HOSPITALITY",
+        thread: "horror",
+        content: `
+            <p class="narrative">They're so welcoming. The first real hospitality since the outbreak. Hot food. Clean beds. Laughter around the fire.</p>
+
+            <p class="dialogue">"Eat! Eat! You're too thin!" The grandmother piles meat on your plate. "Fresh. We have a farm."</p>
+
+            <p class="narrative">It's the best meal you've had in months. Rich. Tender. You eat until you're full for the first time in forever.</p>
+
+            <p class="narrative">Later, you find the farm.</p>
+
+            <p class="narrative">There are no animals.</p>
+
+            <p class="narrative">Just cages. And a pile of clothes that look familiar. That look like the group that was traveling ahead of you. The ones who disappeared.</p>
+
+            <p class="narrative">Your stomach churns. The meal rises.</p>
+
+            <p class="narrative">You ate them. You ATE THEM.</p>
+
+            <p class="narrative">And the grandmother is smiling at you through the window, already preparing tomorrow's breakfast.</p>
+        `,
+        horror_note: "The sanctuary betrayal. They were kind because you're the next ingredient.",
+        choices: [
+            { text: "Escape. Burn it down behind you.", target: "meal_escape" },
+            { text: "Free whoever's left in those cages.", target: "meal_rescue" },
+            { text: "You can't. You can't move. You can't think.", target: "meal_paralysis" }
+        ]
+    },
+
+    horror_the_mirror: {
+        id: "horror_the_mirror",
+        title: "THE REFLECTION",
+        thread: "horror",
+        requirement: "player has been bitten but hasn't told anyone",
+        content: `
+            <p class="narrative">The bite is three days old. You've hidden it well. Bandages. Excuses. Careful positioning.</p>
+
+            <p class="narrative">But in the mirror, you see what's coming.</p>
+
+            <p class="narrative">The veins around the wound are black now. Spreading. Your skin is waxy. Your appetite is... changing.</p>
+
+            <p class="narrative">Yesterday, you caught yourself staring at Hana's exposed neck. Not in anger. In hunger.</p>
+
+            <p class="narrative">You have maybe a day. Maybe two. Before you stop being you and start being... them.</p>
+
+            <p class="narrative">Jin is sleeping in the next room. Trusting you. Loving you.</p>
+
+            <p class="narrative">What do you do with the time you have left?</p>
+        `,
+        horror_note: "The body horror of becoming the threat. You are the monster now.",
+        choices: [
+            { text: "Tell them. Face it together.", target: "mirror_confess" },
+            { text: "Leave quietly. Die alone so they don't have to watch.", target: "mirror_leave" },
+            { text: "Say nothing. Pretend. Hope for a miracle.", target: "mirror_denial" }
+        ]
+    },
+
+    horror_the_smile: {
+        id: "horror_the_smile",
+        title: "WRONG",
+        thread: "horror",
+        jinScene: true,
+        content: `
+            <p class="narrative">Jin is smiling at you across the fire.</p>
+
+            <p class="narrative">It's the same smile you fell in love with. The crooked one. The one that makes your chest tight.</p>
+
+            <p class="narrative">But something is wrong.</p>
+
+            <p class="narrative">His eyes aren't tracking right. The smile doesn't reach them. When he moves, it's too smooth—no hesitation, no adjustment. Like a puppet on strings.</p>
+
+            <p class="dialogue">"Come here," he says. His voice is perfect. His tone is perfect. "I want to hold you."</p>
+
+            <p class="narrative">Everyone else is asleep. It's just you and Jin and the crackling fire and the terrible certainty growing in your stomach.</p>
+
+            <p class="narrative">He's still smiling. Still reaching for you.</p>
+
+            <p class="narrative">When did you last see him blink?</p>
+        `,
+        horror_note: "The intimate imposter. The person you love is gone, but the shell keeps performing.",
+        choices: [
+            { text: "\"What's my favorite song, Jin?\" Test him.", target: "smile_test" },
+            { text: "Run. Don't look back.", target: "smile_run" },
+            { text: "Go to him. Hope you're wrong.", target: "smile_trust" }
+        ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════
+    // PLAYER BACKSTORY - The Escape from Seora
+    // ═══════════════════════════════════════════════════════════════
+
+    backstory_the_box: {
+        id: "backstory_the_box",
+        title: "BEFORE YOU WERE FREE",
+        thread: "backstory",
+        content: `
+            <p class="narrative">You don't remember much from before the glass box.</p>
+
+            <p class="narrative">Seora found you in the early days. Brought you to her collection. Fed you. Clothed you. Put you behind the glass where nothing could hurt you.</p>
+
+            <p class="narrative">Where nothing could reach you.</p>
+
+            <p class="narrative">You learned to be still. To be perfect. To be exactly what she wanted—a beautiful thing, preserved, eternal.</p>
+
+            <p class="narrative">Then they brought in a new acquisition. A soldier with dead eyes and hands that shook. They put him in the case next to yours.</p>
+
+            <p class="narrative">Jin.</p>
+
+            <p class="narrative">He was different from the others. He never stopped fighting. Never stopped planning. Never stopped looking for a way out.</p>
+
+            <p class="narrative">And one night, he started talking to you. Tapping on the glass. Morse code he taught you letter by letter.</p>
+
+            <p class="narrative">He had a plan. He needed help. He needed YOU.</p>
+        `,
+        choices: [
+            { text: "Remember the escape.", target: "backstory_escape" },
+            { text: "Remember what came before Seora.", target: "backstory_before" }
+        ]
+    },
+
+    backstory_escape: {
+        id: "backstory_escape",
+        title: "THE NIGHT YOU RAN",
+        content: `
+            <p class="narrative">The night of the escape, you couldn't breathe.</p>
+
+            <p class="narrative">Jin had found a weakness in the locks. Three weeks of planning. Signals. Timing. And then—action.</p>
+
+            <p class="narrative">You remember the glass shattering. The alarms. Seora's scream—not angry, but wounded. Betrayed. Like a child whose favorite toy had learned to walk away.</p>
+
+            <p class="narrative">You remember Jin's hand in yours, pulling you through corridors you'd only seen through glass. Guards falling. Doors opening that should have stayed closed.</p>
+
+            <p class="narrative">You remember the moment you stepped outside. Felt air on your face. Real air. Moving air. Not the recycled stillness of the collection.</p>
+
+            <p class="narrative">You cried. Jin didn't let go of your hand.</p>
+
+            <p class="dialogue">"We're not free yet," he said. "But we will be. I promise."</p>
+
+            <p class="narrative">He kept that promise. Every day since then—running, fighting, surviving—he's kept that promise.</p>
+
+            <p class="narrative">And Seora has been hunting you ever since.</p>
+        `,
+        choices: [
+            { text: "That's why you fight. That's why you survive.", target: "backstory_resolve" },
+            { text: "You'll kill Seora. Someday. For all of it.", target: "backstory_revenge" }
+        ]
+    }
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// COGNITIVE LAYER INTEGRATION - Puzzles and Riddles in Story
+// ═══════════════════════════════════════════════════════════════════════════
+
+const COGNITIVE_STORY_ELEMENTS = {
+
+    // Research Required - Player must look something up
+    research_chemical: {
+        id: "research_chemical",
+        title: "THE FORMULA",
+        thread: "cognitive",
+        content: `
+            <p class="narrative">The scientist's last note is scrawled on the wall in blood:</p>
+
+            <p class="blood-writing">"CAS 7732-18-5 + CAS 7647-01-0 = freedom from flesh"</p>
+
+            <p class="narrative">Below it, a locked door. A keypad. Three digits.</p>
+
+            <p class="narrative">The chemicals are labeled on the shelf. H₂O. HCl. Something else.</p>
+
+            <p class="narrative">You have the feeling that the answer is somewhere. If you knew where to look.</p>
+        `,
+        hint: "CAS numbers are chemical identifiers. The code is hidden in what they make together.",
+        solution: "Water + Hydrochloric acid = understanding you need to RUN",
+        choices: [
+            { text: "[Enter 182] - Sum of water's CAS digits", target: "research_wrong" },
+            { text: "[Enter 911] - Emergency", target: "research_unlock", flags: { street_smarts: true } },
+            { text: "[Research the CAS numbers] - Take time to understand", target: "research_success", flags: { researcher: true } }
+        ]
+    },
+
+    // Riddle - Requires lateral thinking
+    riddle_door: {
+        id: "riddle_door",
+        title: "THE SPEAKING DOOR",
+        thread: "cognitive",
+        content: `
+            <p class="narrative">The door has a face. The face speaks.</p>
+
+            <p class="riddle">"I have cities, but no houses live.<br>
+            I have mountains, but no trees climb.<br>
+            I have water, but no fish swim.<br>
+            What am I?"</p>
+
+            <p class="narrative">Behind you, the infected are getting closer. You have maybe thirty seconds.</p>
+        `,
+        choices: [
+            { text: "\"A map.\"", target: "riddle_correct", flags: { puzzle_solver: true } },
+            { text: "\"A painting.\"", target: "riddle_close" },
+            { text: "\"A dream.\"", target: "riddle_wrong" },
+            { text: "Force the door open.", target: "riddle_force" }
+        ]
+    },
+
+    // Luck + Preparation
+    luck_gamble: {
+        id: "luck_gamble",
+        title: "THE ODDS",
+        thread: "cognitive",
+        content: `
+            <p class="narrative">Two paths. No time to scout both.</p>
+
+            <p class="narrative">Left: darker, narrower, but you heard water that way.</p>
+            <p class="narrative">Right: brighter, wider, but the smell of rot is stronger.</p>
+
+            <p class="narrative">Hana shrugs. "Coin flip?"</p>
+            <p class="narrative">Minji is already studying the floor. The dust patterns. The footprints.</p>
+
+            <p class="narrative">Jin looks at you. "Your call."</p>
+        `,
+        choices: [
+            { text: "Left. Water means life.", target: "luck_water", luck_modifier: 0.6 },
+            { text: "Right. Follow the obvious path.", target: "luck_rot", luck_modifier: 0.3 },
+            { text: "Wait. Watch where Minji's looking.", target: "luck_observe", flags: { pattern_reader: true } },
+            { text: "Ask Hana about gangster instincts.", target: "luck_street" }
+        ]
+    },
+
+    // Meta-awareness reward
+    meta_fourth_wall: {
+        id: "meta_fourth_wall",
+        title: "THE FEELING",
+        thread: "cognitive",
+        content: `
+            <p class="narrative">You stop walking.</p>
+
+            <p class="narrative">Something is... off. Not wrong, exactly. Just off. Like you've done this before. Like someone is watching. Like this moment matters more than it should.</p>
+
+            <p class="narrative">Jin looks back. "What's wrong?"</p>
+
+            <p class="narrative">You don't know how to explain it. The sense that your choices aren't just survival—they're something more. A test. A lesson. A story being written in real-time.</p>
+
+            <p class="narrative">But that's crazy. Right?</p>
+        `,
+        choices: [
+            { text: "\"Do you ever feel like we're not... alone? Like someone's watching?\"", target: "meta_acknowledge", flags: { meta_aware: true }, special: "fourth_wall_crack" },
+            { text: "Shake it off. Focus on survival.", target: "meta_dismiss" },
+            { text: "Say nothing. But remember this feeling.", target: "meta_remember", flags: { quiet_observer: true } }
+        ]
+    }
+};
+
+// Merge into STORY_DATA
+if (typeof STORY_DATA !== 'undefined') {
+    Object.assign(STORY_DATA, CHARACTER_SCENES);
+    Object.assign(STORY_DATA, COGNITIVE_STORY_ELEMENTS);
+}
+
+// Export
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { CHARACTER_SCENES, COGNITIVE_STORY_ELEMENTS };
+}
