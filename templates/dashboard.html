@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DEAD SEOUL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Space+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #0a0808;
+            --blood: #8b0000;
+            --blood-glow: rgba(139, 0, 0, 0.4);
+            --bone: #f5f5dc;
+            --ash: #1a1a1a;
+            --smoke: #2d2d2d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--void);
+            color: var(--bone);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--smoke);
+        }
+
+        .title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            letter-spacing: 0.5em;
+            color: var(--blood);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px var(--blood-glow);
+        }
+
+        .subtitle {
+            font-size: 0.85rem;
+            color: rgba(245, 245, 220, 0.4);
+            letter-spacing: 0.3em;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--ash);
+            border: 1px solid var(--smoke);
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--blood);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        /* Action Buttons */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--ash), var(--smoke));
+            border: 1px solid var(--blood);
+            color: var(--bone);
+            padding: 1.25rem 2rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, var(--blood), #660000);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 30px var(--blood-glow);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--blood), #660000);
+            font-size: 1.2rem;
+            padding: 1.5rem 2rem;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #aa0000, #880000);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border-color: rgba(139, 0, 0, 0.5);
+            font-size: 0.85rem;
+            padding: 1rem 1.5rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--blood);
+            background: rgba(139, 0, 0, 0.1);
+        }
+
+        /* Seed Section */
+        .seed-section {
+            background: var(--ash);
+            border: 1px solid var(--smoke);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .seed-section h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(139, 0, 0, 0.7);
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .seed-input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .seed-input {
+            flex: 1;
+            background: var(--void);
+            border: 1px solid var(--smoke);
+            color: var(--bone);
+            padding: 0.75rem 1rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+        }
+
+        .seed-input:focus {
+            outline: none;
+            border-color: var(--blood);
+        }
+
+        .seed-input::placeholder {
+            color: rgba(255,255,255,0.3);
+        }
+
+        .seed-btn {
+            background: var(--smoke);
+            border: 1px solid var(--blood);
+            color: var(--bone);
+            padding: 0.75rem 1.25rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .seed-btn:hover {
+            background: var(--blood);
+        }
+
+        .seed-examples {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .seed-example {
+            background: var(--void);
+            border: 1px solid rgba(139,0,0,0.3);
+            color: rgba(255,255,255,0.6);
+            padding: 0.4rem 0.8rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .seed-example:hover {
+            border-color: var(--blood);
+            color: var(--bone);
+        }
+
+        /* Progress Section */
+        .progress-section {
+            background: var(--ash);
+            border: 1px solid var(--smoke);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .progress-section h3 {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(139, 0, 0, 0.7);
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--void);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blood), #ff4444);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Footer Links */
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--smoke);
+        }
+
+        .footer-links a {
+            color: rgba(139, 0, 0, 0.5);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links a:hover {
+            color: var(--blood);
+        }
+
+        /* Logout */
+        .logout-link {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            color: rgba(255,255,255,0.3);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-decoration: none;
+        }
+
+        .logout-link:hover {
+            color: var(--blood);
+        }
+
+        /* Vignette */
+        .vignette {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.8) 100%);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body { padding: 1rem; }
+
+            .title {
+                font-size: 1.6rem;
+                letter-spacing: 0.3em;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-value { font-size: 1.5rem; }
+
+            .seed-input-group {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="vignette"></div>
+    <a href="/logout" class="logout-link">LOGOUT</a>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="title">DEAD SEOUL</h1>
+            <p class="subtitle">OPERATION DEDICATED MONGOOSE</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">{{ save_data.get('currentSection', 1) }}</div>
+                <div class="stat-label">Current Section</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">{{ analytics.get('total_choices', 0) }}</div>
+                <div class="stat-label">Choices Made</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">{{ save_data.get('endings', [])|length }}</div>
+                <div class="stat-label">Endings Found</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="globe-count">0</div>
+                <div class="stat-label">Snow Globes</div>
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-section">
+            <h3>Story Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ (save_data.get('currentSection', 1) / 200 * 100)|int }}%"></div>
+            </div>
+            <div class="progress-label">
+                <span>Section {{ save_data.get('currentSection', 1) }}</span>
+                <span>{{ analytics.get('jin_moments', 0) }} Jin Moments</span>
+            </div>
+        </div>
+
+        <!-- Main Actions -->
+        <div class="actions">
+            {% if has_save %}
+            <a href="/game" class="btn btn-primary">CONTINUE</a>
+            {% else %}
+            <a href="/game" class="btn btn-primary">BEGIN YOUR STORY</a>
+            {% endif %}
+        </div>
+
+        <!-- Seed Selection -->
+        <div class="seed-section">
+            <h3>Enter a Seed</h3>
+            <div class="seed-input-group">
+                <input type="text" class="seed-input" id="seed-input" placeholder="e.g., JINLV-LOYAL-2024">
+                <button class="seed-btn" onclick="loadSeed()">LOAD</button>
+            </div>
+            <div class="seed-examples">
+                <span class="seed-example" onclick="setSeed('JINLV')">JINLV</span>
+                <span class="seed-example" onclick="setSeed('FLAME')">FLAME</span>
+                <span class="seed-example" onclick="setSeed('SURVI')">SURVI</span>
+                <span class="seed-example" onclick="setSeed('THREE')">THREE</span>
+                <span class="seed-example" onclick="setSeed('ORCAM')">ORCAM</span>
+            </div>
+        </div>
+
+        <!-- Secondary Actions -->
+        <div class="actions">
+            <a href="/game?reset=1" class="btn btn-secondary" onclick="return confirm('Start a new game? Current progress will be saved.')">NEW GAME</a>
+            <a href="/collection" class="btn btn-secondary">SNOW GLOBE COLLECTION</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-links">
+            {% if is_oracle %}
+            <a href="/oracle">ORACLE DASHBOARD</a>
+            {% endif %}
+            <a href="#" onclick="showCredits()">CREDITS</a>
+            <a href="#" onclick="showStats()">DETAILED STATS</a>
+        </div>
+    </div>
+
+    <script>
+        // Load snow globe count from localStorage
+        const collection = JSON.parse(localStorage.getItem('snowGlobeCollection') || '[]');
+        document.getElementById('globe-count').textContent = collection.length;
+
+        function setSeed(seed) {
+            document.getElementById('seed-input').value = seed;
+        }
+
+        function loadSeed() {
+            const seed = document.getElementById('seed-input').value.trim();
+            if (seed) {
+                localStorage.setItem('gameSeed', seed);
+                window.location.href = '/game?seed=' + encodeURIComponent(seed);
+            }
+        }
+
+        function showCredits() {
+            alert('DEAD SEOUL\n\nOperation Dedicated Mongoose\n\nFor E—, who collects snow globes\nand stole my heart.\n\n- R');
+        }
+
+        function showStats() {
+            const stats = {
+                section: {{ save_data.get('currentSection', 1) }},
+                choices: {{ analytics.get('total_choices', 0) }},
+                endings: {{ save_data.get('endings', [])|length }},
+                jinMoments: {{ analytics.get('jin_moments', 0) }},
+                globes: collection.length
+            };
+            alert('DETAILED STATS\n\nSection: ' + stats.section + '\nChoices: ' + stats.choices + '\nEndings: ' + stats.endings + '/12\nJin Moments: ' + stats.jinMoments + '\nSnow Globes: ' + stats.globes);
+        }
+
+        // Enter key loads seed
+        document.getElementById('seed-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') loadSeed();
+        });
+    </script>
+</body>
+</html>

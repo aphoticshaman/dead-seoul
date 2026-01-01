@@ -43,8 +43,36 @@ def require_auth(f):
 @app.route('/')
 def index():
     if session.get('authenticated'):
-        return redirect(url_for('game'))
+        return redirect(url_for('dashboard'))
     return redirect(url_for('login'))
+
+
+@app.route('/dashboard')
+@require_auth
+def dashboard():
+    """Landing page after login - player hub."""
+    player_id = session.get('player_id', 'default')
+    save_data = load_save(player_id)
+
+    # Load analytics for stats
+    analytics_file = ANALYTICS_DIR / f"{player_id}.json"
+    analytics = {'events': [], 'summary': {}}
+    if analytics_file.exists():
+        try:
+            with open(analytics_file) as f:
+                analytics = json.load(f)
+        except:
+            pass
+
+    # Check if this is Ryan (oracle access)
+    is_oracle = session.get('oracle_auth', False)
+
+    return render_template('dashboard.html',
+                          player_id=player_id,
+                          save_data=save_data,
+                          analytics=analytics.get('summary', {}),
+                          is_oracle=is_oracle,
+                          has_save=save_data.get('currentSection', 1) > 1)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -52,14 +80,26 @@ def login():
     error = None
     if request.method == 'POST':
         password = request.form.get('password', '')
-        if secrets.compare_digest(password, GAME_PASSWORD):
+        # Accept both GAME_PASSWORD (Ellie) and RYAN_KEY (Ryan)
+        is_ellie = secrets.compare_digest(password, GAME_PASSWORD)
+        is_ryan = secrets.compare_digest(password, ORACLE_PASSWORD)
+
+        if is_ellie or is_ryan:
             session['authenticated'] = True
-            session['player_id'] = secrets.token_hex(8)
+            session['player_id'] = 'ryan' if is_ryan else secrets.token_hex(8)
             session['session_start'] = datetime.now().isoformat()
             session.permanent = False  # Session dies when browser closes
+
+            # Ryan gets oracle access automatically
+            if is_ryan:
+                session['oracle_auth'] = True
+
             # Track login event
-            track_event(session['player_id'], 'login', {'timestamp': datetime.now().isoformat()})
-            return redirect(url_for('game'))
+            track_event(session['player_id'], 'login', {
+                'timestamp': datetime.now().isoformat(),
+                'is_oracle': is_ryan
+            })
+            return redirect(url_for('dashboard'))
         error = "Wrong password, baby"
     return render_template('login.html', error=error)
 
