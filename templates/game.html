@@ -2059,9 +2059,16 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
+            console.log('=== DEAD SEOUL INIT ===');
+            console.log('GAME_DATA keys:', Object.keys(GAME_DATA).length);
+            console.log('STORY_DATA exists:', typeof STORY_DATA !== 'undefined');
+            console.log('Section 1:', GAME_DATA[1] ? 'EXISTS' : 'MISSING');
+
             try {
                 // Load saved state
                 const saved = {{ save_data | safe }};
+                console.log('Saved data:', saved);
+
                 if (saved && saved.currentSection) {
                     gameState = {
                         ...saved,
@@ -2069,31 +2076,51 @@
                     };
                 }
 
-                // Log loaded data for debugging
-                console.log('GAME_DATA sections:', Object.keys(GAME_DATA).length);
-                console.log('Current section:', gameState.currentSection);
-                console.log('Section 1 exists:', !!GAME_DATA[1]);
-
                 // Hide loading and render
                 setTimeout(() => {
+                    console.log('Hiding loading, rendering section:', gameState.currentSection);
                     document.getElementById('loading').classList.add('hidden');
+
                     // Inject stats UI if available
                     if (typeof generateStatsUI === 'function') {
                         document.body.insertAdjacentHTML('beforeend', generateStatsUI());
                     }
+
                     renderSection(gameState.currentSection);
                 }, 1000);
             } catch (e) {
                 console.error('Init error:', e);
-                document.getElementById('loading').innerHTML = `
-                    <div style="color: var(--blood); text-align: center;">
-                        <h2>Error Loading Game</h2>
-                        <p>${e.message}</p>
-                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 10px 20px;">Reload</button>
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('content').innerHTML = `
+                    <div class="section active" style="padding: 2rem; text-align: center;">
+                        <h2 style="color: #8b0000;">Init Error</h2>
+                        <p style="color: #fff;">${e.message}</p>
+                        <pre style="color: #666; font-size: 0.8em; text-align: left; margin-top: 1rem;">${e.stack}</pre>
+                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 10px 20px; background: #8b0000; color: #fff; border: none; cursor: pointer;">Reload</button>
                     </div>
                 `;
             }
         });
+
+        // Nuclear fallback - if nothing renders after 3 seconds, show debug info
+        setTimeout(() => {
+            const content = document.getElementById('content');
+            if (content && content.innerHTML.trim() === '') {
+                console.error('NUCLEAR FALLBACK: Content empty after 3s');
+                content.innerHTML = `
+                    <div class="section active" style="padding: 2rem;">
+                        <h2 style="color: #8b0000;">Debug: Content Empty</h2>
+                        <p style="color: #fff;">GAME_DATA sections: ${Object.keys(GAME_DATA).length}</p>
+                        <p style="color: #fff;">STORY_DATA: ${typeof STORY_DATA !== 'undefined' ? Object.keys(STORY_DATA).length + ' sections' : 'NOT LOADED'}</p>
+                        <p style="color: #fff;">Section 1: ${GAME_DATA[1] ? 'exists' : 'MISSING'}</p>
+                        <p style="color: #fff;">Current section: ${gameState.currentSection}</p>
+                        <hr style="margin: 1rem 0; border-color: #333;">
+                        <p style="color: #666;">Available sections: ${Object.keys(GAME_DATA).slice(0, 30).join(', ')}</p>
+                        <button onclick="renderSection(1)" style="margin-top: 1rem; padding: 10px 20px; background: #8b0000; color: #fff; border: none; cursor: pointer;">Force Section 1</button>
+                    </div>
+                `;
+            }
+        }, 3000);
 
         function renderSection(sectionId) {
             const section = GAME_DATA[sectionId];
