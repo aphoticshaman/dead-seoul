@@ -2058,30 +2058,55 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            // Load saved state
-            const saved = {{ save_data | safe }};
-            if (saved && saved.currentSection) {
-                gameState = {
-                    ...saved,
-                    threadsVisited: new Set(saved.threadsVisited || [])
-                };
-            }
-
-            // Hide loading
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
-                // Inject stats UI if available
-                if (typeof generateStatsUI === 'function') {
-                    document.body.insertAdjacentHTML('beforeend', generateStatsUI());
+            try {
+                // Load saved state
+                const saved = {{ save_data | safe }};
+                if (saved && saved.currentSection) {
+                    gameState = {
+                        ...saved,
+                        threadsVisited: new Set(saved.threadsVisited || [])
+                    };
                 }
-                renderSection(gameState.currentSection);
-            }, 1000);
+
+                // Log loaded data for debugging
+                console.log('GAME_DATA sections:', Object.keys(GAME_DATA).length);
+                console.log('Current section:', gameState.currentSection);
+                console.log('Section 1 exists:', !!GAME_DATA[1]);
+
+                // Hide loading and render
+                setTimeout(() => {
+                    document.getElementById('loading').classList.add('hidden');
+                    // Inject stats UI if available
+                    if (typeof generateStatsUI === 'function') {
+                        document.body.insertAdjacentHTML('beforeend', generateStatsUI());
+                    }
+                    renderSection(gameState.currentSection);
+                }, 1000);
+            } catch (e) {
+                console.error('Init error:', e);
+                document.getElementById('loading').innerHTML = `
+                    <div style="color: var(--blood); text-align: center;">
+                        <h2>Error Loading Game</h2>
+                        <p>${e.message}</p>
+                        <button onclick="location.reload()" style="margin-top: 1rem; padding: 10px 20px;">Reload</button>
+                    </div>
+                `;
+            }
         });
 
         function renderSection(sectionId) {
             const section = GAME_DATA[sectionId];
             if (!section) {
                 console.error('Section not found:', sectionId);
+                // Show error in UI instead of blank screen
+                document.getElementById('content').innerHTML = `
+                    <div class="section active" style="padding: 2rem; text-align: center;">
+                        <h2 style="color: var(--blood);">Section ${sectionId} not found</h2>
+                        <p>Available sections: ${Object.keys(GAME_DATA).slice(0, 20).join(', ')}...</p>
+                        <p style="margin-top: 1rem; color: #666;">Total sections loaded: ${Object.keys(GAME_DATA).length}</p>
+                        <button class="restart-btn" onclick="renderSection(1)" style="margin-top: 2rem;">Try Section 1</button>
+                    </div>
+                `;
                 return;
             }
 
