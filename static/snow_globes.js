@@ -267,14 +267,14 @@ const SnowGlobeCollection = {
         // For E specifically
         ellie: {
             id: 'ellie',
-            name: 'E—',
+            name: 'DEAD SEOUL',
             secret: true,
             requirement: 'Be Ellie',
-            description: 'A snow globe that looks exactly like one from a specific trip. A specific memory. A specific moment that only she would recognize.',
-            scene: 'This one is just for you.',
+            description: 'Seoul in ruins. The skyline from the K-dramas, but broken. Burning. Beautiful in the way only endings can be. Tiny flakes of ash instead of snow.',
+            scene: 'He found it in the rubble. Cleaned the glass with his sleeve. "For your collection," he said. Like the world wasn\'t ending. Like it mattered. Like you mattered.',
             rarity: 'mythic',
-            unlockMessage: 'Hi, baby. I love you.',
-            displayText: '"Every globe we collect is a universe we share."'
+            unlockMessage: 'Welcome to Dead Seoul, baby.',
+            displayText: '"This is where we begin."'
         }
     },
 
