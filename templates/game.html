@@ -2265,13 +2265,7 @@
                 }
             }
 
-            // Add adaptive choices based on player profile
-            if (typeof AdaptiveEngine !== 'undefined' && choices.length > 0) {
-                const adaptiveChoices = AdaptiveEngine.generateAdaptiveChoices(sectionId, choices);
-                if (adaptiveChoices && adaptiveChoices.length > 0) {
-                    choices = adaptiveChoices;
-                }
-            }
+            // Adaptive choice generation removed - using positive reinforcement instead
 
             // Add dark romance choices if appropriate
             if (typeof DarkRomanceChoices !== 'undefined' && content.toLowerCase().includes('jin')) {
