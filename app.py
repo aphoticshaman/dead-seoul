@@ -56,7 +56,7 @@ def login():
             session['authenticated'] = True
             session['player_id'] = secrets.token_hex(8)
             session['session_start'] = datetime.now().isoformat()
-            session.permanent = True
+            session.permanent = False  # Session dies when browser closes
             # Track login event
             track_event(session['player_id'], 'login', {'timestamp': datetime.now().isoformat()})
             return redirect(url_for('game'))

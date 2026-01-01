@@ -10,6 +10,24 @@ const EasterEggs = {
     // Random environmental descriptions
     environments: [
         "Mushrooms grow in the corners. Not the normal kind. The kind that moves if you watch long enough.",
+        "A pocket watch lies in the rubble. Still ticking. Still late. Always late.",
+        "Someone painted a white rabbit on the wall. An arrow beneath it points down, down, down.",
+        "Bottles labeled DRINK ME line the pharmacy shelf. You do not drink them.",
+        "A grin painted on a door. No face. Just the grin. Watching.",
+        "Playing cards scattered on the floor. All hearts. All severed.",
+        "A broken mirror. Your reflection moves half a second slower than you do.",
+        "A phone rings in the empty building. You don't answer. You know what happens to people who answer.",
+        "Graffiti on the wall: 'WHAT'S YOUR FAVORITE APOCALYPSE?' Someone had jokes. Had.",
+        "A white mask on the floor. Elongated. Screaming. You leave it where it lies.",
+        "Rule one: Never say you'll be right back. Rule two: Never investigate strange noises. You've broken both.",
+        "A dead radio crackles: 'DO YOU LIKE SCARY MOVIES?' Static. Then laughter. Then nothing.",
+        "Someone wrote the rules for surviving on the wall. Rule seven is crossed out. You don't want to know what rule seven was.",
+        "Someone spray-painted 'DANGER ZONE' on a helicopter. You don't get the joke but someone did.",
+        "A small restaurant. The menu is still up. Burger of the Day: The End-of-Days Burger. Someone had a sense of humor til the end.",
+        "Mathematical. Algebraic. Rhombus. Words scrawled on the wall in childish handwriting. A crown lies nearby.",
+        "A tiny demon figurine on a shelf. An elf. A princess. Someone's collection of better times.",
+        "A devil's trap painted on the floor. Salt in a circle. It didn't help. Nothing helps.",
+        "Black wings painted on a wall. Charred at the edges. 'HELLO, DETECTIVE' written beneath.",
         "You hear clicking in the distance. Rhythmic. Searching.",
         "Someone painted 'LOOK FOR THE LIGHT' on the wall. The paint is decades old.",
         "An acoustic guitar sits in the corner, missing two strings. Someone was learning to play. Someone who never finished.",
@@ -106,6 +124,54 @@ const EasterEggs = {
         {
             context: "survival",
             line: "We survive. We survive by any means necessary."
+        },
+        {
+            context: "madness",
+            line: "We're all mad here. You must be, or you wouldn't have come."
+        },
+        {
+            context: "descent",
+            line: "The deeper you go, the less sense it makes. That's when you know you're close."
+        },
+        {
+            context: "time",
+            line: "Time stopped meaning anything the day they fell. Now it's just before and after."
+        },
+        {
+            context: "size",
+            line: "In this world, you learn to make yourself small. Invisible. The ones who stand tall get cut down."
+        },
+        {
+            context: "tea_party",
+            line: "Found a tea set once. Sat down with three corpses at the table. Had a nice chat. They were better company than most of the living."
+        },
+        {
+            context: "rabbit_hole",
+            line: "Once you fall, you don't stop falling. You just get used to the drop."
+        },
+        {
+            context: "bravado",
+            line: "You want to know the difference between us and the monsters? We have a plan. It's a terrible plan, but we have one."
+        },
+        {
+            context: "family",
+            line: "He's my brother. After everything—after all the hell we've been through—that's all that matters."
+        },
+        {
+            context: "desire",
+            line: "Tell me. What is it you truly desire? In this broken world, what do you really want?"
+        },
+        {
+            context: "adventure",
+            line: "Sucking at something is the first step to being sorta good at something. Surviving works the same way."
+        },
+        {
+            context: "royalty",
+            line: "I'm the princess of a dead kingdom. Turns out that's about as useful as it sounds."
+        },
+        {
+            context: "priorities",
+            line: "Someone asked about my plans for the apocalypse. My answer? Same as always: Get drunk. Maybe die. We'll see."
         }
     ],
 

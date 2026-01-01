@@ -473,6 +473,7 @@
     <script src="/static/jin_intensity.js"></script>
     <script src="/static/snow_globes.js"></script>
     <script src="/static/life_moments.js"></script>
+    <script src="/static/jin_thread.js"></script>
     <script>
         // DEAD SEOUL - Interactive CYOA Engine
         // Black Mirror × Blue Bedlam × Ritchie Cascade
@@ -1284,12 +1285,107 @@
             gameState.currentSection = sectionId;
             gameState.threadsVisited.add(section.thread);
 
+            // ═══════════════════════════════════════════════════════════════
+            // ENGINE HOOKS - Analytics, Audio, Adaptive
+            // ═══════════════════════════════════════════════════════════════
+
+            // Track section view
+            if (typeof Analytics !== 'undefined') {
+                Analytics.viewSection(sectionId, section.title);
+            }
+
+            // Trigger audio based on content
+            if (typeof AudioEngine !== 'undefined') {
+                AudioEngine.onSectionEnter(sectionId, section.content);
+            }
+
+            // Get mongoose engine state
+            const mongooseState = typeof MongooseEngine !== 'undefined' ? MongooseEngine.state : { jinTrust: 0, loyalty: 0, playthrough: 1 };
+
             // Update progress indicator
             document.getElementById('progress').textContent =
                 section.isEnding ? 'END' : `SEC ${String(sectionId).padStart(2, '0')}`;
 
             // Update thread indicators
             updateThreads();
+
+            // ═══════════════════════════════════════════════════════════════
+            // CONTENT MUTATION - Easter eggs, Jin intensity, NG+ flavor
+            // ═══════════════════════════════════════════════════════════════
+
+            let content = section.content;
+
+            // Mongoose engine content mutation (NG+ deja vu, Jin trust flavor)
+            if (typeof MongooseEngine !== 'undefined') {
+                content = MongooseEngine.mutateContent(content, sectionId);
+            }
+
+            // Jin intensity injection (if Jin scene and high trust)
+            if (typeof JinIntensity !== 'undefined' && content.toLowerCase().includes('jin')) {
+                content = JinIntensity.injectIntensity(content, mongooseState.jinTrust);
+            }
+
+            // Easter egg injection (10% chance for TLOU references)
+            if (typeof EasterEggs !== 'undefined') {
+                const sectionType = detectSectionType(content);
+                content = EasterEggs.maybeInject(content, sectionType);
+            }
+
+            // ═══════════════════════════════════════════════════════════════
+            // LIFE MOMENTS - Dreamcatcher, Crystal, Tattoos
+            // ═══════════════════════════════════════════════════════════════
+
+            // First Jin meeting - give dreamcatcher
+            if (typeof LifeMoments !== 'undefined') {
+                if (isFirstJinMeeting(sectionId, content) && LifeMoments.shouldGiveDreamcatcher(sectionId, true)) {
+                    content += LifeMoments.dreamcatcher.content;
+                    LifeMoments.awardDreamcatcher();
+                }
+
+                // Crystal necklace discovery (GUARANTEED at trust threshold)
+                if (mongooseState.jinTrust >= 8 && !localStorage.getItem('mongoose_crystal_found')) {
+                    content += LifeMoments.crystalNecklace.discovery.content;
+                    localStorage.setItem('mongoose_crystal_found', 'true');
+                }
+
+                // Crystal giving scene (after discovery, on next Jin scene)
+                if (localStorage.getItem('mongoose_crystal_found') && !localStorage.getItem('mongoose_crystal_given')) {
+                    if (content.toLowerCase().includes('jin') && mongooseState.jinTrust >= 9) {
+                        content += LifeMoments.crystalNecklace.giving.content;
+                        localStorage.setItem('mongoose_crystal_given', 'true');
+                    }
+                }
+
+                // Tattoo scene (GUARANTEED at high trust)
+                if (mongooseState.jinTrust >= 12 && !localStorage.getItem('mongoose_tattoo_offered')) {
+                    content += LifeMoments.tattoos.discovery.content;
+                    localStorage.setItem('mongoose_tattoo_offered', 'true');
+                }
+
+                // Tattoo completion (after accepting)
+                if (localStorage.getItem('mongoose_tattoo_accepted') && !localStorage.getItem('mongoose_tattoo_done')) {
+                    content += LifeMoments.tattoos.gettingInked.content;
+                    localStorage.setItem('mongoose_tattoo_done', 'true');
+                }
+
+                // Safeword establishment (GUARANTEED at trust 10)
+                if (mongooseState.jinTrust >= 10 && !localStorage.getItem('mongoose_safewords_set')) {
+                    content += LifeMoments.safewords.establishment.content;
+                    localStorage.setItem('mongoose_safewords_set', 'true');
+                }
+
+                // Hot spring scene (GUARANTEED at trust 11)
+                if (mongooseState.jinTrust >= 11 && !localStorage.getItem('mongoose_hotspring')) {
+                    content += LifeMoments.hotspring.discovery.content;
+                    localStorage.setItem('mongoose_hotspring', 'true');
+                }
+
+                // Jet ski scene (GUARANTEED at trust 7)
+                if (mongooseState.jinTrust >= 7 && !localStorage.getItem('mongoose_jetski')) {
+                    content += LifeMoments.jetski.discovery.content;
+                    localStorage.setItem('mongoose_jetski', 'true');
+                }
+            }
 
             // Build section HTML
             let html = `
@@ -1316,19 +1412,52 @@
                 }
             }
 
-            // Add content
-            html += section.content;
+            // Add mutated content
+            html += content;
+
+            // ═══════════════════════════════════════════════════════════════
+            // DYNAMIC CHOICES - Mongoose pools, Adaptive choices, Intensity
+            // ═══════════════════════════════════════════════════════════════
+
+            let choices = section.choices || [];
+
+            // Get dynamic choices from Mongoose Engine
+            if (typeof MongooseEngine !== 'undefined') {
+                const dynamicChoices = MongooseEngine.getChoicesForSection(sectionId);
+                if (dynamicChoices) {
+                    choices = dynamicChoices;
+                }
+            }
+
+            // Add adaptive choices based on player profile
+            if (typeof AdaptiveEngine !== 'undefined' && choices.length > 0) {
+                const adaptiveChoices = AdaptiveEngine.generateAdaptiveChoices(sectionId, choices);
+                if (adaptiveChoices && adaptiveChoices.length > 0) {
+                    choices = adaptiveChoices;
+                }
+            }
+
+            // Add dark romance choices if appropriate
+            if (typeof DarkRomanceChoices !== 'undefined' && content.toLowerCase().includes('jin')) {
+                const intensityChoices = DarkRomanceChoices.getIntensityChoices(mongooseState.jinTrust);
+                if (intensityChoices.length > 0 && choices.length > 0) {
+                    // Add one intensity choice to the mix
+                    choices.push(intensityChoices[0]);
+                }
+            }
 
             // Add choices if not ending
-            if (section.choices && section.choices.length > 0) {
+            if (choices && choices.length > 0) {
                 html += `
                     <div class="choices">
                         <div class="choices-header">What do you do?</div>
                 `;
 
-                section.choices.forEach((choice, index) => {
+                choices.forEach((choice, index) => {
+                    const target = choice.target || choice.next || (sectionId + 1);
+                    const choiceData = encodeURIComponent(JSON.stringify(choice));
                     html += `
-                        <button class="choice" onclick="makeChoice(${choice.target})">
+                        <button class="choice" onclick="makeChoice(${target}, '${choiceData}')">
                             ${choice.text}
                         </button>
                     `;
@@ -1345,9 +1474,85 @@
 
             // Save state
             saveGame();
+
+            // Update stats display
+            updateStatsDisplay();
         }
 
-        function makeChoice(targetSection) {
+        // Detect section type for easter egg injection
+        function detectSectionType(content) {
+            const lower = content.toLowerCase();
+            if (lower.includes('infected') || lower.includes('danger') || lower.includes('run')) return 'danger';
+            if (lower.includes('found') || lower.includes('supplies') || lower.includes('search')) return 'loot';
+            if (lower.includes('bite') || lower.includes('turning') || lower.includes('click')) return 'infected';
+            if (lower.includes('quiet') || lower.includes('peace') || lower.includes('safe')) return 'peace';
+            if (lower.includes('faction') || lower.includes('group') || lower.includes('territory')) return 'factions';
+            return 'general';
+        }
+
+        // Check if this is the first Jin meeting
+        function isFirstJinMeeting(sectionId, content) {
+            const lower = content.toLowerCase();
+            const hasJin = lower.includes('jin');
+            const isIntro = lower.includes('first') || lower.includes('meet') || lower.includes('who are you');
+            const notMet = !localStorage.getItem('mongoose_met_jin');
+
+            if (hasJin && isIntro && notMet) {
+                localStorage.setItem('mongoose_met_jin', 'true');
+                return true;
+            }
+            return false;
+        }
+
+        // Update stats display
+        function updateStatsDisplay() {
+            const statsEl = document.getElementById('mongoose-stats');
+            if (!statsEl) return;
+
+            const state = typeof MongooseEngine !== 'undefined' ? MongooseEngine.state : { loyalty: 0, jinTrust: 0, playthrough: 1 };
+
+            statsEl.innerHTML = `
+                <div class="stat-item">❤️ ${state.loyalty}</div>
+                <div class="stat-item">💕 ${state.jinTrust}</div>
+                <div class="stat-item">🔄 NG${state.playthrough > 1 ? '+' + (state.playthrough - 1) : ''}</div>
+            `;
+        }
+
+        function makeChoice(targetSection, choiceDataEncoded) {
+            // Decode choice data if provided
+            let choiceData = {};
+            if (choiceDataEncoded) {
+                try {
+                    choiceData = JSON.parse(decodeURIComponent(choiceDataEncoded));
+                } catch (e) {
+                    console.warn('Could not parse choice data');
+                }
+            }
+
+            // ═══════════════════════════════════════════════════════════════
+            // ENGINE HOOKS - Record choice, learn, track
+            // ═══════════════════════════════════════════════════════════════
+
+            // Record in Mongoose Engine (updates loyalty, jinTrust, betrayals)
+            if (typeof MongooseEngine !== 'undefined') {
+                MongooseEngine.recordChoice(gameState.currentSection, choiceData);
+            }
+
+            // Learn in Adaptive Engine (updates behavioral profile)
+            if (typeof AdaptiveEngine !== 'undefined') {
+                AdaptiveEngine.learn({
+                    sectionId: gameState.currentSection,
+                    choice: choiceData,
+                    target: targetSection,
+                    timestamp: Date.now()
+                });
+            }
+
+            // Track choice analytics
+            if (typeof Analytics !== 'undefined') {
+                Analytics.trackChoice(gameState.currentSection, targetSection, choiceData.text || 'unknown');
+            }
+
             gameState.history.push(gameState.currentSection);
             renderSection(targetSection);
 
@@ -1355,11 +1560,42 @@
             const section = GAME_DATA[targetSection];
             if (section && section.isEnding) {
                 gameState.endings.push(section.endingNumber);
+
+                // ═══════════════════════════════════════════════════════════════
+                // ENDING REWARDS - Snow globes, seeds, analytics
+                // ═══════════════════════════════════════════════════════════════
+
+                // Award snow globe for this ending
+                if (typeof SnowGlobeCollection !== 'undefined') {
+                    SnowGlobeCollection.onEnding(section.endingNumber, section.endingCode);
+                }
+
+                // Track ending analytics
+                if (typeof Analytics !== 'undefined') {
+                    Analytics.trackEnding(section.endingNumber, section.title);
+                }
+
                 // Deliver seed if available
                 if (typeof deliverSeed === "function" && typeof generateSeed === "function") {
                     const seed = generateSeed(section.endingNumber);
                     setTimeout(() => deliverSeed(section, gameState, seed), 1500);
                 }
+
+                // Generate procedural seed for sharing
+                if (typeof ProceduralEngine !== 'undefined' && typeof MongooseEngine !== 'undefined') {
+                    const fullSeed = ProceduralEngine.encodeSeed({
+                        endingCode: section.endingCode || 'END' + section.endingNumber,
+                        loyalty: MongooseEngine.state.loyalty,
+                        jinTrust: MongooseEngine.state.jinTrust,
+                        betrayals: MongooseEngine.state.betrayals,
+                        playthrough: MongooseEngine.state.playthrough,
+                        timeSpent: Date.now() - (window.sessionStart || Date.now()),
+                        keyChoices: gameState.history.slice(0, 10)
+                    });
+                    console.log('Your seed:', fullSeed);
+                    localStorage.setItem('mongoose_last_seed', fullSeed);
+                }
+
                 saveGame();
             }
         }
@@ -1398,15 +1634,480 @@
         }
 
         function restartGame() {
+            // ═══════════════════════════════════════════════════════════════
+            // NEW GAME+ - Carry over progress
+            // ═══════════════════════════════════════════════════════════════
+
+            let ngPlusMessage = null;
+
+            if (typeof MongooseEngine !== 'undefined') {
+                ngPlusMessage = MongooseEngine.startNewGamePlus();
+            }
+
             gameState = {
                 currentSection: 1,
                 history: [],
                 endings: gameState.endings, // Keep endings unlocked
                 threadsVisited: new Set()
             };
+
+            // Show NG+ message if applicable
+            if (ngPlusMessage && ngPlusMessage.playthrough > 1) {
+                showNGPlusMessage(ngPlusMessage);
+            }
+
             saveGame();
             renderSection(1);
         }
+
+        function showNGPlusMessage(ngPlus) {
+            const overlay = document.createElement('div');
+            overlay.className = 'ngplus-overlay';
+            overlay.innerHTML = `
+                <div class="ngplus-content">
+                    <div class="ngplus-cycle">CYCLE ${ngPlus.playthrough}</div>
+                    <div class="ngplus-message">${ngPlus.message}</div>
+                    <div class="ngplus-carryover">
+                        <span>❤️ ${ngPlus.carryover.loyalty} loyalty carried</span>
+                        <span>💕 ${ngPlus.carryover.jinTrust} trust remembered</span>
+                    </div>
+                    <button onclick="this.parentElement.parentElement.remove()">CONTINUE</button>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // UI ELEMENTS - Stats, Globes, Audio, Menu
+        // ═══════════════════════════════════════════════════════════════════════
+
+        function initUI() {
+            // Stats display
+            const stats = document.createElement('div');
+            stats.id = 'mongoose-stats';
+            stats.className = 'mongoose-stats';
+            document.body.appendChild(stats);
+
+            // Control buttons
+            const controls = document.createElement('div');
+            controls.className = 'mongoose-controls';
+            controls.innerHTML = `
+                <button class="control-btn" onclick="showGlobeCollection()" title="Snow Globes">🌐</button>
+                <button class="control-btn" onclick="toggleAudio()" title="Toggle Audio">🔊</button>
+                <button class="control-btn" onclick="showStats()" title="Stats">📊</button>
+            `;
+            document.body.appendChild(controls);
+
+            // Mark session start
+            window.sessionStart = Date.now();
+        }
+
+        function showGlobeCollection() {
+            if (typeof SnowGlobeCollection !== 'undefined') {
+                SnowGlobeCollection.showCollection();
+            }
+        }
+
+        function toggleAudio() {
+            if (typeof AudioEngine !== 'undefined') {
+                const enabled = AudioEngine.toggle();
+                const btn = document.querySelector('.control-btn[title="Toggle Audio"]');
+                if (btn) btn.textContent = enabled ? '🔊' : '🔇';
+            }
+        }
+
+        function showStats() {
+            const state = typeof MongooseEngine !== 'undefined' ? MongooseEngine.state : {};
+            const profile = typeof AdaptiveEngine !== 'undefined' ? AdaptiveEngine.profile : {};
+            const globeStats = typeof SnowGlobeCollection !== 'undefined' ? SnowGlobeCollection.getStats() : {};
+
+            const overlay = document.createElement('div');
+            overlay.className = 'stats-overlay';
+            overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+            overlay.innerHTML = `
+                <div class="stats-panel">
+                    <h2>MONGOOSE STATUS</h2>
+                    <button class="stats-close" onclick="this.parentElement.parentElement.remove()">×</button>
+
+                    <div class="stats-section">
+                        <h3>RELATIONSHIP</h3>
+                        <div class="stat-row"><span>Loyalty</span><span>❤️ ${state.loyalty || 0}</span></div>
+                        <div class="stat-row"><span>Jin Trust</span><span>💕 ${state.jinTrust || 0}</span></div>
+                        <div class="stat-row"><span>Betrayals</span><span>💔 ${state.betrayals || 0}</span></div>
+                        <div class="stat-row"><span>Playthrough</span><span>🔄 ${state.playthrough || 1}</span></div>
+                    </div>
+
+                    <div class="stats-section">
+                        <h3>COLLECTION</h3>
+                        <div class="stat-row"><span>Snow Globes</span><span>🌐 ${globeStats.collected || 0}/${globeStats.total || 0}</span></div>
+                        <div class="stat-row"><span>Endings Found</span><span>🏁 ${gameState.endings?.length || 0}</span></div>
+                    </div>
+
+                    ${profile.tendencies ? `
+                    <div class="stats-section">
+                        <h3>PROFILE</h3>
+                        ${Object.entries(profile.tendencies || {}).map(([k, v]) =>
+                            `<div class="stat-row"><span>${k}</span><span>${Math.round(v)}%</span></div>`
+                        ).join('')}
+                    </div>
+                    ` : ''}
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
+        // Initialize UI after DOM loaded
+        document.addEventListener('DOMContentLoaded', initUI);
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // FORCE LOGOUT ON PAGE LEAVE
+        // ═══════════════════════════════════════════════════════════════════════
+
+        window.addEventListener('beforeunload', function() {
+            // Send logout beacon
+            navigator.sendBeacon('/logout');
+        });
+
+        // Also on visibility change (tab switch on mobile)
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'hidden') {
+                navigator.sendBeacon('/logout');
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // DEBUG CONSOLE - Type 'mongoose' anywhere
+        // ═══════════════════════════════════════════════════════════════════════
+
+        let debugBuffer = '';
+        document.addEventListener('keydown', function(e) {
+            debugBuffer += e.key.toLowerCase();
+            if (debugBuffer.length > 10) debugBuffer = debugBuffer.slice(-10);
+
+            // Mongoose activates debug
+            if (debugBuffer.includes('mongoose')) {
+                debugBuffer = '';
+                showDebugConsole();
+            }
+
+            // Admin code also works
+            if (typeof window.ADMIN_CODE !== 'undefined' && debugBuffer.includes(window.ADMIN_CODE)) {
+                debugBuffer = '';
+                if (typeof AdminPanel !== 'undefined') {
+                    AdminPanel.showAdminPanel();
+                }
+            }
+        });
+
+        function showDebugConsole() {
+            const state = typeof MongooseEngine !== 'undefined' ? MongooseEngine.state : {};
+            const overlay = document.createElement('div');
+            overlay.className = 'debug-overlay';
+            overlay.id = 'debug-console';
+            overlay.innerHTML = `
+                <div class="debug-panel">
+                    <h2>🦎 MONGOOSE DEBUG</h2>
+                    <button class="debug-close" onclick="document.getElementById('debug-console').remove()">×</button>
+
+                    <div class="debug-section">
+                        <h3>JUMP TO SECTION</h3>
+                        <input type="number" id="debug-section" placeholder="Section #" min="1">
+                        <button onclick="debugJumpTo()">GO</button>
+                    </div>
+
+                    <div class="debug-section">
+                        <h3>SET STATS</h3>
+                        <div class="debug-row">
+                            <label>Jin Trust:</label>
+                            <input type="number" id="debug-jin" value="${state.jinTrust || 0}" min="0" max="20">
+                            <button onclick="debugSetJin()">SET</button>
+                        </div>
+                        <div class="debug-row">
+                            <label>Loyalty:</label>
+                            <input type="number" id="debug-loyalty" value="${state.loyalty || 0}" min="0" max="20">
+                            <button onclick="debugSetLoyalty()">SET</button>
+                        </div>
+                        <div class="debug-row">
+                            <label>Playthrough:</label>
+                            <input type="number" id="debug-play" value="${state.playthrough || 1}" min="1" max="10">
+                            <button onclick="debugSetPlaythrough()">SET</button>
+                        </div>
+                    </div>
+
+                    <div class="debug-section">
+                        <h3>AWARDS</h3>
+                        <button onclick="debugAwardAllGlobes()">Award All Globes</button>
+                        <button onclick="debugAwardEllie()">Award E— Globe</button>
+                        <button onclick="debugTriggerDreamcatcher()">Give Dreamcatcher</button>
+                        <button onclick="debugTriggerCrystal()">Give Crystal</button>
+                    </div>
+
+                    <div class="debug-section">
+                        <h3>RESET</h3>
+                        <button onclick="debugClearAll()" style="background:#8b0000;color:#fff;">CLEAR ALL DATA</button>
+                    </div>
+
+                    <div class="debug-section">
+                        <h3>JIN THREAD</h3>
+                        <button onclick="debugJumpTo(100)">Start Jin Path (100)</button>
+                        <button onclick="debugJumpTo(116)">First Kiss (116)</button>
+                        <button onclick="debugJumpTo(200)">Jin HEA Ending (200)</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
+        function debugJumpTo(section) {
+            const target = section || parseInt(document.getElementById('debug-section').value);
+            if (target) {
+                renderSection(target);
+                document.getElementById('debug-console')?.remove();
+            }
+        }
+
+        function debugSetJin() {
+            const val = parseInt(document.getElementById('debug-jin').value);
+            if (typeof MongooseEngine !== 'undefined') {
+                MongooseEngine.state.jinTrust = val;
+                MongooseEngine.saveState();
+                updateStatsDisplay();
+            }
+        }
+
+        function debugSetLoyalty() {
+            const val = parseInt(document.getElementById('debug-loyalty').value);
+            if (typeof MongooseEngine !== 'undefined') {
+                MongooseEngine.state.loyalty = val;
+                MongooseEngine.saveState();
+                updateStatsDisplay();
+            }
+        }
+
+        function debugSetPlaythrough() {
+            const val = parseInt(document.getElementById('debug-play').value);
+            if (typeof MongooseEngine !== 'undefined') {
+                MongooseEngine.state.playthrough = val;
+                MongooseEngine.saveState();
+                updateStatsDisplay();
+            }
+        }
+
+        function debugAwardAllGlobes() {
+            if (typeof SnowGlobeCollection !== 'undefined') {
+                Object.keys(SnowGlobeCollection.globes).forEach(id => {
+                    SnowGlobeCollection.award(id);
+                });
+                alert('All globes awarded!');
+            }
+        }
+
+        function debugAwardEllie() {
+            if (typeof SnowGlobeCollection !== 'undefined') {
+                SnowGlobeCollection.award('ellie');
+                alert('E— globe awarded!');
+            }
+        }
+
+        function debugTriggerDreamcatcher() {
+            if (typeof LifeMoments !== 'undefined') {
+                localStorage.removeItem('mongoose_dreamcatcher_given');
+                localStorage.removeItem('mongoose_met_jin');
+                alert('Dreamcatcher reset - will trigger on next Jin meeting');
+            }
+        }
+
+        function debugTriggerCrystal() {
+            if (typeof LifeMoments !== 'undefined') {
+                localStorage.removeItem('mongoose_crystal_found');
+                localStorage.removeItem('mongoose_crystal_given');
+                alert('Crystal reset - will trigger at trust 8+');
+            }
+        }
+
+        function debugClearAll() {
+            if (confirm('This will erase ALL progress. Are you sure?')) {
+                localStorage.clear();
+                if (typeof MongooseEngine !== 'undefined') MongooseEngine.resetState();
+                location.reload();
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // ELLIE GLOBE - Award on first play or special condition
+        // ═══════════════════════════════════════════════════════════════════════
+
+        function checkEllieGlobe() {
+            if (typeof SnowGlobeCollection === 'undefined') return;
+
+            // Award Ellie globe on first successful login
+            if (!localStorage.getItem('mongoose_first_login')) {
+                localStorage.setItem('mongoose_first_login', 'true');
+                // Delay so other UI loads first
+                setTimeout(() => {
+                    SnowGlobeCollection.award('ellie');
+                }, 3000);
+            }
+        }
+
+        // Check on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(checkEllieGlobe, 2000);
+        });
     </script>
+
+    <style>
+        /* Mongoose UI Styles */
+        .mongoose-stats {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            display: flex;
+            gap: 15px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8em;
+            color: rgba(255,255,255,0.7);
+            z-index: 100;
+        }
+
+        .mongoose-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.8);
+            border: 1px solid rgba(139,0,0,0.5);
+            color: #fff;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .control-btn:hover {
+            border-color: #8b0000;
+            transform: scale(1.1);
+        }
+
+        .ngplus-overlay, .stats-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .ngplus-content, .stats-panel {
+            background: linear-gradient(180deg, rgba(20,20,30,0.98), rgba(10,10,20,0.98));
+            border: 2px solid rgba(139,0,0,0.5);
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .ngplus-cycle {
+            font-family: 'Cinzel', serif;
+            font-size: 2em;
+            color: #8b0000;
+            margin-bottom: 20px;
+        }
+
+        .ngplus-message {
+            color: #e8e0d5;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .ngplus-carryover {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+        }
+
+        .ngplus-content button, .stats-panel button {
+            background: transparent;
+            border: 1px solid #8b0000;
+            color: #8b0000;
+            padding: 10px 30px;
+            font-family: 'Space Mono', monospace;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .ngplus-content button:hover, .stats-panel button:hover {
+            background: #8b0000;
+            color: #fff;
+        }
+
+        .stats-panel {
+            text-align: left;
+            min-width: 300px;
+            position: relative;
+        }
+
+        .stats-panel h2 {
+            font-family: 'Cinzel', serif;
+            color: #8b0000;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .stats-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .stats-section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stats-section h3 {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            color: #e8e0d5;
+        }
+
+        /* Jin moment styling */
+        .jin-moment {
+            border-left: 3px solid #8b0000;
+            padding-left: 15px;
+            margin: 20px 0;
+            background: linear-gradient(90deg, rgba(139,0,0,0.1), transparent);
+        }
+    </style>
 </body>
 </html>
