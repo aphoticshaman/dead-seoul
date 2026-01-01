@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORACLE - {{ player_id[:8] }}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+        }
+        .back {
+            opacity: 0.5;
+            font-size: 0.9rem;
+        }
+        .back:hover {
+            opacity: 1;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .title {
+            font-size: 1rem;
+            letter-spacing: 0.2em;
+        }
+        .section {
+            background: rgba(0, 255, 136, 0.03);
+            border: 1px solid rgba(0, 255, 136, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .section-title {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            opacity: 0.5;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .stat {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .stat-label {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .stat-value.highlight { color: #ffaa00; }
+        .stat-value.danger { color: #ff4444; }
+        .stat-value.success { color: #00ff88; }
+        .stat-value.jin { color: #ff6b9d; }
+        .timeline {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .event {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+            font-size: 0.85rem;
+        }
+        .event:last-child {
+            border-bottom: none;
+        }
+        .event-time {
+            opacity: 0.4;
+            font-size: 0.75rem;
+        }
+        .event-type {
+            opacity: 0.7;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+        .event-type.choice { color: #00ff88; }
+        .event-type.ending { color: #ffaa00; }
+        .event-type.jin_moment { color: #ff6b9d; }
+        .event-type.loyalty_choice { color: #00ffff; }
+        .event-type.betrayal { color: #ff4444; }
+        .event-data {
+            margin-top: 0.25rem;
+            opacity: 0.8;
+        }
+        .choices-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .choice-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid rgba(0, 255, 136, 0.05);
+            font-size: 0.8rem;
+        }
+        .choice-section {
+            opacity: 0.4;
+            margin-right: 0.5rem;
+        }
+        .jin-scenes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .jin-scene {
+            background: rgba(255, 107, 157, 0.1);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            color: #ff6b9d;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/oracle" class="back">&larr; ALL PLAYERS</a>
+        <div class="title">PLAYER: {{ player_id[:8] }}...</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Current State</div>
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-label">Current Section</div>
+                <div class="stat-value">{{ save.get('currentSection', 1) }}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">History Length</div>
+                <div class="stat-value">{{ save.get('history', [])|length }}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Endings Collected</div>
+                <div class="stat-value success">{{ save.get('endings', [])|length }}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Last Saved</div>
+                <div class="stat-value" style="font-size: 0.9rem;">{{ save.get('lastSaved', 'Never')[:16] }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">Mongoose Metrics</div>
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-label">Total Choices Made</div>
+                <div class="stat-value">{{ analytics.summary.get('total_choices', 0) }}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Jin Moments Experienced</div>
+                <div class="stat-value jin">{{ analytics.summary.get('jin_moments', 0) }}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Loyalty Choices</div>
+                <div class="stat-value success">{{ analytics.summary.get('loyalty_choices', 0) }}</div>
+            </div>
+            <div class="stat">
+                <div class="stat-label">Betrayals</div>
+                <div class="stat-value {{ 'danger' if analytics.summary.get('betrayals', 0) > 0 else '' }}">
+                    {{ analytics.summary.get('betrayals', 0) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if analytics.summary.get('jin_scenes') %}
+    <div class="section">
+        <div class="section-title">Jin Scenes Witnessed</div>
+        <div class="jin-scenes">
+            {% for scene in analytics.summary.get('jin_scenes', []) %}
+            <div class="jin-scene">{{ scene }}</div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    {% if analytics.summary.get('choices_made') %}
+    <div class="section">
+        <div class="section-title">Choice History</div>
+        <div class="choices-list">
+            {% for choice in analytics.summary.get('choices_made', [])[-30:] %}
+            <div class="choice-item">
+                <span class="choice-section">SEC {{ choice.section }}</span>
+                {{ choice.choice }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="section">
+        <div class="section-title">Event Timeline (Last 50)</div>
+        <div class="timeline">
+            {% for event in analytics.events[-50:]|reverse %}
+            <div class="event">
+                <div class="event-type {{ event.type }}">{{ event.type }}</div>
+                <div class="event-time">{{ event.timestamp[:19] }}</div>
+                {% if event.data %}
+                <div class="event-data">
+                    {% for key, value in event.data.items() if key != 'timestamp' %}
+                    {{ key }}: {{ value }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script>
+        // Auto-refresh every 15 seconds
+        setTimeout(() => location.reload(), 15000);
+    </script>
+</body>
+</html>

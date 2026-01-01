@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>...</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            color: #00ff88;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+        }
+        .title {
+            font-size: 0.8rem;
+            letter-spacing: 0.5em;
+            margin-bottom: 2rem;
+            opacity: 0.5;
+        }
+        input {
+            background: transparent;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 1rem 2rem;
+            font-family: inherit;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+            width: 300px;
+        }
+        input::placeholder {
+            color: rgba(0, 255, 136, 0.3);
+        }
+        button {
+            background: transparent;
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 1rem 2rem;
+            font-family: inherit;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #00ff88;
+            color: #0a0a0f;
+        }
+        .error {
+            color: #ff4444;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">ORCA RIDER NETWORK</div>
+        <form method="POST">
+            <input type="password" name="password" placeholder="..." autofocus>
+            <br>
+            <button type="submit">ACCESS</button>
+        </form>
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
