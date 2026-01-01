@@ -125,6 +125,18 @@
             color: rgba(139, 0, 0, 0.6);
         }
 
+        .dashboard-link {
+            color: rgba(139, 0, 0, 0.5);
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .dashboard-link:hover {
+            color: var(--blood);
+        }
+
         /* Content area */
         .content {
             flex: 1;
@@ -1220,6 +1232,7 @@
 
     <div class="game-container">
         <header class="header">
+            <a href="/dashboard" class="dashboard-link" title="Return to Dashboard">◀</a>
             <div class="title-small">DEAD SEOUL</div>
             <div class="progress-indicator" id="progress">SEC 01</div>
         </header>
@@ -2287,9 +2300,12 @@
 
                 choices.forEach((choice, index) => {
                     const target = choice.target || choice.next || (sectionId + 1);
-                    const choiceData = encodeURIComponent(JSON.stringify(choice));
+                    // Store choice data in a global array and reference by index to avoid onclick escaping issues
+                    if (!window._choiceData) window._choiceData = [];
+                    const choiceIndex = window._choiceData.length;
+                    window._choiceData.push(choice);
                     html += `
-                        <button class="choice" onclick="makeChoice(${target}, '${choiceData}')">
+                        <button class="choice" data-target="${target}" data-choice-index="${choiceIndex}">
                             ${choice.text}
                         </button>
                     `;
@@ -2303,6 +2319,18 @@
             // Render
             document.getElementById('content').innerHTML = html;
             document.getElementById('content').scrollTop = 0;
+
+            // Attach click handlers to choice buttons (using event delegation to avoid onclick escaping issues)
+            document.querySelectorAll('.choice[data-target]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = this.dataset.target;
+                    const choiceIndex = parseInt(this.dataset.choiceIndex);
+                    const choiceData = window._choiceData ? window._choiceData[choiceIndex] : {};
+                    // Convert target to number if it's numeric, otherwise keep as string
+                    const targetSection = isNaN(target) ? target : parseInt(target);
+                    makeChoice(targetSection, choiceData);
+                });
+            });
 
             // Save state
             saveGame();
@@ -2350,14 +2378,18 @@
             `;
         }
 
-        function makeChoice(targetSection, choiceDataEncoded) {
-            // Decode choice data if provided
+        function makeChoice(targetSection, choiceDataInput) {
+            // Accept either object directly or encoded string (for backwards compatibility)
             let choiceData = {};
-            if (choiceDataEncoded) {
-                try {
-                    choiceData = JSON.parse(decodeURIComponent(choiceDataEncoded));
-                } catch (e) {
-                    console.warn('Could not parse choice data');
+            if (choiceDataInput) {
+                if (typeof choiceDataInput === 'object') {
+                    choiceData = choiceDataInput;
+                } else if (typeof choiceDataInput === 'string') {
+                    try {
+                        choiceData = JSON.parse(decodeURIComponent(choiceDataInput));
+                    } catch (e) {
+                        console.warn('Could not parse choice data');
+                    }
                 }
             }
 
