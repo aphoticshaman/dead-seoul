@@ -383,25 +383,11 @@
             {% endif %}
         </div>
 
-        <!-- Seed Selection -->
-        <div class="seed-section">
-            <h3>Enter a Seed</h3>
-            <div class="seed-input-group">
-                <input type="text" class="seed-input" id="seed-input" placeholder="e.g., JINLV-LOYAL-2024">
-                <button class="seed-btn" onclick="loadSeed()">LOAD</button>
-            </div>
-            <div class="seed-examples">
-                <span class="seed-example" onclick="setSeed('JINLV')">JINLV</span>
-                <span class="seed-example" onclick="setSeed('FLAME')">FLAME</span>
-                <span class="seed-example" onclick="setSeed('SURVI')">SURVI</span>
-                <span class="seed-example" onclick="setSeed('THREE')">THREE</span>
-                <span class="seed-example" onclick="setSeed('ORCAM')">ORCAM</span>
-            </div>
-        </div>
-
         <!-- Secondary Actions -->
         <div class="actions">
-            <a href="/game?reset=1" class="btn btn-secondary" onclick="return confirm('Start a new game? Current progress will be saved.')">NEW GAME</a>
+            {% if has_save %}
+            <a href="/game?reset=1" class="btn btn-secondary" onclick="return confirm('Start fresh? Your current progress will be lost.')">NEW GAME</a>
+            {% endif %}
             <a href="/collection" class="btn btn-secondary">SNOW GLOBE COLLECTION</a>
         </div>
 
