@@ -431,6 +431,805 @@
             0%, 100% { opacity: 0.3; }
             50% { opacity: 1; }
         }
+
+        /* ═══════════════════════════════════════════════════════════════
+           50 UX/UI ENHANCEMENTS
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* 1. TYPEWRITER EFFECT */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--blood);
+            white-space: nowrap;
+            animation: typing 3s steps(40), blink 0.75s step-end infinite;
+        }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink { 50% { border-color: transparent } }
+
+        /* 2. PULSE FOR IMPORTANT ELEMENTS */
+        .pulse {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 5px var(--blood-glow); }
+            50% { box-shadow: 0 0 30px var(--blood-glow), 0 0 60px var(--blood-glow); }
+        }
+
+        /* 3. SHAKE FOR DANGER */
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        /* 4. GLITCH EFFECT */
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); filter: none; }
+            92% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+            94% { transform: translate(2px, -2px); filter: hue-rotate(-90deg); }
+            96% { transform: translate(-1px, -1px); }
+            98% { transform: translate(1px, 1px); filter: blur(1px); }
+        }
+
+        /* 5. FILM GRAIN OVERLAY */
+        .film-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 997;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            animation: grain 0.5s steps(10) infinite;
+        }
+        @keyframes grain {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-1%, -1%); }
+            30% { transform: translate(1%, 1%); }
+            50% { transform: translate(-1%, 1%); }
+            70% { transform: translate(1%, -1%); }
+        }
+
+        /* 6. HEARTBEAT ANIMATION */
+        .heartbeat {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+
+        /* 7. SCREEN FLASH ON CHOICE */
+        .flash-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--blood);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999;
+            animation: flash 0.3s ease-out;
+        }
+        @keyframes flash {
+            0% { opacity: 0.5; }
+            100% { opacity: 0; }
+        }
+
+        /* 8. SMOOTH SCROLL */
+        html { scroll-behavior: smooth; }
+        .content { scroll-behavior: smooth; }
+
+        /* 9. READING PROGRESS BAR */
+        .reading-progress {
+            position: fixed;
+            top: 0; left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blood), #ff4444);
+            z-index: 1001;
+            transition: width 0.2s ease-out;
+        }
+
+        /* 10. TOOLTIP SYSTEM */
+        [data-tooltip] {
+            position: relative;
+            cursor: help;
+        }
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--ash);
+            color: var(--bone);
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            white-space: nowrap;
+            border: 1px solid var(--blood);
+            z-index: 1000;
+            animation: tooltipFade 0.2s ease-out;
+        }
+        @keyframes tooltipFade {
+            from { opacity: 0; transform: translateX(-50%) translateY(5px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* 11. CHOICE CONSEQUENCE HINTS */
+        .choice[data-consequence]::after {
+            content: attr(data-consequence);
+            display: block;
+            font-size: 0.7em;
+            color: rgba(139, 0, 0, 0.5);
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        /* 12. RIPPLE EFFECT ON BUTTONS */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* 13. PARALLAX SCROLLING */
+        .parallax-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 120%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(139,0,0,0.1), transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(100,0,0,0.1), transparent 50%);
+            transform: translateY(var(--scroll-y, 0));
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* 14. CARD REVEAL ANIMATION */
+        .card-reveal {
+            opacity: 0;
+            transform: translateY(30px) rotateX(-10deg);
+            animation: cardReveal 0.6s ease-out forwards;
+        }
+        @keyframes cardReveal {
+            to { opacity: 1; transform: translateY(0) rotateX(0); }
+        }
+
+        /* 15. SKELETON LOADING */
+        .skeleton {
+            background: linear-gradient(90deg, var(--ash) 25%, var(--smoke) 50%, var(--ash) 75%);
+            background-size: 200% 100%;
+            animation: skeleton 1.5s ease-in-out infinite;
+            border-radius: 4px;
+        }
+        @keyframes skeleton {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* 16. TOAST NOTIFICATIONS */
+        .toast-container {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toast {
+            background: linear-gradient(135deg, var(--ash), var(--smoke));
+            border: 1px solid var(--blood);
+            border-radius: 8px;
+            padding: 15px 20px;
+            color: var(--bone);
+            font-size: 0.9em;
+            animation: toastIn 0.3s ease-out, toastOut 0.3s ease-in 2.7s forwards;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+        }
+        @keyframes toastIn {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes toastOut {
+            from { opacity: 1; transform: translateX(0); }
+            to { opacity: 0; transform: translateX(100px); }
+        }
+
+        /* 17. ACHIEVEMENT POPUP */
+        .achievement {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(180deg, rgba(30,10,10,0.98), rgba(10,0,0,0.98));
+            border: 2px solid var(--blood);
+            border-radius: 15px;
+            padding: 30px 50px;
+            text-align: center;
+            z-index: 10001;
+            animation: achievementPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+        @keyframes achievementPop {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        .achievement-icon { font-size: 3em; margin-bottom: 10px; }
+        .achievement-title { color: var(--blood); font-family: 'Cinzel', serif; font-size: 1.2em; }
+        .achievement-desc { color: rgba(255,255,255,0.7); font-size: 0.9em; margin-top: 10px; }
+
+        /* 18. CHARACTER PORTRAIT ANIMATIONS */
+        .portrait {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--blood);
+            overflow: hidden;
+            animation: portraitFloat 3s ease-in-out infinite;
+        }
+        @keyframes portraitFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* 19. BLOOD SPLATTER EFFECT */
+        .blood-splatter {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+                        var(--blood) 0%, transparent 30%);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9998;
+            animation: splatter 0.5s ease-out forwards;
+        }
+        @keyframes splatter {
+            0% { opacity: 0.8; transform: scale(0.5); }
+            100% { opacity: 0; transform: scale(2); }
+        }
+
+        /* 20. VIGNETTE PULSE ON DANGER */
+        .vignette-pulse {
+            animation: vignettePulse 2s ease-in-out;
+        }
+        @keyframes vignettePulse {
+            0%, 100% { background: radial-gradient(ellipse, transparent 40%, rgba(0,0,0,0.8) 100%); }
+            50% { background: radial-gradient(ellipse, transparent 20%, rgba(139,0,0,0.5) 100%); }
+        }
+
+        /* 21. TEXT GLOW FOR IMPORTANT WORDS */
+        .glow-text {
+            text-shadow: 0 0 10px var(--blood), 0 0 20px var(--blood), 0 0 40px var(--blood);
+            animation: textGlow 2s ease-in-out infinite alternate;
+        }
+        @keyframes textGlow {
+            from { text-shadow: 0 0 5px var(--blood); }
+            to { text-shadow: 0 0 20px var(--blood), 0 0 40px var(--blood); }
+        }
+
+        /* 22. FLOATING PARTICLES */
+        .particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 996;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            background: var(--blood);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: particleFloat 15s linear infinite;
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) translateX(100px) rotate(720deg); opacity: 0; }
+        }
+
+        /* 23. CURSOR EFFECTS */
+        body { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='8' fill='none' stroke='%238b0000' stroke-width='2'/%3E%3C/svg%3E"), auto; }
+        .choice:hover { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M12 2L22 12L12 22L2 12Z' fill='%238b0000'/%3E%3C/svg%3E") 12 12, pointer; }
+
+        /* 24. TIMER COUNTDOWN STYLING */
+        .countdown {
+            font-family: 'Space Mono', monospace;
+            font-size: 2em;
+            color: var(--blood);
+            text-align: center;
+            animation: countdownPulse 1s ease-in-out infinite;
+        }
+        @keyframes countdownPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        /* 25. WARNING INDICATOR */
+        .warning {
+            border-left: 4px solid #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 10px 15px;
+            margin: 10px 0;
+            animation: warningPulse 2s ease-in-out infinite;
+        }
+        @keyframes warningPulse {
+            0%, 100% { border-left-color: #ff6b6b; }
+            50% { border-left-color: #ff0000; }
+        }
+
+        /* 26. SAFE ZONE INDICATOR */
+        .safe-zone {
+            border-left: 4px solid #50c878;
+            background: rgba(80, 200, 120, 0.1);
+            padding: 10px 15px;
+        }
+
+        /* 27. RELATIONSHIP HEARTS */
+        .hearts {
+            display: flex;
+            gap: 3px;
+        }
+        .heart {
+            color: #333;
+            transition: all 0.3s ease;
+        }
+        .heart.filled {
+            color: #ff4444;
+            animation: heartPop 0.3s ease-out;
+        }
+        @keyframes heartPop {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        /* 28. JIN TRUST METER */
+        .jin-meter {
+            width: 100%;
+            height: 8px;
+            background: var(--smoke);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .jin-meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--blood), #ff4444, #ff8888);
+            border-radius: 4px;
+            transition: width 0.5s ease-out;
+            position: relative;
+        }
+        .jin-meter-fill::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: meterShine 2s linear infinite;
+        }
+        @keyframes meterShine {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+        }
+
+        /* 29. SNOW GLOBE SHIMMER */
+        .globe {
+            position: relative;
+            display: inline-block;
+        }
+        .globe::before {
+            content: '';
+            position: absolute;
+            top: -5px; left: -5px;
+            right: -5px; bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.1) 50%, transparent 60%);
+            animation: shimmer 3s linear infinite;
+        }
+        @keyframes shimmer {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* 30. ENDING SEED DISPLAY */
+        .seed-display {
+            font-family: 'Space Mono', monospace;
+            background: var(--ash);
+            border: 1px solid var(--blood);
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .seed-display:hover {
+            background: var(--smoke);
+            box-shadow: 0 0 20px var(--blood-glow);
+        }
+        .seed-display::before {
+            content: '🌱 ';
+        }
+
+        /* 31. CHOICE HOVER STATES */
+        .choice {
+            transform-origin: left center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .choice:hover {
+            transform: translateX(10px) scale(1.02);
+        }
+        .choice:active {
+            transform: translateX(5px) scale(0.98);
+        }
+
+        /* 32. ACTIVE CHOICE INDICATOR */
+        .choice.selected {
+            border-color: #fff;
+            background: linear-gradient(90deg, rgba(139,0,0,0.3), rgba(139,0,0,0.1));
+        }
+        .choice.selected::before {
+            content: '✓';
+            color: #50c878;
+        }
+
+        /* 33. THREAD PULSE ANIMATIONS */
+        .thread.active {
+            animation: threadPulse 2s ease-in-out infinite;
+        }
+        @keyframes threadPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* 34. HEADER STICKY EFFECTS */
+        .header {
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .header.scrolled {
+            background: rgba(10, 8, 8, 0.98);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+        }
+
+        /* 35. CONTENT FADE TRANSITIONS */
+        .section {
+            animation: sectionEnter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes sectionEnter {
+            from { opacity: 0; transform: translateY(30px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        /* 36. MEDIA ZOOM EFFECTS */
+        .media-container img {
+            transition: transform 0.5s ease;
+        }
+        .media-container:hover img {
+            transform: scale(1.02);
+        }
+
+        /* 37. DIALOGUE BUBBLE STYLES */
+        .dialogue {
+            position: relative;
+            background: rgba(139, 0, 0, 0.05);
+            border-radius: 0 10px 10px 10px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0 1.5rem 1rem;
+            animation: dialogueSlide 0.4s ease-out;
+        }
+        @keyframes dialogueSlide {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* 38. THOUGHT BUBBLE ANIMATIONS */
+        .thought {
+            animation: thoughtFade 0.6s ease-out;
+        }
+        @keyframes thoughtFade {
+            from { opacity: 0; filter: blur(3px); }
+            to { opacity: 1; filter: blur(0); }
+        }
+
+        /* 39. POETIC TEXT FLOAT */
+        .poetic {
+            animation: poeticFloat 4s ease-in-out infinite;
+        }
+        @keyframes poeticFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* 40. SPICY CONTENT GLOW */
+        .spicy {
+            position: relative;
+            overflow: hidden;
+        }
+        .spicy::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139,0,0,0.1), transparent);
+            animation: spicyShine 5s ease-in-out infinite;
+        }
+        @keyframes spicyShine {
+            0%, 100% { left: -100%; }
+            50% { left: 150%; }
+        }
+
+        /* 41. LOADING SPINNER VARIATIONS */
+        .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid var(--smoke);
+            border-top-color: var(--blood);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .spinner-dots {
+            display: flex; gap: 5px;
+        }
+        .spinner-dot {
+            width: 10px; height: 10px;
+            background: var(--blood);
+            border-radius: 50%;
+            animation: dotPulse 1.4s ease-in-out infinite;
+        }
+        .spinner-dot:nth-child(2) { animation-delay: 0.2s; }
+        .spinner-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes dotPulse {
+            0%, 80%, 100% { transform: scale(0); opacity: 0.5; }
+            40% { transform: scale(1); opacity: 1; }
+        }
+
+        /* 42. PROGRESS RING */
+        .progress-ring {
+            width: 60px; height: 60px;
+            position: relative;
+        }
+        .progress-ring svg {
+            transform: rotate(-90deg);
+        }
+        .progress-ring circle {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+        }
+        .progress-ring .bg { stroke: var(--smoke); }
+        .progress-ring .progress {
+            stroke: var(--blood);
+            stroke-dasharray: 157;
+            stroke-dashoffset: var(--progress, 157);
+            transition: stroke-dashoffset 0.5s ease-out;
+        }
+
+        /* 43. BUTTON PRESS EFFECTS */
+        button:active, .choice:active {
+            transform: scale(0.98);
+            filter: brightness(0.9);
+        }
+
+        /* 44. INPUT FOCUS EFFECTS */
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--blood);
+            box-shadow: 0 0 20px var(--blood-glow);
+        }
+        input, textarea {
+            background: var(--ash);
+            border: 1px solid var(--smoke);
+            color: var(--bone);
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        /* 45. MODAL SLIDE ANIMATIONS */
+        .modal {
+            animation: modalSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes modalSlide {
+            from { opacity: 0; transform: translateY(-50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* 46. PANEL SLIDE-IN */
+        .panel-slide {
+            animation: panelSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes panelSlide {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        /* 47. STATS BAR FILLS */
+        .stat-bar {
+            height: 8px;
+            background: var(--smoke);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .stat-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .stat-bar-fill.courage { background: linear-gradient(90deg, #ff6b6b, #ee5a5a); }
+        .stat-bar-fill.compassion { background: linear-gradient(90deg, #4ecdc4, #3db9b0); }
+        .stat-bar-fill.pragmatism { background: linear-gradient(90deg, #ffd93d, #ffcd1d); }
+        .stat-bar-fill.isolation { background: linear-gradient(90deg, #6c5ce7, #5b4cdb); }
+
+        /* 48. ACHIEVEMENT UNLOCK */
+        .unlock-burst {
+            position: fixed;
+            top: 50%; left: 50%;
+            width: 200px; height: 200px;
+            margin: -100px 0 0 -100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--blood) 0%, transparent 70%);
+            animation: burstOut 1s ease-out forwards;
+            pointer-events: none;
+            z-index: 10000;
+        }
+        @keyframes burstOut {
+            0% { transform: scale(0); opacity: 1; }
+            100% { transform: scale(5); opacity: 0; }
+        }
+
+        /* 49. SNOW EFFECT */
+        .snow-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 995;
+        }
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            width: 6px; height: 6px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: snowFall linear infinite;
+            box-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
+        @keyframes snowFall {
+            to { transform: translateY(100vh) translateX(20px); }
+        }
+
+        /* 50. END CREDITS SCROLL */
+        .credits {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 9997;
+        }
+        .credits-text {
+            text-align: center;
+            animation: creditsScroll 60s linear;
+        }
+        @keyframes creditsScroll {
+            from { transform: translateY(100vh); }
+            to { transform: translateY(-200vh); }
+        }
+
+        /* RESPONSIVE ADJUSTMENTS */
+        @media (max-width: 768px) {
+            .mongoose-controls { bottom: 70px; }
+            .toast-container { bottom: 120px; right: 10px; left: 10px; }
+            .toast { font-size: 0.85em; }
+        }
+
+        /* DEBUG OVERLAY STYLES */
+        .debug-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: modalSlide 0.3s ease-out;
+        }
+        .debug-panel {
+            background: linear-gradient(180deg, rgba(30,20,20,0.98), rgba(10,5,5,0.98));
+            border: 2px solid var(--blood);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .debug-panel h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--blood);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .debug-panel h3 {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8em;
+            margin: 20px 0 10px;
+            letter-spacing: 2px;
+        }
+        .debug-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+        }
+        .debug-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .debug-row label {
+            flex: 1;
+            color: var(--bone);
+        }
+        .debug-row input {
+            width: 80px;
+        }
+        .debug-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        .debug-panel button {
+            background: var(--ash);
+            border: 1px solid var(--blood);
+            color: var(--bone);
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85em;
+        }
+        .debug-panel button:hover {
+            background: var(--blood);
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -441,6 +1240,11 @@
     <div class="scanlines"></div>
     <div class="vignette"></div>
     <div class="blood-drip"></div>
+    <div class="film-grain"></div>
+    <div class="reading-progress" id="reading-progress"></div>
+    <div class="parallax-bg"></div>
+    <div class="particles" id="particles"></div>
+    <div class="toast-container" id="toast-container"></div>
 
     <div class="game-container">
         <header class="header">
@@ -1242,7 +2046,16 @@
                 choices: []
             }
         };
-// Merge STORY_DATA from story_data.js into GAME_DATA        if (typeof STORY_DATA !== "undefined") {            Object.assign(GAME_DATA, STORY_DATA);        }
+
+        // Merge STORY_DATA from story_data.js into GAME_DATA
+        if (typeof STORY_DATA !== "undefined") {
+            Object.assign(GAME_DATA, STORY_DATA);
+        }
+
+        // Merge JIN_THREAD if available
+        if (typeof JIN_THREAD !== "undefined") {
+            Object.assign(GAME_DATA, JIN_THREAD);
+        }
 
         // Game State
         let gameState = {
@@ -1251,7 +2064,6 @@
             endings: [],
             threadsVisited: new Set()
         };
-// Merge STORY_DATA from story_data.js into GAME_DATA        if (typeof STORY_DATA !== "undefined") {            Object.assign(GAME_DATA, STORY_DATA);        }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
@@ -1954,6 +2766,241 @@
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(checkEllieGlobe, 2000);
         });
+
+        // ═══════════════════════════════════════════════════════════════════════
+        // UX ENHANCEMENT HELPERS
+        // ═══════════════════════════════════════════════════════════════════════
+
+        // Initialize all UX enhancements
+        function initUXEnhancements() {
+            initParticles();
+            initReadingProgress();
+            initParallax();
+            initHeaderScroll();
+        }
+
+        // 22. Floating particles
+        function initParticles() {
+            const container = document.getElementById('particles');
+            if (!container) return;
+
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // 9. Reading progress bar
+        function initReadingProgress() {
+            const content = document.getElementById('content');
+            const progressBar = document.getElementById('reading-progress');
+            if (!content || !progressBar) return;
+
+            content.addEventListener('scroll', function() {
+                const scrollTop = content.scrollTop;
+                const scrollHeight = content.scrollHeight - content.clientHeight;
+                const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+                progressBar.style.width = progress + '%';
+            });
+        }
+
+        // 13. Parallax background
+        function initParallax() {
+            const content = document.getElementById('content');
+            if (!content) return;
+
+            content.addEventListener('scroll', function() {
+                const scrollY = content.scrollTop * 0.3;
+                document.documentElement.style.setProperty('--scroll-y', -scrollY + 'px');
+            });
+        }
+
+        // 34. Header scroll effects
+        function initHeaderScroll() {
+            const content = document.getElementById('content');
+            const header = document.querySelector('.header');
+            if (!content || !header) return;
+
+            content.addEventListener('scroll', function() {
+                if (content.scrollTop > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+
+        // 16. Toast notification system
+        function showToast(message, type = 'info', duration = 3000) {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = 'toast toast-' + type;
+
+            const icons = { info: 'ℹ️', success: '✓', warning: '⚠️', error: '✕', achievement: '🏆' };
+            toast.innerHTML = `<span>${icons[type] || ''} ${message}</span>`;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.remove();
+            }, duration);
+        }
+
+        // 17. Achievement popup
+        function showAchievement(icon, title, description) {
+            // Create burst effect
+            const burst = document.createElement('div');
+            burst.className = 'unlock-burst';
+            document.body.appendChild(burst);
+            setTimeout(() => burst.remove(), 1000);
+
+            // Create achievement popup
+            const achievement = document.createElement('div');
+            achievement.className = 'achievement';
+            achievement.innerHTML = `
+                <div class="achievement-icon">${icon}</div>
+                <div class="achievement-title">${title}</div>
+                <div class="achievement-desc">${description}</div>
+            `;
+            document.body.appendChild(achievement);
+
+            setTimeout(() => {
+                achievement.style.animation = 'achievementPop 0.3s ease-in reverse forwards';
+                setTimeout(() => achievement.remove(), 300);
+            }, 3000);
+        }
+
+        // 7. Screen flash on choice
+        function flashScreen(color = 'var(--blood)') {
+            const flash = document.createElement('div');
+            flash.className = 'flash-overlay';
+            flash.style.background = color;
+            document.body.appendChild(flash);
+            setTimeout(() => flash.remove(), 300);
+        }
+
+        // 19. Blood splatter effect
+        function bloodSplatter(x, y) {
+            const splatter = document.createElement('div');
+            splatter.className = 'blood-splatter';
+            splatter.style.setProperty('--x', x + '%');
+            splatter.style.setProperty('--y', y + '%');
+            document.body.appendChild(splatter);
+            setTimeout(() => splatter.remove(), 500);
+        }
+
+        // 3. Shake screen for danger
+        function shakeScreen() {
+            document.body.classList.add('shake');
+            setTimeout(() => document.body.classList.remove('shake'), 500);
+        }
+
+        // 4. Glitch effect for horror
+        function glitchScreen(duration = 2000) {
+            document.body.classList.add('glitch');
+            setTimeout(() => document.body.classList.remove('glitch'), duration);
+        }
+
+        // 20. Vignette pulse for tension
+        function pulseVignette() {
+            const vignette = document.querySelector('.vignette');
+            if (vignette) {
+                vignette.classList.add('vignette-pulse');
+                setTimeout(() => vignette.classList.remove('vignette-pulse'), 2000);
+            }
+        }
+
+        // 27. Update relationship hearts display
+        function renderHearts(value, max = 10) {
+            let html = '<div class="hearts">';
+            for (let i = 0; i < max; i++) {
+                html += `<span class="heart ${i < value ? 'filled' : ''}">♥</span>`;
+            }
+            html += '</div>';
+            return html;
+        }
+
+        // 28. Jin trust meter
+        function renderJinMeter(trust, max = 20) {
+            const percent = Math.min((trust / max) * 100, 100);
+            return `
+                <div class="jin-meter">
+                    <div class="jin-meter-fill" style="width: ${percent}%"></div>
+                </div>
+            `;
+        }
+
+        // 49. Snow effect (for special scenes)
+        function startSnow(intensity = 20) {
+            let snowContainer = document.querySelector('.snow-overlay');
+            if (!snowContainer) {
+                snowContainer = document.createElement('div');
+                snowContainer.className = 'snow-overlay';
+                document.body.appendChild(snowContainer);
+            }
+
+            for (let i = 0; i < intensity; i++) {
+                const flake = document.createElement('div');
+                flake.className = 'snowflake';
+                flake.style.left = Math.random() * 100 + '%';
+                flake.style.animationDuration = (3 + Math.random() * 5) + 's';
+                flake.style.animationDelay = Math.random() * 5 + 's';
+                flake.style.opacity = 0.3 + Math.random() * 0.7;
+                flake.style.width = (3 + Math.random() * 5) + 'px';
+                flake.style.height = flake.style.width;
+                snowContainer.appendChild(flake);
+            }
+        }
+
+        function stopSnow() {
+            const snowContainer = document.querySelector('.snow-overlay');
+            if (snowContainer) snowContainer.remove();
+        }
+
+        // 50. End credits
+        function showCredits(lines) {
+            const credits = document.createElement('div');
+            credits.className = 'credits';
+            credits.innerHTML = `<div class="credits-text">${lines.join('<br><br>')}</div>`;
+            document.body.appendChild(credits);
+
+            setTimeout(() => credits.remove(), 60000);
+        }
+
+        // Enhance makeChoice with visual feedback
+        const originalMakeChoice = makeChoice;
+        makeChoice = function(targetSection, choiceDataEncoded) {
+            // Flash screen on choice
+            flashScreen();
+
+            // Check for danger sections
+            const section = GAME_DATA[targetSection];
+            if (section) {
+                const content = section.content?.toLowerCase() || '';
+                if (content.includes('death') || content.includes('die') || content.includes('killed')) {
+                    bloodSplatter(50, 50);
+                    shakeScreen();
+                }
+                if (content.includes('infected') || content.includes('zombie') || content.includes('horror')) {
+                    pulseVignette();
+                }
+                if (section.isEnding) {
+                    showToast('Ending reached!', 'achievement');
+                }
+            }
+
+            // Call original
+            originalMakeChoice(targetSection, choiceDataEncoded);
+        };
+
+        // Run UX init after DOM loaded
+        document.addEventListener('DOMContentLoaded', initUXEnhancements);
     </script>
 
     <style>
