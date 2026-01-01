@@ -3050,43 +3050,158 @@
     </script>
 
     <style>
-        /* Mongoose UI Styles */
+        /* ═══════════════════════════════════════════════════════════════
+           MONGOOSE UI - RESPONSIVE DESIGN
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* DESKTOP: Stats in top-right corner */
         .mongoose-stats {
             position: fixed;
-            top: 10px;
-            left: 10px;
+            top: 12px;
+            right: 80px;
             display: flex;
-            gap: 15px;
+            gap: 20px;
             font-family: 'Space Mono', monospace;
-            font-size: 0.8em;
+            font-size: 0.75em;
             color: rgba(255,255,255,0.7);
-            z-index: 100;
+            z-index: 150;
+            align-items: center;
+        }
+
+        .mongoose-stats .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .mongoose-stats .stat-label {
+            color: rgba(139,0,0,0.7);
+            font-size: 0.85em;
         }
 
         .mongoose-controls {
             position: fixed;
             bottom: 20px;
-            left: 20px;
+            right: 20px;
             display: flex;
             gap: 10px;
-            z-index: 100;
+            z-index: 150;
         }
 
         .control-btn {
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.9);
             border: 1px solid rgba(139,0,0,0.5);
             color: #fff;
             font-size: 1.2em;
             cursor: pointer;
             transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .control-btn:hover {
             border-color: #8b0000;
             transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(139,0,0,0.3);
+        }
+
+        /* MOBILE: Responsive adjustments */
+        @media (max-width: 768px) {
+            /* Header adjustments */
+            .header {
+                padding: 0.75rem 1rem;
+                flex-wrap: wrap;
+            }
+
+            .title-small {
+                font-size: 0.75rem;
+                letter-spacing: 0.2em;
+            }
+
+            /* Stats move below header on mobile */
+            .mongoose-stats {
+                position: fixed;
+                top: auto;
+                bottom: 80px;
+                left: 10px;
+                right: auto;
+                flex-direction: column;
+                gap: 8px;
+                font-size: 0.7em;
+                background: rgba(0,0,0,0.8);
+                padding: 10px;
+                border-radius: 8px;
+                border: 1px solid rgba(139,0,0,0.3);
+            }
+
+            .mongoose-stats .stat-item {
+                justify-content: flex-start;
+            }
+
+            /* Controls at bottom center on mobile */
+            .mongoose-controls {
+                bottom: 15px;
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            .control-btn {
+                width: 48px;
+                height: 48px;
+            }
+
+            /* Content padding for mobile */
+            .content {
+                padding: 1.5rem 1rem 100px;
+            }
+
+            /* Choices full width on mobile */
+            .choice {
+                padding: 1rem;
+                font-size: 0.95em;
+            }
+
+            /* Smaller thread indicators on mobile */
+            .thread-indicators {
+                gap: 3px;
+            }
+
+            .thread {
+                width: 6px;
+                height: 6px;
+            }
+        }
+
+        /* TABLET: Medium screens */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .mongoose-stats {
+                right: 70px;
+                gap: 15px;
+                font-size: 0.7em;
+            }
+
+            .content {
+                padding: 2rem 2rem 4rem;
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
+
+        /* DESKTOP LARGE: Wide screens */
+        @media (min-width: 1025px) {
+            .content {
+                padding: 2rem 3rem 4rem;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .choice {
+                max-width: 700px;
+            }
         }
 
         .ngplus-overlay, .stats-overlay {
