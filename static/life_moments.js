@@ -381,6 +381,129 @@ const LifeMoments = {
     },
 
     // ═══════════════════════════════════════════════════════════════════════
+    // THE CRYSTAL NECKLACE - 67 Languages
+    // ═══════════════════════════════════════════════════════════════════════
+
+    crystalNecklace: {
+        id: 'crystal_necklace_gift',
+        trigger: 'high_jin_trust',
+        requiresJinTrust: 8,
+
+        discovery: {
+            content: `
+                <p class="narrative">You find it in the ruins of a jewelry store. Everything else is smashed, looted, worthless. But this—somehow untouched in a velvet box behind the counter.</p>
+
+                <p class="narrative">A crystal pendant. Tiny. Maybe 8 millimeters across, 11 tall. The surface is convex, smooth as water. At first you think it's empty.</p>
+
+                <p class="narrative">Then you hold it up. Close to your eye—about two inches away. And you see them.</p>
+
+                <p class="narrative">Words. Hundreds of words, laser-engraved on the flat bottom of the crystal, so small they're invisible to the naked eye. The convex surface magnifies them, makes them readable.</p>
+
+                <p class="narrative"><em>I love you.</em></p>
+
+                <p class="narrative">In English. In Korean. In Japanese. In Spanish, French, German, Mandarin, Arabic, Hindi, Russian, Portuguese, Italian, Greek, Hebrew, Swahili...</p>
+
+                <p class="narrative">You count. Sixty-seven languages. Sixty-seven ways to say the same thing.</p>
+
+                <p class="narrative">Your hands shake. You think of Jin.</p>
+            `,
+            choices: [
+                {
+                    text: "Keep it. Save it for him. For the right moment.",
+                    outcome: "keep",
+                    loyalty: 1
+                },
+                {
+                    text: "This is too precious. Leave it for someone else to find.",
+                    outcome: "leave",
+                    loyalty: 0
+                }
+            ]
+        },
+
+        giving: {
+            content: `
+                <p class="narrative jin-moment">You wait for the right moment. When it comes, it's nothing special—just Jin sitting by the fire, cleaning his knife, guard down for once.</p>
+
+                <p class="narrative">"I found something," you say. "For you."</p>
+
+                <p class="narrative">He looks up. Curious. You press the tiny crystal into his palm.</p>
+
+                <p class="narrative">"It's... a pendant?"</p>
+
+                <p class="narrative">"Hold it up. Close to your eye. About this far." You show him.</p>
+
+                <p class="narrative">He does. You watch his face change. The confusion. Then the squint of focus. Then—</p>
+
+                <p class="narrative">His breath catches.</p>
+
+                <p class="narrative">"Is this..." His voice cracks. He lowers the crystal. His eyes are wet. "How many languages?"</p>
+
+                <p class="narrative">"Sixty-seven."</p>
+
+                <p class="narrative">"Sixty-seven ways to say..."</p>
+
+                <p class="narrative">"I love you." You say it out loud, finally. "In case one wasn't enough."</p>
+
+                <p class="narrative">He stares at you. At the crystal. Back at you. Then he's moving, pulling you into his arms so hard it almost hurts.</p>
+
+                <p class="narrative">"I don't need sixty-seven languages," he says into your hair, voice wrecked. "I just need you to say it once. In yours. Looking at me."</p>
+
+                <p class="narrative">You pull back. Meet his eyes.</p>
+
+                <p class="narrative">"I love you, Jin."</p>
+
+                <p class="narrative">He kisses you like the world is ending. It is. It doesn't matter.</p>
+
+                <p class="narrative">He wears the crystal every day after. Never takes it off. Sometimes you catch him holding it up to his eye, reading the words, smiling like a man who found treasure in the ashes.</p>
+
+                <p class="narrative">One night, by firelight, he discovers something else.</p>
+
+                <p class="narrative">"Look." He holds the crystal between the flame and the wall. The light passes through, and there—projected on the crumbling plaster—the words. All sixty-seven languages, scattered across the surface like stars.</p>
+
+                <p class="narrative">"It's a projector too," you realize.</p>
+
+                <p class="narrative">"It's everything." He pulls you against him, both of you watching the wall covered in love in every human tongue. "You gave me everything."</p>
+            `
+        },
+
+        projection: {
+            content: `
+                <p class="narrative jin-moment">Jin holds up the crystal to the morning light streaming through the window. The words scatter across the floor, the walls, your skin.</p>
+
+                <p class="narrative">"Te amo," he reads from your arm. "Ich liebe dich." From the wall. "사랑해." From the ceiling.</p>
+
+                <p class="narrative">"You're obsessed with that thing," you say, smiling.</p>
+
+                <p class="narrative">"I'm obsessed with you." He moves the crystal, making the words dance. "This is just the proof. Sixty-seven languages worth of proof that what I feel isn't crazy. That people have felt this way since the beginning of time. In every corner of the world."</p>
+
+                <p class="narrative">He sets the crystal down. Pulls you into his lap.</p>
+
+                <p class="narrative">"Sixty-eight now," he murmurs against your lips. "I'm inventing my own. Just for you."</p>
+            `
+        },
+
+        item: {
+            name: "Crystal of 67 Languages",
+            description: "8mm diameter. 11mm tall. Convex surface. Hold it 1.75 inches from your eye and read sixty-seven ways to say what matters most.",
+            effect: "Jin's trust cannot decrease while he wears this.",
+            jinDialogue: [
+                "\"I looked at it again today. Found a language I missed. Icelandic. Ég elska þig.\"",
+                "\"Sixty-seven languages and none of them are enough.\"",
+                "\"My grandmother would have called this magic. She would have been right.\"",
+                "\"I keep finding new ones. Yoruba. Swahili. Welsh. Every one of them means you.\"",
+                "\"Some days I hold it up just to remember. That someone loved me enough to say it in every way humans know how.\""
+            ]
+        },
+
+        // Random dialogue when Jin has the necklace
+        getRandomDialogue() {
+            const dialogues = this.item.jinDialogue;
+            return dialogues[Math.floor(Math.random() * dialogues.length)];
+        }
+    },
+
+    // ═══════════════════════════════════════════════════════════════════════
     // UTILITY FUNCTIONS
     // ═══════════════════════════════════════════════════════════════════════
 
