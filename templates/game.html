@@ -460,6 +460,7 @@
         </div>
     </div>
 
+    <script src="/static/story_data.js"></script>
     <script>
         // DEAD SEOUL - Interactive CYOA Engine
         // Black Mirror × Blue Bedlam × Ritchie Cascade
@@ -1251,6 +1252,10 @@
             // Hide loading
             setTimeout(() => {
                 document.getElementById('loading').classList.add('hidden');
+                // Inject stats UI if available
+                if (typeof generateStatsUI === 'function') {
+                    document.body.insertAdjacentHTML('beforeend', generateStatsUI());
+                }
                 renderSection(gameState.currentSection);
             }, 1000);
         });
@@ -1336,6 +1341,11 @@
             const section = GAME_DATA[targetSection];
             if (section && section.isEnding) {
                 gameState.endings.push(section.endingNumber);
+                // Deliver seed if available
+                if (typeof deliverSeed === "function" && typeof generateSeed === "function") {
+                    const seed = generateSeed(section.endingNumber);
+                    setTimeout(() => deliverSeed(section, gameState, seed), 1500);
+                }
                 saveGame();
             }
         }
