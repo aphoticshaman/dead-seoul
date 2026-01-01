@@ -13,159 +13,159 @@ const SnowGlobeCollection = {
         // MAIN ENDING GLOBES
         // ═══════════════════════════════════════════════════════════════════
 
-        // Ending 1: Eden Found
-        eden: {
-            id: 'eden',
-            name: 'Eden at Dawn',
+        // Ending 1: THE REKINDLED FLAME - Kissed Minho immediately, no waiting
+        rekindled: {
+            id: 'rekindled',
+            name: 'The Rekindled Flame',
             ending: 1,
-            endingCode: 'EDENN',
-            description: 'A pristine valley behind protective walls. Tiny figures hold hands at the gate. The snow falls upward here—defying gravity, defying death.',
-            scene: 'Mountains cradle a hidden valley. Inside the glass, two figures stand at iron gates. Home.',
-            rarity: 'legendary',
-            unlockMessage: 'You found paradise. Not alone.',
-            displayText: '"Some places exist because people refused to stop believing."'
+            endingCode: 'FLAME',
+            description: 'Two figures pressed against a wall in an abandoned apartment. The barricade holds. Outside, chaos. Inside, six months of silence burning away.',
+            scene: 'You grabbed his collar. You didn\'t wait. The world was ending—why waste another second?',
+            rarity: 'epic',
+            unlockMessage: 'You took what you wanted.',
+            displayText: '"I choose you. Every time. I choose you."'
         },
 
-        // Ending 2: The Cure
-        cure: {
-            id: 'cure',
-            name: 'The Last Vial',
+        // Ending 2: THE DISPATCHER - Solo path, Seoul Station radio network
+        dispatcher: {
+            id: 'dispatcher',
+            name: 'The Dispatcher',
             ending: 2,
-            endingCode: 'CURED',
-            description: 'A medical vial glows amber in the center. Around it, tiny infected figures stand frozen mid-transformation—caught between monster and human.',
-            scene: 'A laboratory. A vial. Hope crystallized.',
+            endingCode: 'DSPCH',
+            description: 'A radio tower rises from Seoul Station. Tiny figures huddle around it. One voice reaches them all. The snow carries signals, not silence.',
+            scene: 'Mrs. Park didn\'t save you so you could save yourself. Forty-three survivors. A key. A choice to share.',
             rarity: 'legendary',
-            unlockMessage: 'You gave humanity a second chance.',
-            displayText: '"The cure was never about medicine. It was about sacrifice."'
+            unlockMessage: 'Your voice became their hope.',
+            displayText: '"This is Dispatcher Yuna. If you can hear this, you\'re not alone."'
         },
 
-        // Ending 3: The Settlement
-        settlement: {
-            id: 'settlement',
-            name: 'New Seoul',
+        // Ending 3: THE SURVIVORS - Built life with Minho, led together
+        survivors: {
+            id: 'survivors',
+            name: 'The Survivors',
             ending: 3,
-            endingCode: 'SETTL',
-            description: 'Tiny buildings rise from ashes. A wall surrounds them. Inside, market stalls, children playing, life refusing to end.',
-            scene: 'A community built from nothing. Yours.',
-            rarity: 'epic',
-            unlockMessage: 'You built something worth defending.',
-            displayText: '"Home is not where you are safe. It is where you stand."'
+            endingCode: 'SURVI',
+            description: 'Two figures lead a supply run. Behind them, others follow. The safe zone grows into a city. The city grows into a nation.',
+            scene: 'Together or not at all. He said it. You held him to it. You built something no apocalypse could take.',
+            rarity: 'legendary',
+            unlockMessage: 'You built a world worth living in.',
+            displayText: '"I choose you. Forever. I choose you."'
         },
 
-        // Ending 4: The Wanderer
-        wanderer: {
-            id: 'wanderer',
-            name: 'Endless Road',
+        // Ending 4: THE NEW LIFE - Escaped to Japan with Soojin
+        newLife: {
+            id: 'newLife',
+            name: 'The New Life',
             ending: 4,
-            endingCode: 'WANDR',
-            description: 'A lone figure walks a highway that curves into infinity. Behind them, footprints. Ahead, snow.',
-            scene: 'The road never ends. Neither do you.',
-            rarity: 'rare',
-            unlockMessage: 'Some find peace in the journey, not the destination.',
-            displayText: '"Not all who wander are lost. Some are looking for something they cannot name."'
+            endingCode: 'NEWLF',
+            description: 'A small boat crosses dark water. Two figures. Japan\'s lights glow on the horizon. Behind them, Korea burns. Ahead, a quarantine checkpoint. A new beginning.',
+            scene: 'She chose you over Soyeon. Over the woman she\'d pined for years. "Partners," she told them. It sounded right.',
+            rarity: 'legendary',
+            unlockMessage: 'You became her home.',
+            displayText: '"I love you. I\'ve been trying to figure out how to say it."'
         },
 
-        // Ending 5: Enslaved
-        enslaved: {
-            id: 'enslaved',
-            name: 'Chains in Snow',
+        // Ending 5: MRS. PARK'S SACRIFICE - Stayed alone, survived
+        hermit: {
+            id: 'hermit',
+            name: 'Mrs. Park\'s Key',
             ending: 5,
-            endingCode: 'ENSLV',
-            description: 'A figure kneels in a compound. Others stand with weapons. The snow here is gray—ash mixed with ice.',
-            scene: 'Freedom lost. But not forever.',
-            rarity: 'common',
-            unlockMessage: 'This is not your ending. Break free.',
-            displayText: '"Even in chains, the mind can wander. Plan. Wait."'
+            endingCode: 'ALONE',
+            description: 'A single figure in a storage unit. Supplies stacked high. A radio silent. Outside, a key hangs from the door. The snow falls on no one.',
+            scene: 'You took the key. You survived. The radio calls still come. You don\'t answer.',
+            rarity: 'rare',
+            unlockMessage: 'Survival isn\'t always victory.',
+            displayText: '"She gave you months. You gave no one else a day."'
         },
 
-        // Ending 6: Sacrifice
-        sacrifice: {
-            id: 'sacrifice',
-            name: 'The Last Stand',
+        // Ending 6: THE THROUPLE - Minho + Colonel Yoo polyamory
+        throuple: {
+            id: 'throuple',
+            name: 'The Throuple',
             ending: 6,
-            endingCode: 'SACRF',
-            description: 'A figure stands against a horde, arms spread wide. Behind them, others flee to safety. The snow is red.',
-            scene: 'You gave everything. They lived because of you.',
-            rarity: 'epic',
-            unlockMessage: 'Heroes are not remembered for surviving.',
-            displayText: '"Greater love has no one than this: to lay down one\'s life."'
+            endingCode: 'THREE',
+            description: 'Three figures tangled in a tent too small. One gives steadiness. One gives fire. The snow outside doesn\'t matter. Inside is warmth enough.',
+            scene: '"This is insane." "Completely." "Absolutely." She kisses you. Then him. "I like insane."',
+            rarity: 'mythic',
+            unlockMessage: 'You chose both. They chose you back.',
+            displayText: '"We chose each other. Every day. That\'s all it takes."'
         },
 
-        // Ending 7: Jin's Ending - Together Forever
+        // Ending 7: Jin's Ending - Together Forever (JINLV, 92)
         jinForever: {
             id: 'jinForever',
-            name: 'Two Figures, One Shadow',
-            ending: 7,
+            name: 'Forever',
+            ending: 92,
             endingCode: 'JINLV',
-            description: 'Two figures stand so close they share a single shadow. Around them, the world is in ruins. They do not notice. They only see each other.',
-            scene: 'Jin. You. Forever.',
-            rarity: 'legendary',
-            unlockMessage: 'You chose love. Love chose you back.',
-            displayText: '"In the end, there was only ever you."'
+            description: 'A dreamcatcher hangs above two figures. A crystal necklace catches light—67 languages of love. Matching tattoos. Raven and orca. The snow here falls like a blessing.',
+            scene: 'He gave you the dreamcatcher the day you met. The crystal came later. The tattoos came after. Forever was always the destination.',
+            rarity: 'mythic',
+            unlockMessage: 'This is what devotion looks like.',
+            displayText: '"Mine. Completely. Forever."'
         },
 
-        // Ending 8: Jin's Ending - Lost Him
+        // Ending 8: Jin Lost - Betrayed or lost him
         jinLost: {
             id: 'jinLost',
             name: 'Empty Hands',
             ending: 8,
             endingCode: 'JINLS',
-            description: 'A single figure stands where two should be. Their hands reach for something no longer there. The snow falls heavier here.',
-            scene: 'You had him. You lost him.',
+            description: 'A dreamcatcher lies broken on the ground. A single figure reaches for something no longer there. The red thread unraveled.',
+            scene: 'You had him. You lost him. The dreamcatcher couldn\'t catch this nightmare.',
             rarity: 'rare',
-            unlockMessage: 'Some mistakes cannot be undone.',
+            unlockMessage: 'Some choices can\'t be undone.',
             displayText: '"The space where he stood is the coldest place on earth."'
         },
 
-        // Ending 9: Infected
+        // Ending 9: Infected - Turned
         infected: {
             id: 'infected',
             name: 'The Turning',
             ending: 9,
             endingCode: 'INFCT',
-            description: 'A figure stands mid-transformation. Fungal growths bloom like flowers. Their face is peaceful—the struggle is over.',
-            scene: 'You became what you feared.',
+            description: 'A figure mid-transformation. Fungal blooms like flowers. The knife from section 4 lies at their feet—the santoku that saved them. Until it didn\'t.',
+            scene: 'You survived the hallway. The stairwell. The street. But one bite was all it took.',
             rarity: 'common',
-            unlockMessage: 'Not every story has a happy ending.',
-            displayText: '"In the end, nature always wins."'
+            unlockMessage: 'Even hunters become prey.',
+            displayText: '"Fear is just love holding its breath. Then stopping."'
         },
 
-        // Ending 10: The Orca Rider
+        // Ending 10: The Orca Rider Appears
         orcaRider: {
             id: 'orcaRider',
-            name: 'The Rider Appears',
+            name: 'The Rider',
             ending: 10,
             endingCode: 'ORCAM',
-            description: 'A figure in distinctive gear stands at the edge of the scene. Watching. Waiting. Behind them, an impossible silhouette in the water.',
-            scene: 'He was there all along. Guiding. Protecting.',
+            description: 'A figure in black watches from the water\'s edge. An impossible silhouette beneath the waves. He was there at the marina. At the crossing. Always watching.',
+            scene: 'Some guardians don\'t announce themselves. They just appear when you need them most.',
             rarity: 'mythic',
             unlockMessage: 'The Orca Rider reveals himself to those who endure.',
-            displayText: '"Some guardians work in shadows. Some ride leviathans."'
+            displayText: '"Apex predators protect their own."'
         },
 
         // Ending 11: The Betrayer
         betrayer: {
             id: 'betrayer',
-            name: 'Thirty Pieces',
+            name: 'The Betrayer',
             ending: 11,
             endingCode: 'BETRY',
-            description: 'A figure holds silver coins. Behind them, another figure falls. The snow here never melts—frozen in the moment of betrayal.',
-            scene: 'You chose survival over loyalty.',
+            description: 'A figure walks away from a fallen body. Safe zone gates close behind them. The snow here is red, then white, then nothing.',
+            scene: 'You traded them for safety. You got in. They didn\'t.',
             rarity: 'rare',
-            unlockMessage: 'You lived. Was it worth it?',
-            displayText: '"The price of safety was your soul."'
+            unlockMessage: 'You lived. But at what cost?',
+            displayText: '"The price of survival was everything that made it worth surviving."'
         },
 
-        // Ending 12: True Ending - Happily Ever After
+        // Ending 12: HEA with Jin - Garden ending
         trueEnding: {
             id: 'trueEnding',
             name: 'After the Storm',
             ending: 12,
             endingCode: 'TRUEE',
-            description: 'Two figures on a porch. A garden grows. In the distance, walls and watchtowers. Inside, warmth. A guitar. Peace.',
-            scene: 'The storm ended. You survived. Together.',
+            description: 'Two figures on a porch. A garden grows. Jin\'s guitar plays something soft. The dreamcatcher sways. The crystal catches sunset. Twenty years later, still together.',
+            scene: 'The world ended. Then it began again. You were there for both. Together.',
             rarity: 'mythic',
-            unlockMessage: 'This is what loyalty earns. This is what love builds.',
+            unlockMessage: 'This is what loyalty earns.',
             displayText: '"And they lived. Simply lived. That was enough."'
         },
 
