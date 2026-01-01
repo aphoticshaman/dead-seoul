@@ -144,9 +144,6 @@ const AdaptiveEngine = {
     generateAdaptiveChoices(section, baseChoices) {
         const adaptedChoices = [];
 
-        // Always include at least one choice from each "moral axis"
-        const axes = this.categorizeChoices(baseChoices);
-
         // Pick choices that will TEST her tendencies
         // If she's high loyalty, give her a HARD loyalty test
         // If she's low courage, give her an OPPORTUNITY for courage
