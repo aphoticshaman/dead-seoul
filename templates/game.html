@@ -1229,6 +1229,7 @@
                 choices: []
             }
         };
+// Merge STORY_DATA from story_data.js into GAME_DATA        if (typeof STORY_DATA !== "undefined") {            Object.assign(GAME_DATA, STORY_DATA);        }
 
         // Game State
         let gameState = {
@@ -1237,6 +1238,7 @@
             endings: [],
             threadsVisited: new Set()
         };
+// Merge STORY_DATA from story_data.js into GAME_DATA        if (typeof STORY_DATA !== "undefined") {            Object.assign(GAME_DATA, STORY_DATA);        }
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
