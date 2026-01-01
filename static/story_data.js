@@ -1121,7 +1121,7 @@ function exportSeeds() {
 
 const AdminPanel = {
     isActive: false,
-    adminCode: 'seacow',
+    adminCode: window.ADMIN_CODE || '',
     adminName: 'Ellie',
 
     // Check if input is admin code

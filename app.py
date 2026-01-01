@@ -20,8 +20,8 @@ app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 # Password from environment variable (set in Render dashboard)
-GAME_PASSWORD = os.environ.get('GAME_PASSWORD', 'deadseoul')
-ORACLE_PASSWORD = os.environ.get('RYAN_KEY', '11051605guyfawkes')
+GAME_PASSWORD = os.environ.get('GAME_PASSWORD', 'set_in_render')
+ORACLE_PASSWORD = os.environ.get('RYAN_KEY', 'change_me_in_render')
 
 # Game state storage
 SAVE_DIR = Path(__file__).parent / "saves"
@@ -80,7 +80,8 @@ def game():
     save_data = load_save(player_id)
     return render_template('game.html',
                          save_data=json.dumps(save_data),
-                         player_id=player_id)
+                         player_id=player_id,
+                         admin_code=GAME_PASSWORD)
 
 
 @app.route('/api/save', methods=['POST'])

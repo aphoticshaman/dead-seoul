@@ -460,10 +460,16 @@
         </div>
     </div>
 
+    <script>
+        // Injected from server - no hardcoded secrets
+        window.ADMIN_CODE = '{{ admin_code }}';
+    </script>
     <script src="/static/story_data.js"></script>
     <script src="/static/mongoose_engine.js"></script>
     <script src="/static/procedural_engine.js"></script>
     <script src="/static/adaptive_engine.js"></script>
+    <script src="/static/audio_engine.js"></script>
+    <script src="/static/easter_eggs.js"></script>
     <script>
         // DEAD SEOUL - Interactive CYOA Engine
         // Black Mirror × Blue Bedlam × Ritchie Cascade
