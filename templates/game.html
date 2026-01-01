@@ -2586,21 +2586,7 @@
         // Initialize UI after DOM loaded
         document.addEventListener('DOMContentLoaded', initUI);
 
-        // ═══════════════════════════════════════════════════════════════════════
-        // FORCE LOGOUT ON PAGE LEAVE
-        // ═══════════════════════════════════════════════════════════════════════
-
-        window.addEventListener('beforeunload', function() {
-            // Send logout beacon
-            navigator.sendBeacon('/logout');
-        });
-
-        // Also on visibility change (tab switch on mobile)
-        document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'hidden') {
-                navigator.sendBeacon('/logout');
-            }
-        });
+        // Session persists normally - no forced logout on tab switch
 
         // ═══════════════════════════════════════════════════════════════════════
         // DEBUG CONSOLE - Type 'mongoose' anywhere

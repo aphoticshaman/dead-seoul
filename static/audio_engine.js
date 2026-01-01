@@ -55,10 +55,10 @@ const AudioEngine = {
             fadeOut: 8000
         },
 
-        // Tension tracks
+        // Tension tracks - disabled until audio files added
         tension: {
             name: "Tension Ambient",
-            url: "/static/audio/tension.mp3",  // Local ambient track
+            url: null,  // No audio files yet
             trigger: "danger",
             mood: "tense",
             loop: true,
