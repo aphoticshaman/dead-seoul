@@ -1267,6 +1267,17 @@
     <script src="/static/characters.js"></script>
     <script src="/static/cognitive_layer.js"></script>
     <script src="/static/recursive_branches.js"></script>
+
+    <!-- DEAD SEOUL SURVIVAL SYSTEMS -->
+    <script src="/static/survival_engine.js"></script>
+    <script src="/static/relationship_engine.js"></script>
+        <script src="/static/map_engine.js"></script>
+
+    <!-- EXPANSION PACKS -->
+    <script src="/static/patient_zero.js"></script>
+    <script src="/static/the_crossing.js"></script>
+    <script src="/static/busan_blues.js"></script>
+    <script src="/static/jins_war.js"></script>
     <script>
         // DEAD SEOUL - Interactive CYOA Engine
         // Black Mirror × Blue Bedlam × Ritchie Cascade
@@ -2445,6 +2456,44 @@
             // Track choice analytics
             if (typeof Analytics !== 'undefined') {
                 Analytics.trackChoice(gameState.currentSection, targetSection, choiceData.text || 'unknown');
+            }
+
+            // ═══════════════════════════════════════════════════════════════
+            // SURVIVAL SYSTEM HOOKS
+            // ═══════════════════════════════════════════════════════════════
+
+            // Process choice costs/rewards
+            if (typeof SurvivalEngine !== 'undefined' && choiceData) {
+                const result = SurvivalEngine.executeChoiceEffects(choiceData);
+
+                // Check for infection turning
+                if (result?.event === 'turned') {
+                    // Force to infection death ending
+                    targetSection = 205;  // DEATH: INFECTION
+                }
+            }
+
+            // Update relationship based on choice
+            if (typeof RelationshipEngine !== 'undefined' && choiceData) {
+                // Check for companion-related choices
+                if (choiceData.companion) {
+                    if (choiceData.affinityChange) {
+                        RelationshipEngine.modifyAffinity(
+                            choiceData.companion,
+                            choiceData.affinityChange,
+                            choiceData.text || 'choice'
+                        );
+                    }
+                }
+
+                // Check for betrayal
+                const betrayers = RelationshipEngine.checkForBetrayal();
+                if (betrayers.length > 0) {
+                    // Handle betrayal event
+                    const betrayalResult = RelationshipEngine.executeBetrayal(betrayers[0]);
+                    console.log('BETRAYAL:', betrayalResult);
+                    // Could redirect to betrayal section here
+                }
             }
 
             gameState.history.push(gameState.currentSection);
