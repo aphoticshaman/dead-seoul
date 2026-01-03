@@ -1,0 +1,24 @@
+{
+  "title": "THE WEIGHT",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You collapse against the wall. The gun slips from your fingers. You can't breathe.</p>\n\n            <p class=\"narrative\">You just killed a woman. An old woman. A kind woman who brought you soup and called you \"dear\" and remembered your birthday when your own mother forgot.</p>\n\n            <p class=\"narrative\">The tears come. Ugly, gasping sobs that shake your whole body. You press your face into your knees and scream into the fabric of your jeans.</p>\n\n            <p class=\"narrative\">It takes a long time. Minutes. Hours. You don't know.</p>\n\n            <p class=\"narrative\">When you look up, the fires have spread. The sky is darker. Night is coming.</p>\n\n            <p class=\"narrative\">Mrs. Park is still in her chair. Still peaceful. The apartment is quiet.</p>\n\n            <p class=\"narrative\">You pick up the gun. Check it. Three rounds left. You gather yourself, piece by piece, and stand.</p>\n\n            <p class=\"narrative\">You're alive. She wanted that. Honor it.</p>\n        ",
+  "flags": {
+    "grieved": true,
+    "emotional_moment": true
+  },
+  "choices": [
+    {
+      "text": "To the garage. No more delays.",
+      "target": "2_supplies_garage"
+    },
+    {
+      "text": "Say something. A prayer. Words for the dead.",
+      "target": "2_grieve_prayer"
+    },
+    {
+      "text": "Take her wedding ring. Someone should remember.",
+      "target": "2_grieve_ring"
+    }
+  ],
+  "id": "2_mercy_grieve"
+}

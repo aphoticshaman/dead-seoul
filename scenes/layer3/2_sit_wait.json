@@ -1,0 +1,24 @@
+{
+  "title": "THE VIGIL EXTENDED",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"Let me stay until... until you're ready.\"</p>\n\n            <p class=\"narrative\">Mrs. Park exhales slowly. Relief and sorrow mixed together.</p>\n\n            <p class=\"dialogue\">\"You're a good girl. Better than this world deserves.\"</p>\n\n            <p class=\"narrative\">You sit together. The fires spread across Seoul. The screaming fades to distant echoes. Her breathing grows ragged, then steadier, then ragged again.</p>\n\n            <p class=\"narrative\">She talks. About Taehyun. About the war. About the bakery they owned in the '80s. About her children's first steps. About growing old and watching everyone else grow older.</p>\n\n            <p class=\"narrative\">The infection creeps up her arm. She pretends not to notice. You pretend not to see.</p>\n\n            <p class=\"narrative\">When her words start to slur, she reaches for the gun.</p>\n\n            <p class=\"dialogue\">\"It's time,\" she says. Clear. Calm. \"Thank you for the company.\"</p>\n        ",
+  "flags": {
+    "extended_vigil": true,
+    "deep_bond": true
+  },
+  "choices": [
+    {
+      "text": "\"Thank you for the stories.\" Step back. Give her space.",
+      "target": "conv_garage_alone"
+    },
+    {
+      "text": "\"I'll tell them. Your daughter. Everyone. I'll tell them who you were.\"",
+      "target": "end_mrs_park_gift"
+    },
+    {
+      "text": "Take the gun. \"Let me.\" Quick. Merciful.",
+      "target": "2_sit_mercy"
+    }
+  ],
+  "id": "2_sit_wait"
+}

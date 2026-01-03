@@ -1,0 +1,40 @@
+{
+  "id": "conv_garage_alone",
+  "title": "THE DESCENT",
+  "thread": "yuna",
+  "layer": 4,
+  "convergence_from": [
+    "2_supplies_garage",
+    "2_attack_supplies",
+    "2_mercy_grieve",
+    "2_sit_mercy",
+    "2_grieve_prayer"
+  ],
+  "requires_flags": [
+    "mrs_park_dead"
+  ],
+  "content": "<p class=\"narrative\">The stairwell swallows you whole.</p>\n\n<p class=\"narrative\">Fifteen floors. Thirty flights. Six hundred steps between you and Mrs. Park's blue Hyundai waiting in the B2 garage. You count them in your head as you descend—not because counting helps, but because if you don't count, you'll think about what you left behind. Who you left behind. The weight of her wedding ring on the chain around your neck, cold against your chest like a promise you're not sure you can keep.</p>\n\n<p class=\"narrative\">The emergency lights flicker. Red, then nothing, then red again. Your phone flashlight cuts a narrow cone of reality into the darkness, and everything outside that cone might as well not exist. Might be full of them. Might be empty. You can't know. You can only move.</p>\n\n<p class=\"narrative\">Fourteenth floor. You pass a door hanging open, an apartment beyond it gutted by fire. The smell of smoke and cooked meat. You don't look. Don't stop.</p>\n\n<p class=\"narrative\">Twelfth floor. A child's shoe on the landing. Pink. Sparkles. You step around it like it's a land mine and keep going.</p>\n\n<p class=\"narrative\">Ninth floor. Something moving two flights down. You freeze, pressed against the wall, barely breathing. Your hand finds the grip of the pistol Mrs. Park gave you—the Daewoo K5, her husband's gun from the war, loaded with rounds that are older than you are. Three in the magazine. Three chances. After that, you have the knife and whatever violence you can manage with your bare hands.</p>\n\n<p class=\"narrative\">The sound stops. Whatever it was—an infected, a survivor, a rat—it moves on. You wait thirty heartbeats before you start moving again.</p>\n\n<p class=\"narrative\">Seventh floor. Sixth. Fifth. The numbers blur together. Your legs burn. Your lungs burn. Everything burns, but you keep going because the alternative is stopping, and if you stop, you'll think, and if you think—</p>\n\n<p class=\"narrative\">You'll think about her face when she handed you the gun. The peace in it. The acceptance. The way she said <em>\"Thank you for not letting me die alone\"</em> like it was the greatest gift anyone had ever given her.</p>\n\n<p class=\"narrative\">You didn't let her die alone. But you did let her die.</p>\n\n<p class=\"narrative\">Third floor. Second. First. The lobby door is wedged open, and beyond it you can see chaos—overturned furniture, shattered glass, blood on the marble floor in patterns that suggest dragging. The security desk is empty. The building's front doors hang in their frames like broken teeth.</p>\n\n<p class=\"narrative\">You don't go that way. You keep descending.</p>\n\n<p class=\"narrative\">B1. B2.</p>\n\n<p class=\"narrative\">The garage door creaks when you push it open. The sound is impossibly loud in the concrete cavern—echoing off pillars, bouncing off cars, announcing your presence to anything that might be listening.</p>\n\n<p class=\"narrative\">The garage is chaos. Crashed cars blocking the exit ramp. A delivery truck flipped on its side, spilling packages across the floor—someone's Christmas presents, someone's birthday gifts, things that mattered before the world ended. A child's car seat, buckled tight, empty.</p>\n\n<p class=\"narrative\">The blue Hyundai is there. Right where Mrs. Park said it would be. Untouched. Waiting.</p>\n\n<p class=\"narrative\">Between you and the car: three figures. Standing still. Not moving. Not breathing. Hunched over something on the ground, making wet sounds that you recognize from movies but never expected to hear in real life.</p>\n\n<p class=\"narrative\">Feeding sounds.</p>\n\n<p class=\"narrative\">You have three bullets. You have maybe fifty feet to cover. You have no idea how fast they can move, how loud the gunshots will echo, how many more of them might be hiding in the shadows between cars.</p>\n\n<p class=\"narrative\">The Hyundai's keys are in your pocket. Mrs. Park's keys. Her husband's gun. Her daughter's number in your phone, waiting for a call that might never come.</p>\n\n<p class=\"narrative\">You are alone. You are armed. You are more afraid than you've ever been in your life.</p>\n\n<p class=\"narrative\">What do you do?</p>",
+  "choices": [
+    {
+      "text": "Go around. Quietly. Move between the pillars like a ghost.",
+      "target": "conv_streets_vehicle",
+      "flags": {
+        "stealth_approach": true
+      }
+    },
+    {
+      "text": "Three bullets. Three targets. Take them down and run for the car.",
+      "target": "conv_streets_vehicle",
+      "flags": {
+        "combat_approach": true
+      }
+    },
+    {
+      "text": "Find a distraction. Draw them away, then move.",
+      "target": "conv_streets_vehicle",
+      "flags": {
+        "tactical_approach": true
+      }
+    }
+  ]
+}

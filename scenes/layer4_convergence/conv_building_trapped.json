@@ -1,0 +1,35 @@
+{
+  "id": "conv_building_trapped",
+  "title": "NO WAY OUT",
+  "thread": "yuna",
+  "layer": 4,
+  "convergence_from": [
+    "4_down_retreat",
+    "3_silent_abandon",
+    "4_lobby_trapped"
+  ],
+  "content": "<p class=\"narrative\">The stairwell is blocked.</p>\n\n<p class=\"narrative\">You stare at the mass of debris—collapsed ceiling, twisted rebar, chunks of concrete that would take machinery to move—and try to process what this means. Below you: the lobby, the streets, whatever escape route you'd planned. Above you: the roof, maybe, if the upper stairs are still intact. Behind you: your apartment, your barricade, a prison you might not be able to leave.</p>\n\n<p class=\"narrative\">The building groans. Somewhere in its structure, something is giving way. The sound travels through the walls, through the floor, through your bones. This place is dying. Slowly, but surely, the damage is spreading.</p>\n\n<p class=\"narrative\">You turn back. Check the hallway. Empty—for now. The flickering emergency lights cast everything in shades of red and shadow, and every shadow could be hiding something.</p>\n\n<p class=\"narrative\">Options. You need options.</p>\n\n<p class=\"narrative\">The garbage chute at the end of the hall. It goes all the way down to the basement—you've heard it at night, the distant clatter of bags hitting the dumpster. If it's clear, if you could fit, if the drop doesn't kill you...</p>\n\n<p class=\"narrative\">No. Too many ifs. Too much chance.</p>\n\n<p class=\"narrative\">The fire escape. Every building has one, doesn't it? The window at the end of the hall—you've never opened it, never needed to, but beyond it there should be a metal ladder leading down. Or leading somewhere.</p>\n\n<p class=\"narrative\">You approach the window. Peer through grimy glass. The fire escape is there—rusted, ancient, clinging to the building's facade like a dying vine. Below it: the alley. Dark. You can't see if anything's waiting down there. Can't know until you commit.</p>\n\n<p class=\"narrative\">Above you: the roof. The stairs going up might still be clear. And from the roof, you could see everything. Plan everything. Maybe find another way down.</p>\n\n<p class=\"narrative\">Or maybe find yourself trapped sixteen stories up with no way down except falling.</p>\n\n<p class=\"narrative\">The building groans again. Louder this time. Closer. Whatever structural damage started when things went wrong—when cars crashed into the lobby, when something exploded two floors below—it's spreading. You have hours, maybe. Or minutes.</p>\n\n<p class=\"narrative\">Mrs. Park's keys are still in your pocket. Her car is in the garage. If you can get to B2, if the garage isn't flooded with them, if the car still works—</p>\n\n<p class=\"narrative\">But the stairs down are blocked. And every other option has its own death waiting.</p>\n\n<p class=\"narrative\">You're trapped. In the building where you've lived for three years. In the hallway where you've walked a thousand times. In a moment that feels like standing at the edge of a cliff, knowing you have to jump, not knowing if there's water below.</p>\n\n<p class=\"narrative\">What do you do?</p>",
+  "choices": [
+    {
+      "text": "The fire escape. It's risky, but it's a way down.",
+      "target": "conv_streets_foot",
+      "flags": {
+        "chose_fire_escape": true
+      }
+    },
+    {
+      "text": "Up. To the roof. Get a better view before committing.",
+      "target": "conv_rooftop_survey",
+      "flags": {
+        "chose_roof": true
+      }
+    },
+    {
+      "text": "The garbage chute. It's crazy. But crazy might work.",
+      "target": "end_devoured",
+      "flags": {
+        "desperate_gamble": true
+      }
+    }
+  ]
+}

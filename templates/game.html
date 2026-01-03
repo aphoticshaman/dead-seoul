@@ -1254,6 +1254,7 @@
         window.ADMIN_CODE = '{{ admin_code }}';
     </script>
     <script src="/static/story_data.js"></script>
+    <script src="/static/compiled_story.js"></script>
     <script src="/static/mongoose_engine.js"></script>
     <script src="/static/procedural_engine.js"></script>
     <script src="/static/adaptive_engine.js"></script>
@@ -2035,9 +2036,20 @@
             }
         };
 
-        // Merge STORY_DATA from story_data.js into GAME_DATA
+        // Merge all story data sources into GAME_DATA
+        // Primary source: STORY_DATA (already has COMPILED_STORY + RECURSIVE_BRANCHES merged)
         if (typeof STORY_DATA !== "undefined") {
             Object.assign(GAME_DATA, STORY_DATA);
+        }
+
+        // Defensive: directly merge compiled story in case STORY_DATA merge failed
+        if (typeof COMPILED_STORY !== "undefined") {
+            Object.assign(GAME_DATA, COMPILED_STORY);
+        }
+
+        // Defensive: directly merge recursive branches
+        if (typeof RECURSIVE_BRANCHES !== "undefined") {
+            Object.assign(GAME_DATA, RECURSIVE_BRANCHES);
         }
 
         // Merge JIN_THREAD if available
@@ -2057,8 +2069,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             console.log('=== DEAD SEOUL INIT ===');
             console.log('GAME_DATA keys:', Object.keys(GAME_DATA).length);
-            console.log('STORY_DATA exists:', typeof STORY_DATA !== 'undefined');
+            console.log('STORY_DATA exists:', typeof STORY_DATA !== 'undefined', typeof STORY_DATA !== 'undefined' ? Object.keys(STORY_DATA).length + ' keys' : '');
+            console.log('COMPILED_STORY exists:', typeof COMPILED_STORY !== 'undefined', typeof COMPILED_STORY !== 'undefined' ? Object.keys(COMPILED_STORY).length + ' keys' : '');
+            console.log('RECURSIVE_BRANCHES exists:', typeof RECURSIVE_BRANCHES !== 'undefined', typeof RECURSIVE_BRANCHES !== 'undefined' ? Object.keys(RECURSIVE_BRANCHES).length + ' keys' : '');
             console.log('Section 1:', GAME_DATA[1] ? 'EXISTS' : 'MISSING');
+            console.log('Section 2_mercy_search:', GAME_DATA['2_mercy_search'] ? 'EXISTS' : 'MISSING');
 
             try {
                 // Load saved state
@@ -2122,12 +2137,18 @@
             const section = GAME_DATA[sectionId];
             if (!section) {
                 console.error('Section not found:', sectionId);
+                console.error('GAME_DATA keys count:', Object.keys(GAME_DATA).length);
+                console.error('String keys sample:', Object.keys(GAME_DATA).filter(k => isNaN(k)).slice(0, 10));
                 // Show error in UI instead of blank screen
+                const allKeys = Object.keys(GAME_DATA);
+                const numericKeys = allKeys.filter(k => !isNaN(k)).sort((a,b) => a-b).slice(0, 20);
+                const stringKeys = allKeys.filter(k => isNaN(k)).slice(0, 10);
                 document.getElementById('content').innerHTML = `
                     <div class="section active" style="padding: 2rem; text-align: center;">
                         <h2 style="color: var(--blood);">Section ${sectionId} not found</h2>
-                        <p>Available sections: ${Object.keys(GAME_DATA).slice(0, 20).join(', ')}...</p>
-                        <p style="margin-top: 1rem; color: #666;">Total sections loaded: ${Object.keys(GAME_DATA).length}</p>
+                        <p>Numeric sections: ${numericKeys.join(', ')}...</p>
+                        <p>String sections: ${stringKeys.join(', ')}${stringKeys.length >= 10 ? '...' : ''}</p>
+                        <p style="margin-top: 1rem; color: #666;">Total sections loaded: ${allKeys.length}</p>
                         <button class="restart-btn" onclick="renderSection(1)" style="margin-top: 2rem;">Try Section 1</button>
                     </div>
                 `;

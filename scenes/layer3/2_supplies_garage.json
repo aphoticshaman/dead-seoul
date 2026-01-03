@@ -1,0 +1,20 @@
+{
+  "title": "THE DESCENT",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">The elevator is dead. Of course it is.</p>\n\n            <p class=\"narrative\">The stairwell to B2 stretches down into darkness. Emergency lights flicker—red, then nothing, then red. Your phone flashlight catches graffiti, old blood, a single shoe.</p>\n\n            <p class=\"narrative\">You descend.</p>\n\n            <p class=\"narrative\">Fifteen floors of stairs. Each landing could hide something. Your feet echo. Your breath echoes. The pistol in your hand doesn't make you feel safe—it makes you feel like prey that might have a chance.</p>\n\n            <p class=\"narrative\">B2. The garage door creaks open.</p>\n\n            <p class=\"narrative\">The garage is chaos. Crashed cars. Abandoned luggage. Someone's child seat, empty, buckled tight. The exit ramp is blocked by a flipped delivery truck.</p>\n\n            <p class=\"narrative\">The blue Hyundai is there. Right where she said. Untouched.</p>\n\n            <p class=\"narrative\">But between you and the car—three figures. Standing still. Not moving. Not breathing. Waiting.</p>\n        ",
+  "choices": [
+    {
+      "text": "Go around. Quietly. Between the pillars.",
+      "target": "2_garage_sneak"
+    },
+    {
+      "text": "Three bullets. Three targets. You can make it.",
+      "target": "conv_streets_vehicle"
+    },
+    {
+      "text": "Find another car. Closer. Less risk.",
+      "target": "conv_garage_alone"
+    }
+  ],
+  "id": "2_supplies_garage"
+}

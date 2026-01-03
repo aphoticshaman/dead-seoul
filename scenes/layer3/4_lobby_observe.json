@@ -1,0 +1,24 @@
+{
+  "title": "THE PATTERNS",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You crouch behind the security desk. Watch.</p>\n\n            <p class=\"narrative\">They don't wander randomly. There's a logic—primitive, but there. They follow sound. Movement. They cluster near fresh blood, then disperse when the feeding is done.</p>\n\n            <p class=\"narrative\">They're faster than you expected. But they're not tireless. The ones that have been moving longest are slower, stumbling. The fresh ones—newly turned—sprint like athletes.</p>\n\n            <p class=\"narrative\">You count. Twelve in your immediate sightline. Maybe more beyond.</p>\n\n            <p class=\"narrative\">A car alarm blares three blocks away. Eight of them snap toward the sound and run. The remaining four stay—older ones, or smarter. Harder to say.</p>\n\n            <p class=\"narrative\">The path clears. Partially. A window.</p>\n\n            <p class=\"narrative\">You have maybe thirty seconds before they wander back. Maybe less.</p>\n        ",
+  "flags": {
+    "observed_infected": true,
+    "tactical_thinking": true
+  },
+  "choices": [
+    {
+      "text": "Sprint. Now. Toward the alleys.",
+      "target": "conv_streets_foot"
+    },
+    {
+      "text": "Create another distraction. Widen the window.",
+      "target": "conv_garage_alone"
+    },
+    {
+      "text": "Wait for a better opportunity.",
+      "target": "conv_building_trapped"
+    }
+  ],
+  "id": "4_lobby_observe"
+}

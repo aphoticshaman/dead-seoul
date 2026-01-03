@@ -1,0 +1,24 @@
+{
+  "title": "THE SILENCE",
+  "thread": "minho",
+  "content": "\n            <p class=\"narrative\">You don't answer. Just pull him close again. Let his tears soak your shoulder. Let his weight lean into you.</p>\n\n            <p class=\"narrative\">Words are useless. Words can't fix the world. Words can't undo what he did to survive. What you'll both have to do.</p>\n\n            <p class=\"narrative\">So you hold him. And he holds you. Two people in a small apartment while Seoul dies outside.</p>\n\n            <p class=\"narrative\">Time passes. The light changes. The fires spread.</p>\n\n            <p class=\"narrative\">Eventually, he pulls back. His eyes are red, but clear. Something has shifted. Settled.</p>\n\n            <p class=\"dialogue\">\"Okay,\" he says. Just that. Okay.</p>\n\n            <p class=\"dialogue\">\"Okay,\" you answer.</p>\n\n            <p class=\"narrative\">He looks at you—really looks, for the first time since he arrived.</p>\n\n            <p class=\"dialogue\">\"You're still wearing my shirt. The one I left behind.\"</p>\n\n            <p class=\"narrative\">You'd forgotten. The oversized Oxford you stole from his side of the closet. Slept in it for weeks after he left. Still sleep in it now.</p>\n\n            <p class=\"dialogue\">\"It's comfortable.\"</p>\n\n            <p class=\"dialogue\">\"It looks better on you.\"</p>\n        ",
+  "flags": {
+    "minho_quiet_moment": true,
+    "intimacy": true
+  },
+  "choices": [
+    {
+      "text": "\"We should move. While we can.\"",
+      "target": "conv_minho_reunited"
+    },
+    {
+      "text": "\"Do you regret it? Leaving?\"",
+      "target": "conv_minho_reunited"
+    },
+    {
+      "text": "Kiss his forehead. Just once. Then stand.",
+      "target": "conv_minho_reunited"
+    }
+  ],
+  "id": "3_hold"
+}

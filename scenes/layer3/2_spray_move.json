@@ -1,0 +1,12 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 573 (char 632)",
+  "title": "THE URGENCY",
+  "content": "<p class=\"dialogue\">\"We need to move. More might be coming.\"</p>\n\n            <p class=\"narrative\">Mrs. Park nods sharply. No argument. No hesitation.</p>\n\n            <p class=\"dialogue\">\"The bedroom. Under the bed. Combination 1950.\" She's already moving as she talks. \"My husband was prepared for the North. Turns out he was preparing for the wrong apocalypse.\"</p>\n\n            <p class=\"narrative\">She laughs. It sounds almost normal.</p>\n\n            <p class=\"narrative\">The lockbox is there. Heavy. Cold. Inside: weapons, supplies, everything you need.</p>\n\n            <p class=\"dialogue\">\"The car keys are by the door. Blue Hyundai, B2 garage.\" She presses a key into your palm. \"Storage unit in Yeouido. More supplies. Enough for weeks.\"</p>\n\n            <p class=\"narrative\">She's giving you everything. A survival kit. A plan. A chance.</p>\n\n            <p class=\"dialogue\">\"Now go. Before the noise draws more of them.\"</p>",
+  "choices": [
+    {
+      "text": "Take the supplies. Get to the car.",
+      "target": "2_supplies_garage"
+    }
+  ],
+  "id": "2_spray_move"
+}

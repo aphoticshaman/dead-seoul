@@ -1,0 +1,24 @@
+{
+  "title": "THE LOVE STORY",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"Tell me about your husband. Before I go.\"</p>\n\n            <p class=\"narrative\">Mrs. Park's face transforms. The pain fades. The fear fades. For a moment, she's somewhere else entirely.</p>\n\n            <p class=\"dialogue\">\"Taehyun.\" She says his name like a prayer. \"We met in Incheon. 1950. I was a nurse. He was dying.\"</p>\n\n            <p class=\"narrative\">She laughs—dry, fond.</p>\n\n            <p class=\"dialogue\">\"The doctors said he had hours. I gave him three days. Changed his bandages every hour. Read him poetry. Yelled at him when he tried to give up.\"</p>\n\n            <p class=\"narrative\">Her eyes drift to the photograph on the wall.</p>\n\n            <p class=\"dialogue\">\"He said I was too stubborn to let him die. I said he was too handsome to waste.\" Her smile fades. \"Fifty-four years. Not enough. Never enough.\"</p>\n\n            <p class=\"narrative\">She looks at you. Clear-eyed. Certain.</p>\n\n            <p class=\"dialogue\">\"Find someone worth being stubborn for. That's the secret. That's everything.\"</p>\n        ",
+  "flags": {
+    "heard_love_story": true,
+    "wisdom_received": true
+  },
+  "choices": [
+    {
+      "text": "\"Thank you. I will.\" Take the key and go.",
+      "target": "2_attack_supplies"
+    },
+    {
+      "text": "\"Was it worth it? All the pain at the end?\"",
+      "target": "conv_garage_alone"
+    },
+    {
+      "text": "Stay a moment longer. Let her remember.",
+      "target": "end_mrs_park_gift"
+    }
+  ],
+  "id": "2_stay_husband"
+}

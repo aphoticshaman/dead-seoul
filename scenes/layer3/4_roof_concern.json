@@ -1,0 +1,23 @@
+{
+  "title": "THE EDGE",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"Are you okay? Are you hurt?\"</p>\n\n            <p class=\"narrative\">The woman laughs. It's not a happy sound.</p>\n\n            <p class=\"dialogue\">\"Hurt?\" She holds up her arm. Bite marks. Deep. The skin around them already graying. \"Does this count?\"</p>\n\n            <p class=\"narrative\">Your hand tightens on the bat. She notices.</p>\n\n            <p class=\"dialogue\">\"Relax. I'm not going to attack you.\" She turns back to the city. \"I came up here to jump. Before I turn. Seemed like the dignified choice.\"</p>\n\n            <p class=\"narrative\">She gestures at the apocalypse below.</p>\n\n            <p class=\"dialogue\">\"But then I started watching. And it's so... beautiful. In a horrible way. All those fires. All that chaos. Humanity eating itself.\"</p>\n\n            <p class=\"narrative\">She looks at you. Her eyes are still human. Still there.</p>\n\n            <p class=\"dialogue\">\"I was a professor. Philosophy. Spent my whole career talking about the human condition. And now...\" She laughs again. \"Now I get to see it. Raw. Unfiltered.\"</p>\n        ",
+  "flags": {
+    "met_professor": true
+  },
+  "choices": [
+    {
+      "text": "\"How long do you have?\"",
+      "target": "conv_rooftop_professor"
+    },
+    {
+      "text": "\"What have you learned? From watching?\"",
+      "target": "4_concern_wisdom"
+    },
+    {
+      "text": "\"I could... help. Make it faster. If you want.\"",
+      "target": "end_professor_mercy"
+    }
+  ],
+  "id": "4_roof_concern"
+}

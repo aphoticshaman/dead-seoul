@@ -1,0 +1,20 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 250 (char 308)",
+  "title": "THE SEARCH",
+  "content": "<p class=\"narrative\">You search the apartment. Mrs. Park mentioned supplies—her husband's paranoia about the North. Emergency preparations that never got used.</p>\n\n            <p class=\"narrative\">Under the bed: the lockbox. Combination 1950. Inside: a Daewoo K5 pistol, three magazines, water purification tablets, a first aid kit, a compass.</p>\n\n            <p class=\"narrative\">Kitchen pantry: canned food, enough for a week. Rice. Dried noodles. A bottle of soju that looks older than you.</p>\n\n            <p class=\"narrative\">Hall closet: a hiking backpack, barely used. Rope. A flashlight. Batteries.</p>\n\n            <p class=\"narrative\">You pack everything you can carry. The backpack strains against your shoulders. The gun sits heavy on your hip.</p>\n\n            <p class=\"narrative\">Mrs. Park's apartment has given you everything you need to survive. Now you just have to survive.</p>",
+  "choices": [
+    {
+      "text": "To the garage. Time to go.",
+      "target": "2_supplies_garage"
+    },
+    {
+      "text": "Check the roof first. Scout the situation.",
+      "target": "conv_rooftop_survey"
+    },
+    {
+      "text": "Knock on other doors. Anyone else alive up here?",
+      "target": "conv_building_trapped"
+    }
+  ],
+  "id": "2_mercy_search"
+}

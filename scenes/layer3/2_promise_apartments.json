@@ -1,0 +1,16 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 278 (char 335)",
+  "title": "THE FLOOR",
+  "content": "<p class=\"narrative\">You knock on doors. Four apartments on this floor. No answer from any of them.</p>\n\n            <p class=\"narrative\">Mr. Cho's door is open—his apartment empty, a meal half-eaten on the counter. The Kim family next door: silence. The young couple at the end: their door is locked, but you hear something inside. Movement. Not human movement.</p>\n\n            <p class=\"narrative\">You back away slowly.</p>\n\n            <p class=\"narrative\">This floor is lost. Anyone who could leave already did. Anyone who stayed—</p>\n\n            <p class=\"narrative\">You don't finish the thought. You don't need to.</p>\n\n            <p class=\"narrative\">Mrs. Park's supplies are in your pack. Her car waits in the garage. Her voice echoes in your mind: <em>Survive.</em></p>",
+  "choices": [
+    {
+      "text": "To the garage. No more delays.",
+      "target": "2_supplies_garage"
+    },
+    {
+      "text": "Down the fire escape. Avoid the internal stairs.",
+      "target": "conv_streets_foot"
+    }
+  ],
+  "id": "2_promise_apartments"
+}

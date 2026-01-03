@@ -1,0 +1,24 @@
+{
+  "title": "THE ABSURDITY",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You laugh. You can't help it. The absurdity of everything—the apocalypse, the neighbor you just killed, the eighty-three-year-old grandmother covered in blood and broken glass—it bubbles up and out before you can stop it.</p>\n\n            <p class=\"narrative\">Mrs. Park stares at you. Then she laughs too. A dry, crackling sound that turns into something real.</p>\n\n            <p class=\"dialogue\">\"When Taehyun died, I cried for a week.\" She wipes tears from her eyes—laughter tears now. \"When the world ends, I laugh with a stranger over a corpse. Fifty-four years of marriage didn't prepare me for this.\"</p>\n\n            <p class=\"narrative\">The laughter fades. Reality settles back in. Mr. Cho is still dead on the floor. The city is still burning.</p>\n\n            <p class=\"dialogue\">\"Well.\" She smooths her cardigan. \"I suppose we should figure out what comes next.\"</p>\n        ",
+  "flags": {
+    "shared_absurdity": true,
+    "bonded": true
+  },
+  "choices": [
+    {
+      "text": "\"Supplies. Escape. Survival.\"",
+      "target": "conv_garage_companion"
+    },
+    {
+      "text": "\"Are you coming with me?\"",
+      "target": "conv_garage_companion"
+    },
+    {
+      "text": "\"What do YOU think comes next?\"",
+      "target": "conv_garage_companion"
+    }
+  ],
+  "id": "2_distract_laugh"
+}

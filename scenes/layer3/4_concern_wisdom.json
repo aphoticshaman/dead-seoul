@@ -1,0 +1,23 @@
+{
+  "title": "THE LESSON",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"What have you learned? From watching?\"</p>\n\n            <p class=\"narrative\">She tilts her head. Considering.</p>\n\n            <p class=\"dialogue\">\"That we're not as civilized as we pretend. The veneer—manners, laws, social contracts—it's tissue paper. One crisis and it tears.\"</p>\n\n            <p class=\"narrative\">She points toward a cluster of figures in the street below. Not infected. People. Fighting over something.</p>\n\n            <p class=\"dialogue\">\"See them? That started as a car accident. Fender bender. Now they're killing each other over a can of gasoline. No infected involved. Just people.\"</p>\n\n            <p class=\"narrative\">Her gaze moves to another spot. A building on fire. Someone on the balcony, waving.</p>\n\n            <p class=\"dialogue\">\"And there. No one's going to save them. Everyone's too busy saving themselves. We built a world where heroism is a liability.\"</p>\n\n            <p class=\"narrative\">She looks at you. Really looks.</p>\n\n            <p class=\"dialogue\">\"But you came up here. To check on a stranger. Why?\"</p>\n        ",
+  "flags": {
+    "received_wisdom": true
+  },
+  "choices": [
+    {
+      "text": "\"I don't know. Instinct.\"",
+      "target": "conv_streets_foot"
+    },
+    {
+      "text": "\"Because someone should. Because it matters.\"",
+      "target": "conv_rooftop_survey"
+    },
+    {
+      "text": "\"I was looking for a way out. You just happened to be here.\"",
+      "target": "conv_streets_foot"
+    }
+  ],
+  "id": "4_concern_wisdom"
+}

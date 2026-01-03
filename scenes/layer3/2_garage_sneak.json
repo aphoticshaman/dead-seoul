@@ -1,0 +1,20 @@
+{
+  "title": "THE PILLARS",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">Concrete pillars. Every ten feet. Shadows between them deep enough to hide in.</p>\n\n            <p class=\"narrative\">You move. One pillar. Two. The three figures don't react. Their backs are to you. Hunched over something. Wet sounds. Eating sounds.</p>\n\n            <p class=\"narrative\">Don't look. Don't look. Don't—</p>\n\n            <p class=\"narrative\">You look.</p>\n\n            <p class=\"narrative\">A security guard. His name tag says KIM. His face is gone. They're taking turns with what's left.</p>\n\n            <p class=\"narrative\">Your foot catches a bottle. It doesn't fall. It rolls. The sound is impossibly loud in the concrete cavern.</p>\n\n            <p class=\"narrative\">One of them stops eating. Tilts its head. Sniffs.</p>\n\n            <p class=\"narrative\">The blue Hyundai is twenty feet away. The keys are in your pocket. Your hand is on the gun.</p>\n        ",
+  "choices": [
+    {
+      "text": "Freeze. Don't move. Don't breathe. Let it lose interest.",
+      "target": "2_sneak_freeze"
+    },
+    {
+      "text": "Sprint for the car. You're close enough.",
+      "target": "conv_streets_vehicle"
+    },
+    {
+      "text": "Throw something. Draw them away. Then move.",
+      "target": "conv_garage_alone"
+    }
+  ],
+  "id": "2_garage_sneak"
+}

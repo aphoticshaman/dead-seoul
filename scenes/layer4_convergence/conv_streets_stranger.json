@@ -1,0 +1,37 @@
+{
+  "id": "conv_streets_stranger",
+  "title": "THE PASSENGER",
+  "thread": "yuna",
+  "layer": 4,
+  "convergence_from": [
+    "2_car_survivor",
+    "conv_streets_vehicle"
+  ],
+  "content": "<p class=\"narrative\">He's young. Twenties. White dress shirt stained brown and red, the kind of shirt that cost money before money stopped mattering. He's waving both arms, screaming something you can't hear over the engine, over the chaos, over the blood pounding in your ears.</p>\n\n<p class=\"narrative\">Behind him—three of them. Four. Five. Closing in. Running with that wrong gait, that hunger-driven sprint that's faster than any human should be able to move.</p>\n\n<p class=\"narrative\">You slow. Just a little. Just enough to see his face clearly.</p>\n\n<p class=\"narrative\">Terrified. Crying. <em>Human</em>.</p>\n\n<p class=\"narrative\">The first one reaches him. He stumbles, goes down hard on the asphalt, and you think <em>that's it, he's gone, nothing you can do</em>—but no. They run past him. Toward the car. Toward the noise. Toward you.</p>\n\n<p class=\"narrative\">He scrambles up. Sprints for your passenger door. His hand finds the handle, yanks, and the door doesn't open because you locked it, of course you locked it, because the world has rules now and one of them is <em>don't let strangers in your car</em>.</p>\n\n<p class=\"narrative\">His eyes meet yours through the glass. Wide. Desperate. <em>Please.</em></p>\n\n<p class=\"narrative\">You have maybe two seconds.</p>\n\n<p class=\"narrative\">Your thumb finds the unlock button. Click. He yanks the door open, throws himself inside, and you floor it before he's fully in—his legs still hanging out, door swinging, something grabbing at his shoe.</p>\n\n<p class=\"narrative\">He kicks. Screams. The shoe comes off but he's in, slamming the door just as teeth crack against the window hard enough to leave a web of fractures in the glass.</p>\n\n<p class=\"narrative\">You drive. He pants. For a long moment, neither of you speaks.</p>\n\n<p class=\"narrative\">The Hyundai accelerates through an intersection, clips a motorcycle, keeps going. In the rearview mirror, the things that were chasing him have stopped. Found something else. Someone else. You don't look too closely.</p>\n\n<p class=\"dialogue\">\"Thank you.\"</p>\n\n<p class=\"narrative\">His voice is raw. Broken. He's gripping the dashboard like it might disappear if he lets go.</p>\n\n<p class=\"dialogue\">\"Thank you thank you thank—\"</p>\n\n<p class=\"dialogue\">\"Are you bit?\"</p>\n\n<p class=\"narrative\">The words come out harder than you intended. But you need to know. You need to know right now, before he's been in this car for another minute, before you've driven another block, before the infection spreads because you were too polite to ask.</p>\n\n<p class=\"narrative\">He freezes. Checks himself. Shirt. Arms. Legs. Neck. His hands are shaking so badly he can barely coordinate the movements.</p>\n\n<p class=\"dialogue\">\"No. I don't—no. I don't think so.\"</p>\n\n<p class=\"narrative\">You glance at him. Really look. The blood on his shirt—not his. The tears in his clothes—fabric, not skin. The terror in his eyes—very human, very alive.</p>\n\n<p class=\"dialogue\">\"I'm Park Jungwoo.\"</p>\n\n<p class=\"narrative\">He says it like an offering. Like giving you his name makes him real, makes this real, makes any of it make sense.</p>\n\n<p class=\"dialogue\">\"I was supposed to get married next week.\"</p>\n\n<p class=\"narrative\">His voice breaks on the last word. He stares out the window at the burning city, at the world that was supposed to contain his wedding and his future and everything he'd planned.</p>\n\n<p class=\"dialogue\">\"Her name is—was—I don't know if she's—\"</p>\n\n<p class=\"narrative\">He can't finish. You don't make him.</p>\n\n<p class=\"narrative\">The car keeps moving. The city keeps burning. You have a passenger now—a stranger, a liability, a human being who might help you or might get you killed or might just be someone to talk to while the world ends.</p>\n\n<p class=\"narrative\">He doesn't ask where you're going. Maybe he doesn't care. Maybe anywhere is better than where he was. Maybe he's just too broken to think that far ahead.</p>\n\n<p class=\"narrative\">You have to choose a direction. With him watching. With him depending on whatever you decide.</p>\n\n<p class=\"narrative\">Where do you go?</p>",
+  "choices": [
+    {
+      "text": "\"Where was she? Your fiancée. Maybe we can—\"",
+      "target": "end_found_family",
+      "flags": {
+        "helping_stranger": true,
+        "compassion_choice": true
+      }
+    },
+    {
+      "text": "\"Military's evacuating from Yeouido. That's where we're going.\"",
+      "target": "end_found_family",
+      "flags": {
+        "evacuation_route": true,
+        "has_companion": true
+      }
+    },
+    {
+      "text": "\"I'm looking for someone too. Itaewon. You can come or I can drop you.\"",
+      "target": "end_together_escape",
+      "flags": {
+        "minho_search": true,
+        "has_companion": true
+      }
+    }
+  ]
+}

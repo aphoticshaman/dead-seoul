@@ -1,0 +1,20 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 307 (char 363)",
+  "title": "THE RING",
+  "content": "<p class=\"narrative\">You kneel beside her chair. Her hands are cold. Still. Folded in her lap the way she arranged them.</p>\n\n            <p class=\"narrative\">The ring is simple. Gold band, worn thin by fifty-four years of wear. You can barely read the inscription inside: <em>T+S 1952</em></p>\n\n            <p class=\"narrative\">You hesitate. This feels wrong. Sacred. But—</p>\n\n            <p class=\"narrative\">She wanted to be remembered. She wanted Taehyun to be remembered. Someone should carry their story forward.</p>\n\n            <p class=\"narrative\">You slip the ring onto a chain from her jewelry box. Hang it around your neck. The gold is cold against your chest.</p>\n\n            <p class=\"dialogue\">\"I'll tell them,\" you whisper. \"Someone will know you existed. Both of you.\"</p>\n\n            <p class=\"narrative\">Her face is peaceful. You choose to believe she heard.</p>",
+  "choices": [
+    {
+      "text": "Go. The garage. Survive.",
+      "target": "2_supplies_garage"
+    },
+    {
+      "text": "One more look around. She might have had other things.",
+      "target": "2_mercy_search"
+    },
+    {
+      "text": "The photo too. Take the photo.",
+      "target": "conv_garage_alone"
+    }
+  ],
+  "id": "2_grieve_ring"
+}

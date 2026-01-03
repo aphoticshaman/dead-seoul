@@ -1,0 +1,20 @@
+{
+  "title": "THE WAVING MAN",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">He's young. Twenties. White shirt stained brown and red. Waving both arms. Screaming something you can't hear over the engine.</p>\n\n            <p class=\"narrative\">Behind him—three, four, five of them, closing in.</p>\n\n            <p class=\"narrative\">You slow. Just a little. See his face clearly now.</p>\n\n            <p class=\"narrative\">Terrified. Crying. Human.</p>\n\n            <p class=\"narrative\">The first one reaches him. He stumbles, falls. They're on him.</p>\n\n            <p class=\"narrative\">No. Not on him. Past him. Running toward the car. Toward the noise. Toward you.</p>\n\n            <p class=\"narrative\">He scrambles up. Runs toward your passenger door.</p>\n\n            <p class=\"narrative\">You have maybe three seconds to decide.</p>\n        ",
+  "choices": [
+    {
+      "text": "Unlock the door. Let him in.",
+      "target": "2_survivor_save"
+    },
+    {
+      "text": "Accelerate. You can't save everyone.",
+      "target": "conv_streets_vehicle"
+    },
+    {
+      "text": "Open the door, but keep moving. He has to jump.",
+      "target": "conv_streets_stranger"
+    }
+  ],
+  "id": "2_car_survivor"
+}

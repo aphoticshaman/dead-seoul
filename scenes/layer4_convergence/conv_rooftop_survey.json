@@ -1,0 +1,37 @@
+{
+  "id": "conv_rooftop_survey",
+  "title": "THE VIEW FROM ABOVE",
+  "thread": "yuna",
+  "layer": 4,
+  "convergence_from": [
+    "4_up",
+    "2_promise_roof",
+    "2_prayer_roof",
+    "2_search_roof",
+    "conv_check_neighbor"
+  ],
+  "content": "<p class=\"narrative\">Seoul is burning.</p>\n\n<p class=\"narrative\">You stand on the roof of your apartment building—sixteen floors above the chaos—and watch your city die. The view should be beautiful. On any other day, you could see Namsan Tower from here, the Han River glittering in the distance, the endless sprawl of a metropolis that never sleeps. You've stood on this roof a hundred times, drinking soju with friends, watching fireworks on New Year's, trying to find peace in the vastness of it all.</p>\n\n<p class=\"narrative\">Now you're watching it end.</p>\n\n<p class=\"narrative\">Fires have spread through Mapo to the west. The smoke rises in columns that join together into a gray ceiling, blotting out the sun, turning noon into a perpetual twilight. Yeongdeungpo is worse—something exploded there, maybe a gas line, maybe something else, and the flames are visible even from this distance, a wall of orange that's consuming blocks at a time.</p>\n\n<p class=\"narrative\">Helicopters circle over Yeouido. Military. You can see them dropping something—supplies, maybe, or soldiers. Or maybe they're just watching, documenting the fall of a city that was supposed to last forever.</p>\n\n<p class=\"narrative\">A plane spirals toward the Han River. Trailing smoke. Losing altitude. You watch it until it disappears behind the buildings of Gangnam, and then you hear the sound—distant, muffled, final. Someone's escape route just ended.</p>\n\n<p class=\"narrative\">Below you, the streets are chaos given form. Cars piled against each other in intersections. Bodies—some moving, some not. People running, things chasing them, and from up here you can't tell who's winning because everyone looks so small, so insignificant, like ants in a colony that's been set on fire.</p>\n\n<p class=\"narrative\">Itaewon is to the northeast. You can see the hill, the old army base, the cluster of hotels and bars where expats used to party on weekends. Minho said he was there. Minho said he was coming. But the streets between here and there are filled with obstacles you can't navigate from a distance, and you have no idea if he made it.</p>\n\n<p class=\"narrative\">If he's still alive.</p>\n\n<p class=\"narrative\">The wind up here is cold. It carries ash and the smell of burning and something else—something sweet, cloying, the smell you've learned to associate with them. With the infected. With what happens when the virus takes hold and the person you were dissolves into hunger.</p>\n\n<p class=\"narrative\">You're alone on the roof. Mostly. The water tanks loom behind you, rusted and ancient. The satellite dishes point toward a sky that's the wrong color. And near the edge, near the lip where sixteen stories of nothing separate the living from the dead—</p>\n\n<p class=\"narrative\">There's a woman.</p>\n\n<p class=\"narrative\">You didn't notice her at first. She's sitting still, legs dangling over the drop, white dress stained with something dark. From behind, she could be a statue. A ghost. A figment of a mind that's starting to crack under the weight of everything that's happened.</p>\n\n<p class=\"narrative\">But then she moves. Turns her head slightly. You see her profile—young, beautiful in the way that broken things sometimes are, tears tracking through soot and blood on her cheeks.</p>\n\n<p class=\"narrative\">She knows you're there. She doesn't seem to care.</p>\n\n<p class=\"narrative\">The view from up here tells you everything you need to know. The city is falling. The streets are impassable. Every direction is danger and death and the slow collapse of everything you've ever known.</p>\n\n<p class=\"narrative\">But you also have information now. You can see the military helicopters over Yeouido—maybe an evacuation point. You can see the fires spreading in patterns that suggest wind direction, which means you know which way to avoid. You can see the darkness of the subway entrances, which might be safer than the streets. Or might be death traps. Or might be anything at all.</p>\n\n<p class=\"narrative\">What do you do?</p>",
+  "choices": [
+    {
+      "text": "Approach the woman on the edge. She might know something.",
+      "target": "conv_rooftop_professor",
+      "flags": {
+        "met_professor": true
+      }
+    },
+    {
+      "text": "Plan your route. Use what you've learned. Time to move.",
+      "target": "end_escape_drive",
+      "flags": {
+        "informed_descent": true
+      }
+    },
+    {
+      "text": "Back to the stairs. The garage. Mrs. Park's car is still your best option.",
+      "target": "conv_garage_alone",
+      "flags": {
+        "chose_vehicle": true
+      }
+    }
+  ]
+}

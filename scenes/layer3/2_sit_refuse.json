@@ -1,0 +1,24 @@
+{
+  "title": "THE REFUSAL",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"I can't. I'm sorry. I can't.\"</p>\n\n            <p class=\"narrative\">The gun feels like poison in your hands. You set it down on the table between you.</p>\n\n            <p class=\"narrative\">Mrs. Park watches you. No judgment. No disappointment. Just understanding.</p>\n\n            <p class=\"dialogue\">\"It's alright, dear. Not everyone can.\" She picks up the revolver. Checks it with practiced hands. \"I've done harder things than this.\"</p>\n\n            <p class=\"narrative\">She nods toward the door.</p>\n\n            <p class=\"dialogue\">\"Go. The lockbox is under my bed. Combination 1950. Take everything. The car keys are by the door.\"</p>\n\n            <p class=\"narrative\">You stand. Your legs feel like water.</p>\n\n            <p class=\"dialogue\">\"Mrs. Park—\"</p>\n\n            <p class=\"dialogue\">\"I know.\" She smiles. Peaceful. Ready. \"Now go, girl. Before I change my mind about being brave.\"</p>\n        ",
+  "flags": {
+    "couldnt_mercy": true,
+    "left_her_alive": true
+  },
+  "choices": [
+    {
+      "text": "Get the supplies and leave. Honor her choice.",
+      "target": "2_attack_supplies"
+    },
+    {
+      "text": "\"Wait. Let me stay until—\"",
+      "target": "2_time_stay"
+    },
+    {
+      "text": "Run. You can't be here for what comes next.",
+      "target": "conv_garage_alone"
+    }
+  ],
+  "id": "2_sit_refuse"
+}

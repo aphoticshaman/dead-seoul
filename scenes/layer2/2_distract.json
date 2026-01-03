@@ -1,0 +1,20 @@
+{
+  "title": "THE SCREAM",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You scream. Raw. Primal. Every ounce of terror you've been swallowing since you woke up to the news anchor crying.</p>\n\n            <p class=\"narrative\">Mr. Cho turns. His head cocks—that wrong angle, that animal curiosity. He takes a step toward you.</p>\n\n            <p class=\"narrative\">Behind him, Mrs. Park moves. Fast. Silent. The soju bottle in her hand comes down on the back of his skull.</p>\n\n            <p class=\"narrative\">He stumbles. Doesn't fall.</p>\n\n            <p class=\"narrative\">She hits him again. Again. Glass shatters on the third blow. He's on his knees now, still reaching toward you, still trying to—</p>\n\n            <p class=\"narrative\">You bring the extinguisher down on his head.</p>\n\n            <p class=\"narrative\">Together. You killed him together.</p>\n\n            <p class=\"narrative\">Mrs. Park looks at you. Blood on her cardigan. Glass in her palm. Her eyes are bright. Alive.</p>\n\n            <p class=\"dialogue\">\"Well.\" She almost smiles. \"That was a first.\"</p>\n        ",
+  "choices": [
+    {
+      "text": "Laugh. You can't help it. The absurdity.",
+      "target": "2_distract_laugh"
+    },
+    {
+      "text": "Check the hallway. More could come.",
+      "target": "2_distract_hall"
+    },
+    {
+      "text": "Collapse against the wall. Shake. Process.",
+      "target": "2_distract_shake"
+    }
+  ],
+  "id": "2_distract"
+}

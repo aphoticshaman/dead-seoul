@@ -1,0 +1,24 @@
+{
+  "title": "THE MERCY",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You open the door.</p>\n\n            <p class=\"narrative\">Mrs. Park is on the bed. Or what's left of her. The infection has taken everything—twisted her into something hunched and wrong. She's facing away from you, clawing at the wall, trying to reach a photograph that's just out of reach.</p>\n\n            <p class=\"narrative\">Her husband. The photograph. She's still trying to get to him.</p>\n\n            <p class=\"narrative\">She hears you. Turns. Her jaw unhinges, teeth clicking. But for just a moment—just a fraction of a second—her eyes clear. Human. Trapped.</p>\n\n            <p class=\"narrative\">You see her in there. Screaming. Begging.</p>\n\n            <p class=\"narrative\">The bat feels heavy in your hands.</p>\n\n            <p class=\"narrative\">You swing.</p>\n\n            <p class=\"narrative\">It's not clean. It's not quiet. But it's done.</p>\n\n            <p class=\"narrative\">She's still now. Finally still. The photograph is in her hand—you didn't notice before. She'd been holding it. The whole time.</p>\n        ",
+  "flags": {
+    "mrs_park_mercy_late": true,
+    "witnessed_transformation": true
+  },
+  "choices": [
+    {
+      "text": "Take the photograph. Remember her.",
+      "target": "4_mercy_photo"
+    },
+    {
+      "text": "Search the apartment. She mentioned supplies.",
+      "target": "conv_garage_alone"
+    },
+    {
+      "text": "Leave. Now. Don't look back.",
+      "target": "conv_garage_alone"
+    }
+  ],
+  "id": "4_park_mercy"
+}

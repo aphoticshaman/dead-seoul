@@ -1,0 +1,20 @@
+{
+  "title": "TOWARD FIRE",
+  "thread": "minho",
+  "content": "\n            <p class=\"narrative\">Itaewon is northwest. Uphill. Through the heart of the chaos.</p>\n\n            <p class=\"narrative\">You drive through things that used to be people. The bumps stop feeling like anything after the third one. The Hyundai's hood is streaked red and black.</p>\n\n            <p class=\"narrative\">Namsan Tower burns on the mountain. A beacon for the end of the world.</p>\n\n            <p class=\"narrative\">The roads narrow. Itaewon's famous streets—bars, clubs, restaurants that served fusion food to tourists—are now corridors of fire and broken glass.</p>\n\n            <p class=\"narrative\">Your phone buzzes. Still has signal. Still working.</p>\n\n            <p class=\"narrative\">MINHO: where are you</p>\n            <p class=\"narrative\">MINHO: im at the hamilton hotel</p>\n            <p class=\"narrative\">MINHO: rooftop</p>\n            <p class=\"narrative\">MINHO: hurry</p>\n\n            <p class=\"narrative\">The Hamilton Hotel. You can see it from here. Six blocks. The street is... dense. Bodies moving. Not all of them wrong. Some just running.</p>\n        ",
+  "choices": [
+    {
+      "text": "Drive as close as you can. Then run.",
+      "target": "end_itaewon_drive"
+    },
+    {
+      "text": "Park here. Six blocks on foot is safer than driving into that.",
+      "target": "conv_streets_foot"
+    },
+    {
+      "text": "Call him. Make sure it's really him.",
+      "target": "conv_streets_vehicle"
+    }
+  ],
+  "id": "2_car_itaewon"
+}

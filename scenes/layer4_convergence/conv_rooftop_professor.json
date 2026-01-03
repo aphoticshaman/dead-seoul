@@ -1,0 +1,37 @@
+{
+  "id": "conv_rooftop_professor",
+  "title": "THE PHILOSOPHER",
+  "thread": "yuna",
+  "layer": 4,
+  "convergence_from": [
+    "4_roof_concern",
+    "4_concern_wisdom",
+    "conv_rooftop_survey"
+  ],
+  "content": "<p class=\"narrative\">She doesn't flinch when you approach. Doesn't turn. Just keeps staring at the burning city like it's a painting in a gallery, something to be studied rather than survived.</p>\n\n<p class=\"dialogue\">\"Beautiful, isn't it?\"</p>\n\n<p class=\"narrative\">Her voice is calm. Professorial. The voice of someone who's spent decades lecturing to students who didn't want to listen.</p>\n\n<p class=\"dialogue\">\"In a horrible way.\"</p>\n\n<p class=\"narrative\">You stop a few feet away. Close enough to talk. Far enough to run. Your hand rests on the knife at your hip, and she notices—her eyes flick down, then back to the city, a small smile crossing her bloodstained face.</p>\n\n<p class=\"dialogue\">\"Relax. I'm not going to attack you.\"</p>\n\n<p class=\"narrative\">She holds up her arm. The sleeve of her white dress is torn, and beneath it—bite marks. Deep. The skin around them already graying, veins spreading like cracks in ice.</p>\n\n<p class=\"dialogue\">\"I came up here to jump. Before I turn.\"</p>\n\n<p class=\"narrative\">She says it matter-of-factly. Like she's discussing the weather, or a paper she's grading, or anything other than her own imminent death.</p>\n\n<p class=\"dialogue\">\"Seemed like the dignified choice. But then I started watching—\"</p>\n\n<p class=\"narrative\">She gestures at Seoul. The fires. The chaos. The helicopters circling like vultures.</p>\n\n<p class=\"dialogue\">\"—and I couldn't look away. Forty years I've been teaching philosophy. Ethics. The nature of humanity. And now...\"</p>\n\n<p class=\"narrative\">She laughs. It's not a happy sound.</p>\n\n<p class=\"dialogue\">\"Now I get to see it. All of it. The veneer stripped away. The truth of what we are.\"</p>\n\n<p class=\"narrative\">You don't know what to say. This woman is dying—will be dead, or worse, within hours—and she's using her last moments to philosophize about the apocalypse.</p>\n\n<p class=\"dialogue\">\"I was a professor,\"</p>\n\n<p class=\"narrative\">she continues, not waiting for a response.</p>\n\n<p class=\"dialogue\">\"Seoul National. Philosophy department. Spent my whole career talking about the human condition. Trolley problems. Lifeboat ethics. All those hypotheticals we use to pretend we understand ourselves.\"</p>\n\n<p class=\"narrative\">She looks at you now. Really looks. Her eyes are still clear—still human—but there's something fading in them. Something being replaced.</p>\n\n<p class=\"dialogue\">\"You want to know what I've learned? From watching?\"</p>\n\n<p class=\"narrative\">You nod. You're not sure why. Maybe because no one else is going to hear her last lecture. Maybe because you need something to hold onto, some framework for understanding what's happening. Maybe just because she's dying and she deserves to be heard.</p>\n\n<p class=\"dialogue\">\"We're not as civilized as we pretend. The veneer—manners, laws, social contracts—it's tissue paper. One crisis and it tears.\"</p>\n\n<p class=\"narrative\">She points to a cluster of figures in the street below. Not infected. People. Fighting over something you can't see from here.</p>\n\n<p class=\"dialogue\">\"That started as a car accident. Fender bender. Now they're killing each other over a can of gasoline. No infection involved. Just people.\"</p>\n\n<p class=\"narrative\">Her hand moves to another spot. A building on fire. Someone on the balcony, waving for help that isn't coming.</p>\n\n<p class=\"dialogue\">\"And there. No one's going to save them. Everyone's too busy saving themselves. We built a world where heroism is a liability.\"</p>\n\n<p class=\"narrative\">She turns to face you fully. Her legs still dangle over the edge, sixteen stories of nothing beneath her, but she doesn't seem to notice.</p>\n\n<p class=\"dialogue\">\"But you came up here. To check on a stranger. Why?\"</p>\n\n<p class=\"narrative\">The question hangs in the air. You think about lying—saying you came for the view, for tactical information, for anything other than the truth. But she's dying, and she's earned honesty.</p>\n\n<p class=\"dialogue\">\"I don't know. Instinct. Or... maybe because someone should.\"</p>\n\n<p class=\"narrative\">She smiles. It's the first genuine expression you've seen on her face.</p>\n\n<p class=\"dialogue\">\"Hold onto that. That instinct. It's rarer than you think.\"</p>\n\n<p class=\"narrative\">Her hand trembles. She looks at it—watches the tremor like a scientist observing an experiment.</p>\n\n<p class=\"dialogue\">\"I don't have long. But I can give you something. Before I go.\"</p>\n\n<p class=\"narrative\">She reaches into her pocket. Pulls out a key card. University logo. Access to something.</p>\n\n<p class=\"dialogue\">\"Research building. Gwanak campus. Basement level 3. There's a lab there—virology. They were studying something before all this started. I don't know if it's connected, but...\"</p>\n\n<p class=\"narrative\">She presses the card into your hand.</p>\n\n<p class=\"dialogue\">\"Someone should know. Someone should look. Someone should—\"</p>\n\n<p class=\"narrative\">Her voice catches. Her eyes flutter. For a moment, you see it—the thing inside her, rising, pushing against the edges of who she used to be.</p>\n\n<p class=\"narrative\">She grips the edge of the roof. Steadies herself. When she looks at you again, she's back. Barely.</p>\n\n<p class=\"dialogue\">\"Go. Now. Before I can't let you.\"</p>\n\n<p class=\"narrative\">What do you do?</p>",
+  "choices": [
+    {
+      "text": "\"Let me help you. Make it quick. Before...\"",
+      "target": "end_turning",
+      "flags": {
+        "mercy_given": true,
+        "has_keycard": true
+      }
+    },
+    {
+      "text": "Take the keycard. Honor her gift. Run.",
+      "target": "end_escape_drive",
+      "flags": {
+        "has_keycard": true,
+        "research_lead": true
+      }
+    },
+    {
+      "text": "\"Come with me. We can find help. Maybe there's—\"",
+      "target": "end_turning",
+      "flags": {
+        "false_hope": true
+      }
+    }
+  ]
+}

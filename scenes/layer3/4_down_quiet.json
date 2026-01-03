@@ -1,0 +1,20 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 865 (char 924)",
+  "title": "THE DESCENT",
+  "content": "<p class=\"narrative\">One step. Then another. Each footfall deliberate. Silent.</p>\n\n            <p class=\"narrative\">The figure in the corner doesn't move. Still breathing. Still facing the wall. Lost in whatever hell they're experiencing.</p>\n\n            <p class=\"narrative\">You pass. Close enough to smell it—rot and copper and something sweet, sickly. Your stomach lurches.</p>\n\n            <p class=\"narrative\">Keep moving. Don't stop. Don't look.</p>\n\n            <p class=\"narrative\">Two more flights. Then the door to the lobby—or what's left of it.</p>\n\n            <p class=\"narrative\">The glass doors are shattered. The security desk is overturned. Blood—so much blood—painted across the marble floor in drag marks that lead outside.</p>\n\n            <p class=\"narrative\">Through the broken doors: the street. Hongdae. Your neighborhood for three years. Now unrecognizable.</p>\n\n            <p class=\"narrative\">Cars crashed into storefronts. Bodies in the road. And moving between them—things that used to be people. Hunting. Feeding. Waiting.</p>\n\n            <p class=\"narrative\">Minho said he was in Itaewon. Twenty minutes by foot. If the streets were empty. If the world was normal.</p>\n\n            <p class=\"narrative\">Neither of those things is true anymore.</p>",
+  "choices": [
+    {
+      "text": "Go left. Toward the main road. Faster but exposed.",
+      "target": "conv_streets_foot"
+    },
+    {
+      "text": "Go right. Through the alleys. Slower but covered.",
+      "target": "conv_streets_foot"
+    },
+    {
+      "text": "Wait. Watch. Learn their patterns.",
+      "target": "4_lobby_observe"
+    }
+  ],
+  "id": "4_down_quiet"
+}

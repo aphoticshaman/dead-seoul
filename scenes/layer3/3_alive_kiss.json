@@ -1,0 +1,25 @@
+{
+  "title": "THE KISS",
+  "thread": "minho",
+  "jinRelevant": true,
+  "content": "\n            <p class=\"dialogue\">\"You're insane.\"</p>\n\n            <p class=\"narrative\">And you kiss him. Hard. Desperate. Six months of silence and grief and anger, all of it dissolving in the press of his lips against yours.</p>\n\n            <p class=\"narrative\">He tastes like blood and smoke and fear. He tastes like the man you loved. Still love. Always loved, even when you hated him for leaving.</p>\n\n            <p class=\"narrative\">When you break apart, you're both breathing hard. His forehead against yours. His hands on your waist.</p>\n\n            <p class=\"dialogue\">\"I'm sorry,\" he whispers. \"I'm sorry I left. I'm sorry I didn't ask you to come. I'm sorry for everything.\"</p>\n\n            <p class=\"dialogue\">\"I know.\"</p>\n\n            <p class=\"dialogue\">\"I should have stayed. Should have chosen you. Should have—\"</p>\n\n            <p class=\"dialogue\">\"Minho.\"</p>\n\n            <p class=\"narrative\">You put a finger on his lips.</p>\n\n            <p class=\"dialogue\">\"Survive first. Apologize later. We need to move.\"</p>\n\n            <p class=\"narrative\">He almost smiles. The first real expression since he walked through the door.</p>\n\n            <p class=\"dialogue\">\"There's my Yuna.\"</p>\n        ",
+  "flags": {
+    "minho_kiss": true,
+    "minho_reconciliation_started": true
+  },
+  "choices": [
+    {
+      "text": "\"The rooftop. High ground. We can see what we're dealing with.\"",
+      "target": "conv_rooftop_survey"
+    },
+    {
+      "text": "\"Mrs. Park next door. She might have supplies.\"",
+      "target": "conv_minho_reunited"
+    },
+    {
+      "text": "\"Your car. Is it still there?\"",
+      "target": "conv_streets_vehicle"
+    }
+  ],
+  "id": "3_alive_kiss"
+}

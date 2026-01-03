@@ -1,0 +1,20 @@
+{
+  "title": "THE SWING",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">The extinguisher connects with Mr. Cho's temple. The sound—wet, crunching, final—will live in your dreams forever.</p>\n\n            <p class=\"narrative\">He drops. Doesn't get up.</p>\n\n            <p class=\"narrative\">Your hands won't stop shaking. You just killed your neighbor. You just killed—</p>\n\n            <p class=\"dialogue\">\"He was already dead.\"</p>\n\n            <p class=\"narrative\">Mrs. Park's voice. Steady. She's pressing a kitchen towel to her arm. Red blooming through white cotton.</p>\n\n            <p class=\"dialogue\">\"Bit me before you came. Maybe ten minutes ago.\"</p>\n\n            <p class=\"narrative\">Her eyes meet yours. Clear. Knowing.</p>\n\n            <p class=\"dialogue\">\"We both know what that means, girl. I've been watching the news all morning. Now—\" She nods toward her bedroom. \"There's a lockbox under my bed. Combination is 1950. My husband's supplies from the war. Take them. Take my car keys too—blue Hyundai in the garage. And go.\"</p>\n\n            <p class=\"narrative\">Her hand finds yours. Squeezes once.</p>\n\n            <p class=\"dialogue\">\"Thank you for not letting me die alone with... that thing.\"</p>\n        ",
+  "choices": [
+    {
+      "text": "Get the supplies. Honor her wish.",
+      "target": "2_attack_supplies"
+    },
+    {
+      "text": "\"I'm not leaving you. We can find help—\"",
+      "target": "2_attack_stay"
+    },
+    {
+      "text": "\"How long? How long do you have?\"",
+      "target": "2_attack_time"
+    }
+  ],
+  "id": "2_attack"
+}

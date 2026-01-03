@@ -1,0 +1,20 @@
+{
+  "title": "THE FOAM",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You squeeze the trigger. White foam blasts into Mr. Cho's face—into his eyes, his mouth, his ruined throat.</p>\n\n            <p class=\"narrative\">He staggers. Claws at his face. Makes a sound that isn't quite a scream.</p>\n\n            <p class=\"narrative\">It buys three seconds. Maybe four.</p>\n\n            <p class=\"narrative\">Mrs. Park is already moving. Eighty-three years old and she vaults the kitchen counter like she's done it a thousand times. Grabs a knife—the big one, the one for cutting whole fish.</p>\n\n            <p class=\"dialogue\">\"DOWN!\"</p>\n\n            <p class=\"narrative\">You drop. The knife goes over your head. Into Mr. Cho's eye socket. All the way to the handle.</p>\n\n            <p class=\"narrative\">He drops.</p>\n\n            <p class=\"narrative\">Mrs. Park stands over him, breathing hard. Blood on her hands. On her face. Her eyes are somewhere else—somewhere decades away.</p>\n\n            <p class=\"dialogue\">\"Incheon,\" she whispers. \"I was a nurse. Incheon, 1950. This isn't my first war.\"</p>\n        ",
+  "choices": [
+    {
+      "text": "\"Are you okay? Are you hurt?\"",
+      "target": "2_spray_check"
+    },
+    {
+      "text": "\"We need to move. More might be coming.\"",
+      "target": "2_spray_move"
+    },
+    {
+      "text": "Just stare at her. This grandmother. This warrior.",
+      "target": "2_spray_stare"
+    }
+  ],
+  "id": "2_spray"
+}

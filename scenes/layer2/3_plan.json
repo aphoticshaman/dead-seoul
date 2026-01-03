@@ -1,0 +1,23 @@
+{
+  "title": "THE STRATEGY",
+  "thread": "minho",
+  "content": "\n            <p class=\"dialogue\">\"We need to move. We can't stay here.\"</p>\n\n            <p class=\"narrative\">Minho straightens. Wipes his face. Clicks into something—the corporate mode you used to tease him about. Action. Planning. Control.</p>\n\n            <p class=\"dialogue\">\"You're right. You're right, okay.\" He paces. \"The military is evacuating from the stadium. I heard it on the radio before—before the signal died.\"</p>\n\n            <p class=\"narrative\">He pulls out his phone. Dead.</p>\n\n            <p class=\"dialogue\">\"Do you have power?\"</p>\n\n            <p class=\"narrative\">You check yours. 19%. No signal.</p>\n\n            <p class=\"dialogue\">\"We need to get to Mapo Stadium. Or the river. They were using boats too.\" He's talking fast now. \"But the streets are—we'll need weapons. Food. Water. Supplies.\"</p>\n\n            <p class=\"narrative\">He looks around your apartment. Cataloging. Assessing.</p>\n\n            <p class=\"dialogue\">\"What do you have?\"</p>\n        ",
+  "flags": {
+    "minho_planning": true
+  },
+  "choices": [
+    {
+      "text": "\"Kitchen knife. Baseball bat. Some canned food.\"",
+      "target": "conv_minho_reunited"
+    },
+    {
+      "text": "\"My neighbor might have more. Mrs. Park. She mentioned emergency supplies.\"",
+      "target": "conv_minho_reunited"
+    },
+    {
+      "text": "\"What about your car? You drove here.\"",
+      "target": "conv_minho_reunited"
+    }
+  ],
+  "id": "3_plan"
+}

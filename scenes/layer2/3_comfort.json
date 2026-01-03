@@ -1,0 +1,23 @@
+{
+  "title": "THE COMFORT",
+  "thread": "minho",
+  "content": "\n            <p class=\"dialogue\">\"It's okay. You're here now. That's what matters.\"</p>\n\n            <p class=\"narrative\">The words feel hollow, but he clings to them. Clings to you. His face buried in your shoulder, tears soaking through your shirt.</p>\n\n            <p class=\"narrative\">Outside, something screams. Inside, you hold onto each other.</p>\n\n            <p class=\"narrative\">Slowly, his breathing steadies. He pulls back. Wipes his eyes. Tries to find the man he used to be—the one who left for Tokyo, who had dreams bigger than love.</p>\n\n            <p class=\"dialogue\">\"I drove,\" he says. \"All the way from Gangnam. The roads are... you can't imagine. I had to—\"</p>\n\n            <p class=\"narrative\">He stops. Swallows.</p>\n\n            <p class=\"dialogue\">\"I ran over people, Yuna. People who were already—but they looked—I just drove. I didn't stop.\"</p>\n\n            <p class=\"narrative\">His hands are shaking again.</p>\n\n            <p class=\"dialogue\">\"What does that make me?\"</p>\n        ",
+  "flags": {
+    "minho_confession": true
+  },
+  "choices": [
+    {
+      "text": "\"It makes you alive. That's all that matters now.\"",
+      "target": "3_comfort_alive"
+    },
+    {
+      "text": "\"You did what you had to. Don't carry that weight.\"",
+      "target": "conv_minho_reunited"
+    },
+    {
+      "text": "Just hold him again. Words won't help.",
+      "target": "conv_minho_reunited"
+    }
+  ],
+  "id": "3_comfort"
+}

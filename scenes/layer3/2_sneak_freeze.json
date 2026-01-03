@@ -1,0 +1,20 @@
+{
+  "title": "STILL",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">Every muscle locks. Your lungs burn but you don't dare exhale.</p>\n\n            <p class=\"narrative\">The thing sniffs again. Takes a step toward you. Another.</p>\n\n            <p class=\"narrative\">It used to be a woman. Young. Pretty, probably. Now its jaw distends, testing the air. Five feet away. Four.</p>\n\n            <p class=\"narrative\">The other two haven't noticed. Still feeding.</p>\n\n            <p class=\"narrative\">It reaches the pillar. Sniffs the concrete where you were standing three seconds ago. Your back is pressed against cold cement. If it comes around—</p>\n\n            <p class=\"narrative\">It doesn't.</p>\n\n            <p class=\"narrative\">A car alarm erupts across the garage. Something triggered it. The three of them jerk, snap toward the sound, and sprint—fast, too fast—toward the noise.</p>\n\n            <p class=\"narrative\">You have maybe thirty seconds.</p>\n        ",
+  "choices": [
+    {
+      "text": "To the Hyundai. Now. Don't waste this.",
+      "target": "2_freeze_car"
+    },
+    {
+      "text": "Wait. Make sure they're far enough.",
+      "target": "conv_garage_alone"
+    },
+    {
+      "text": "Someone triggered that alarm. Find them.",
+      "target": "conv_streets_stranger"
+    }
+  ],
+  "id": "2_sneak_freeze"
+}

@@ -1,0 +1,24 @@
+{
+  "title": "THE TRUTH",
+  "thread": "minho",
+  "content": "\n            <p class=\"dialogue\">\"It makes you alive. That's all that matters now.\"</p>\n\n            <p class=\"narrative\">He stares at you. Searching your face for judgment. Finding none.</p>\n\n            <p class=\"dialogue\">\"You really believe that?\"</p>\n\n            <p class=\"dialogue\">\"I believe we're both standing here. I believe the world ended this morning and you drove through hell to find me. I believe—\"</p>\n\n            <p class=\"narrative\">Your voice catches.</p>\n\n            <p class=\"dialogue\">\"I believe you came back. When you didn't have to. When it would have been easier to run.\"</p>\n\n            <p class=\"narrative\">He's quiet for a long moment. Then his hand finds yours. Warm. Real.</p>\n\n            <p class=\"dialogue\">\"I was on the flight. The last one before they closed the airports. Halfway to Tokyo.\" His grip tightens. \"I made them turn around. Told them I had a bomb.\"</p>\n\n            <p class=\"narrative\">Your eyes widen.</p>\n\n            <p class=\"dialogue\">\"I didn't. Obviously. But I couldn't—I couldn't just leave. Not without knowing.\"</p>\n        ",
+  "flags": {
+    "minho_returned": true,
+    "minho_truth": true
+  },
+  "choices": [
+    {
+      "text": "\"You're insane.\" Kiss him.",
+      "target": "3_alive_kiss"
+    },
+    {
+      "text": "\"What happened to the flight?\"",
+      "target": "conv_minho_reunited"
+    },
+    {
+      "text": "\"We need a plan. Where do we go?\"",
+      "target": "conv_minho_reunited"
+    }
+  ],
+  "id": "3_comfort_alive"
+}

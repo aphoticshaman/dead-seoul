@@ -1,0 +1,24 @@
+{
+  "title": "THE PROMISE",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"I'll come back. I promise.\"</p>\n\n            <p class=\"narrative\">Mrs. Park's eyes soften. For a moment, she's not a dying woman—she's a grandmother, looking at you the way she must have looked at her own children.</p>\n\n            <p class=\"dialogue\">\"Don't make promises you can't keep, girl.\" But she's smiling. \"Go. Survive. And if you do come back—\"</p>\n\n            <p class=\"narrative\">She presses the key into your palm. Cold metal. Heavy with meaning.</p>\n\n            <p class=\"dialogue\">\"—bring flowers. Taehyun always brought me flowers.\"</p>\n\n            <p class=\"narrative\">You squeeze her hand once. Then you run—through her apartment, grabbing the lockbox, the keys, everything she offered. You don't look back. Can't look back.</p>\n\n            <p class=\"narrative\">The hallway is empty. The stairwell waits. Behind you, her apartment door swings shut with a soft click.</p>\n\n            <p class=\"narrative\">You made a promise. Now keep it.</p>\n        ",
+  "flags": {
+    "made_promise": true,
+    "mrs_park_farewell": true
+  },
+  "choices": [
+    {
+      "text": "To the garage. Her car is waiting.",
+      "target": "2_supplies_garage"
+    },
+    {
+      "text": "Check the other apartments. Someone else might need help.",
+      "target": "2_promise_apartments"
+    },
+    {
+      "text": "The roof. Get your bearings first.",
+      "target": "2_promise_roof"
+    }
+  ],
+  "id": "2_stay_promise"
+}

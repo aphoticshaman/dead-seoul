@@ -1,0 +1,24 @@
+{
+  "title": "THE BREAKDOWN",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You collapse against the wall. Your legs give out. The fire extinguisher clatters to the floor.</p>\n\n            <p class=\"narrative\">You just killed a man. You just—your hands are shaking—you can't breathe—</p>\n\n            <p class=\"narrative\">Arms around you. Warm. Smelling of lavender and old books and blood.</p>\n\n            <p class=\"dialogue\">\"Breathe, girl. In. Out. That's it.\"</p>\n\n            <p class=\"narrative\">Mrs. Park holds you while the world ends outside. Her voice is steady. Calm. Like she's soothed a thousand panics before.</p>\n\n            <p class=\"dialogue\">\"The first one is always the hardest. I threw up for an hour after mine.\" A pause. \"Of course, I was sixteen and he was a Japanese soldier, but the principle's the same.\"</p>\n\n            <p class=\"narrative\">Your breathing steadies. The shaking slows. You're still alive. Still here.</p>\n\n            <p class=\"dialogue\">\"Better?\"</p>\n\n            <p class=\"narrative\">You nod. Wipe your eyes. Stand.</p>\n\n            <p class=\"dialogue\">\"Good girl. Now let's get you out of here.\"</p>\n        ",
+  "flags": {
+    "broke_down": true,
+    "comforted": true
+  },
+  "choices": [
+    {
+      "text": "Let her lead you to the supplies.",
+      "target": "conv_garage_companion"
+    },
+    {
+      "text": "\"I can do this. I can do this.\" Pull yourself together.",
+      "target": "conv_garage_companion"
+    },
+    {
+      "text": "\"Thank you. I don't even know your name.\"",
+      "target": "conv_garage_companion"
+    }
+  ],
+  "id": "2_distract_shake"
+}

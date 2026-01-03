@@ -1,0 +1,41 @@
+{
+  "id": "conv_garage_companion",
+  "title": "THE DESCENT TOGETHER",
+  "thread": "yuna",
+  "layer": 4,
+  "convergence_from": [
+    "2_spray_check",
+    "2_distract_laugh",
+    "2_check_invite"
+  ],
+  "requires_flags": [
+    "mrs_park_alive"
+  ],
+  "content": "<p class=\"narrative\">Mrs. Park moves faster than an eighty-three-year-old woman should be able to move.</p>\n\n<p class=\"narrative\">You're taking the stairs two at a time, and she's keeping pace—not complaining, not slowing, just following with the grim efficiency of someone who survived the war, buried a husband, and didn't get this far by being fragile.</p>\n\n<p class=\"narrative\">The bite on her arm is bandaged now. You wrapped it yourself, in her kitchen, with supplies from her first-aid kit. She didn't say anything while you worked. Didn't need to. You both know what a bite means.</p>\n\n<p class=\"narrative\">But she's not turning yet. However long she has—hours, maybe, or minutes—she's using it to help you escape.</p>\n\n<p class=\"dialogue\">\"The Hyundai is in B2,\"</p>\n\n<p class=\"narrative\">she says, not even winded.</p>\n\n<p class=\"dialogue\">\"Taehyun's old parking spot. Number 47. Keys are in the lockbox in the glove compartment. Code is our anniversary—0312.\"</p>\n\n<p class=\"narrative\">March 12th. You file it away. The date her husband proposed, or the date they married, or some other moment that mattered enough to become a password.</p>\n\n<p class=\"dialogue\">\"When you get out—\"</p>\n\n<p class=\"narrative\">She stops on the landing. Ninth floor. You stop with her, watching her face in the flickering emergency light.</p>\n\n<p class=\"dialogue\">\"My daughter. Soojin. She lives in Busan. Here—\"</p>\n\n<p class=\"narrative\">She presses something into your hand. A photograph, wallet-sized, worn at the edges. A woman in her fifties, smiling, with Mrs. Park's eyes.</p>\n\n<p class=\"dialogue\">\"Tell her I wasn't afraid. Tell her I helped someone. Tell her—\"</p>\n\n<p class=\"narrative\">Her voice breaks. For the first time since this started, she looks her age. Looks fragile. Looks like someone who knows she's saying goodbye.</p>\n\n<p class=\"dialogue\">\"Tell her I set a place for her father. Every night. Because love doesn't end when the person does.\"</p>\n\n<p class=\"narrative\">You don't trust yourself to speak. You nod. Tuck the photograph into your pocket, next to your phone, next to everything else you're carrying from the world that was.</p>\n\n<p class=\"narrative\">She takes a breath. Steadies herself. And then she's moving again—down the stairs, around the landing, into the darkness below.</p>\n\n<p class=\"narrative\">Seventh floor. Fifth. Third. The sounds from outside are getting louder—or maybe you're just getting closer to them. Car alarms. Screaming. Something heavy hitting something else, over and over.</p>\n\n<p class=\"narrative\">The garage door is ahead. B2. Mrs. Park's hand finds your arm, grips tight.</p>\n\n<p class=\"dialogue\">\"There will be things in there. There are always things in parking garages—I watch movies, I know.\"</p>\n\n<p class=\"narrative\">She almost smiles.</p>\n\n<p class=\"dialogue\">\"You have the gun?\"</p>\n\n<p class=\"narrative\">You have her husband's gun. Three bullets. You checked.</p>\n\n<p class=\"dialogue\">\"I'll distract them. You get to the car. Number 47.\"</p>\n\n<p class=\"dialogue\">\"No. We go together—\"</p>\n\n<p class=\"dialogue\">\"Yuna.\"</p>\n\n<p class=\"narrative\">Her voice is gentle. Final.</p>\n\n<p class=\"dialogue\">\"I'm going to turn. Maybe in an hour. Maybe in ten minutes. I don't know. But when it happens, I don't want to be anywhere near you.\"</p>\n\n<p class=\"narrative\">She squeezes your arm. Hard.</p>\n\n<p class=\"dialogue\">\"Let me do this. Let me choose how it ends. For me. For Taehyun. For all the years I spent setting that extra place at the table.\"</p>\n\n<p class=\"narrative\">The garage door looms ahead. Whatever is on the other side, you'll have to face it. Together, or alone.</p>\n\n<p class=\"narrative\">What do you do?</p>",
+  "choices": [
+    {
+      "text": "\"Okay. But promise me—if you feel it happening, you'll tell me.\"",
+      "target": "end_mrs_park_gift",
+      "flags": {
+        "accepted_sacrifice": true,
+        "mrs_park_hero": true
+      }
+    },
+    {
+      "text": "\"No. We stay together. We get to the car together. I won't let you die alone.\"",
+      "target": "conv_streets_vehicle",
+      "flags": {
+        "refused_sacrifice": true,
+        "loyalty_absolute": true
+      }
+    },
+    {
+      "text": "\"There's another way. The rooftop. Helicopters. Maybe they can help you.\"",
+      "target": "conv_rooftop_survey",
+      "flags": {
+        "false_hope": true,
+        "denial": true
+      }
+    }
+  ]
+}

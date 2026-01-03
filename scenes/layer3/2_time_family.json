@@ -1,0 +1,24 @@
+{
+  "title": "THE CALL",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"Is there anyone I should call? Family?\"</p>\n\n            <p class=\"narrative\">Mrs. Park's face crumbles. Just for a moment.</p>\n\n            <p class=\"dialogue\">\"My daughter. Minjung. She's in California with the grandchildren.\" She reaches for her phone with shaking hands. \"I've been trying all morning. The lines...\"</p>\n\n            <p class=\"narrative\">You take the phone. Check it. No signal. Of course.</p>\n\n            <p class=\"dialogue\">\"If—if you make it—\" She grips your wrist. \"Tell her I love her. Tell her I'm with her father now. Tell her—\"</p>\n\n            <p class=\"narrative\">Her voice breaks.</p>\n\n            <p class=\"dialogue\">\"Tell her I'm sorry I couldn't see the children grow up.\"</p>\n\n            <p class=\"narrative\">You memorize the number. Minjung Park. California. A daughter who will never know how her mother spent her last hour.</p>\n        ",
+  "flags": {
+    "has_message": true,
+    "minjung_number": true
+  },
+  "choices": [
+    {
+      "text": "\"I'll find a way. I promise.\"",
+      "target": "end_mrs_park_gift"
+    },
+    {
+      "text": "\"What should I tell her about you?\"",
+      "target": "conv_garage_alone"
+    },
+    {
+      "text": "Stay silent. Some promises can't be made.",
+      "target": "2_attack_supplies"
+    }
+  ],
+  "id": "2_time_family"
+}

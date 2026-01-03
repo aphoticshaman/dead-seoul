@@ -1,0 +1,20 @@
+{
+  "title": "THE PASSENGER",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">Click. The lock disengages.</p>\n\n            <p class=\"narrative\">He yanks the door open, throws himself inside. You floor it before he's fully in—his legs still hanging out, door swinging.</p>\n\n            <p class=\"narrative\">Something grabs his shoe. He kicks. Screams. The shoe comes off but he's in, he's alive, slamming the door just as teeth crack against the window.</p>\n\n            <p class=\"narrative\">You drive. He pants. For a moment, neither of you speaks.</p>\n\n            <p class=\"dialogue\">\"Thank you.\" His voice cracks. \"Thank you thank you thank—\"</p>\n\n            <p class=\"dialogue\">\"Are you bit?\"</p>\n\n            <p class=\"narrative\">He freezes. Checks himself. Shirt. Arms. Legs. Neck.</p>\n\n            <p class=\"dialogue\">\"No. I don't—no. I don't think so.\"</p>\n\n            <p class=\"narrative\">You glance at him. He's young. Handsome, in a boyish way. Office worker clothes—the white shirt was probably expensive once.</p>\n\n            <p class=\"dialogue\">\"I'm Park Jungwoo. I was supposed to get married next week.\"</p>\n\n            <p class=\"narrative\">His voice breaks on the last word.</p>\n        ",
+  "choices": [
+    {
+      "text": "\"Where's your fiancée?\"",
+      "target": "end_jungwoo_search"
+    },
+    {
+      "text": "\"We need to keep moving. Where were you trying to go?\"",
+      "target": "conv_streets_vehicle"
+    },
+    {
+      "text": "Say nothing. Focus on driving.",
+      "target": "conv_streets_stranger"
+    }
+  ],
+  "id": "2_survivor_save"
+}

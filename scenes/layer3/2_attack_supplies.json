@@ -1,0 +1,16 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 287 (char 346)",
+  "title": "THE LOCKBOX",
+  "content": "<p class=\"narrative\">The bedroom smells like lavender and old books. Photos on the wall—Mrs. Park young, beautiful, in military uniform. Her husband beside her. A Korea that doesn't exist anymore.</p>\n\n            <p class=\"narrative\">Under the bed: a metal lockbox. Heavy. You dial 1950.</p>\n\n            <p class=\"narrative\">Inside: a Daewoo K5 pistol, three magazines, a first aid kit, water purification tablets, a compass, a photograph of two young soldiers kissing in front of a tank.</p>\n\n            <p class=\"narrative\">Her husband's emergency supplies. For a war that ended seventy years ago. For a moment like this.</p>\n\n            <p class=\"narrative\">You take everything. The weight feels right.</p>\n\n            <p class=\"narrative\">When you come back to the living room, Mrs. Park is sitting in her chair. The good one. The one by the window where she watches the street.</p>\n\n            <p class=\"dialogue\">\"Go,\" she says. Doesn't look at you. Watching the fires. \"The garage elevator might still work. If not, stairs to B2. Blue Hyundai. Keys are on the hook by the door.\"</p>\n\n            <p class=\"narrative\">Her hand is on her chest. Over her heart.</p>\n\n            <p class=\"dialogue\">\"I'm going to sit here and watch Seoul burn. Just for a little while. Then I'll handle... things.\"</p>",
+  "choices": [
+    {
+      "text": "Leave. She made her choice.",
+      "target": "2_supplies_garage"
+    },
+    {
+      "text": "Sit with her. Just for a moment.",
+      "target": "2_supplies_sit"
+    }
+  ],
+  "id": "2_attack_supplies"
+}

@@ -1,0 +1,27 @@
+{
+  "title": "THE VIGIL",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You sit beside her. The good chair—her husband's—creaks under your weight.</p>\n\n            <p class=\"narrative\">Seoul burns. The sky is orange and black. Somewhere below, glass shatters. Somewhere distant, a helicopter falls.</p>\n\n            <p class=\"dialogue\">\"His name was Taehyun,\" she says. Not looking at you. \"We met during the war. The real one. I was nineteen. A nurse. He was twenty-two. A soldier with a hole in his chest.\"</p>\n\n            <p class=\"narrative\">Her fingers trace the arm of the chair.</p>\n\n            <p class=\"dialogue\">\"I kept him alive for three days. Against orders. They said he was gone, to focus on soldiers we could save. I ignored them.\" A ghost of a smile. \"He married me six months later.\"</p>\n\n            <p class=\"narrative\">The veins in her arm are darker now. Spreading. She doesn't seem to notice.</p>\n\n            <p class=\"dialogue\">\"Fifty-four years. We had fifty-four years. Two children. Five grandchildren. A good life.\" She finally looks at you. \"That's what you fight for, girl. Not survival. Love. Time. A life worth the pain of living it.\"</p>\n\n            <p class=\"narrative\">She presses the gun into your hands. Her fingers are cold.</p>\n\n            <p class=\"dialogue\">\"Now. Will you do an old woman one last kindness?\"</p>\n        ",
+  "flags": {
+    "mrs_park_story": true,
+    "wisdom_received": true
+  },
+  "choices": [
+    {
+      "text": "\"Yes.\" Take the gun. Grant her peace.",
+      "target": "2_sit_mercy",
+      "flags": {
+        "mercy_given": true
+      }
+    },
+    {
+      "text": "\"I can't. I'm sorry. I can't.\"",
+      "target": "2_sit_refuse"
+    },
+    {
+      "text": "\"Let me stay until... until you're ready.\"",
+      "target": "2_sit_wait"
+    }
+  ],
+  "id": "2_supplies_sit"
+}

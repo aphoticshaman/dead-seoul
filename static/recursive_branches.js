@@ -1125,6 +1125,450 @@ const RECURSIVE_BRANCHES = {
             { text: "Leave. You've done enough here.", target: "4_photo_leave" },
             { text: "Check the rest of the floor. Other survivors?", target: "4_photo_floor" }
         ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // MISSING SECTIONS - Layer 3/4 completions
+    // ═══════════════════════════════════════════════════════════════════════
+
+    "2_stay_promise": {
+        title: "THE PROMISE",
+        thread: "yuna",
+        content: `
+            <p class="dialogue">"I'll come back. I promise."</p>
+
+            <p class="narrative">Mrs. Park's eyes soften. For a moment, she's not a dying woman—she's a grandmother, looking at you the way she must have looked at her own children.</p>
+
+            <p class="dialogue">"Don't make promises you can't keep, girl." But she's smiling. "Go. Survive. And if you do come back—"</p>
+
+            <p class="narrative">She presses the key into your palm. Cold metal. Heavy with meaning.</p>
+
+            <p class="dialogue">"—bring flowers. Taehyun always brought me flowers."</p>
+
+            <p class="narrative">You squeeze her hand once. Then you run—through her apartment, grabbing the lockbox, the keys, everything she offered. You don't look back. Can't look back.</p>
+
+            <p class="narrative">The hallway is empty. The stairwell waits. Behind you, her apartment door swings shut with a soft click.</p>
+
+            <p class="narrative">You made a promise. Now keep it.</p>
+        `,
+        flags: { made_promise: true, mrs_park_farewell: true },
+        choices: [
+            { text: "To the garage. Her car is waiting.", target: "2_supplies_garage" },
+            { text: "Check the other apartments. Someone else might need help.", target: "2_promise_apartments" },
+            { text: "The roof. Get your bearings first.", target: "2_promise_roof" }
+        ]
+    },
+
+    "2_stay_husband": {
+        title: "THE LOVE STORY",
+        thread: "yuna",
+        content: `
+            <p class="dialogue">"Tell me about your husband. Before I go."</p>
+
+            <p class="narrative">Mrs. Park's face transforms. The pain fades. The fear fades. For a moment, she's somewhere else entirely.</p>
+
+            <p class="dialogue">"Taehyun." She says his name like a prayer. "We met in Incheon. 1950. I was a nurse. He was dying."</p>
+
+            <p class="narrative">She laughs—dry, fond.</p>
+
+            <p class="dialogue">"The doctors said he had hours. I gave him three days. Changed his bandages every hour. Read him poetry. Yelled at him when he tried to give up."</p>
+
+            <p class="narrative">Her eyes drift to the photograph on the wall.</p>
+
+            <p class="dialogue">"He said I was too stubborn to let him die. I said he was too handsome to waste." Her smile fades. "Fifty-four years. Not enough. Never enough."</p>
+
+            <p class="narrative">She looks at you. Clear-eyed. Certain.</p>
+
+            <p class="dialogue">"Find someone worth being stubborn for. That's the secret. That's everything."</p>
+        `,
+        flags: { heard_love_story: true, wisdom_received: true },
+        choices: [
+            { text: "\"Thank you. I will.\" Take the key and go.", target: "2_attack_supplies" },
+            { text: "\"Was it worth it? All the pain at the end?\"", target: "2_husband_worth" },
+            { text: "Stay a moment longer. Let her remember.", target: "2_husband_linger" }
+        ]
+    },
+
+    "2_time_stay": {
+        title: "THE WATCH",
+        thread: "yuna",
+        content: `
+            <p class="dialogue">"I'll stay. You shouldn't be alone for this."</p>
+
+            <p class="narrative">Mrs. Park stares at you. Something shifts in her expression—surprise, gratitude, and then a fierce, proud joy.</p>
+
+            <p class="dialogue">"You remind me of myself. Sixty years ago." She pats the chair beside her. "Sit. We'll watch the world end together."</p>
+
+            <p class="narrative">You sit. The city burns. Time passes in strange ways—minutes feeling like hours, hours like heartbeats.</p>
+
+            <p class="narrative">She tells you stories. The war. Her husband. Her children who live in America now, who she'll never see again. She doesn't cry. Neither do you.</p>
+
+            <p class="narrative">When her hand starts to shake, when the veins in her arm turn black, she reaches for the revolver.</p>
+
+            <p class="dialogue">"It's time, dear. Will you—" She swallows. "Will you hold my hand? Just at the end?"</p>
+        `,
+        flags: { stayed_with_mrs_park: true, witnessed_transformation: true },
+        choices: [
+            { text: "Take her hand. Be there until the end.", target: "2_watch_end" },
+            { text: "\"Let me do it. You shouldn't have to.\"", target: "2_watch_offer" },
+            { text: "\"I can't watch. I'm sorry.\" Leave now.", target: "2_watch_flee" }
+        ]
+    },
+
+    "2_time_family": {
+        title: "THE CALL",
+        thread: "yuna",
+        content: `
+            <p class="dialogue">"Is there anyone I should call? Family?"</p>
+
+            <p class="narrative">Mrs. Park's face crumbles. Just for a moment.</p>
+
+            <p class="dialogue">"My daughter. Minjung. She's in California with the grandchildren." She reaches for her phone with shaking hands. "I've been trying all morning. The lines..."</p>
+
+            <p class="narrative">You take the phone. Check it. No signal. Of course.</p>
+
+            <p class="dialogue">"If—if you make it—" She grips your wrist. "Tell her I love her. Tell her I'm with her father now. Tell her—"</p>
+
+            <p class="narrative">Her voice breaks.</p>
+
+            <p class="dialogue">"Tell her I'm sorry I couldn't see the children grow up."</p>
+
+            <p class="narrative">You memorize the number. Minjung Park. California. A daughter who will never know how her mother spent her last hour.</p>
+        `,
+        flags: { has_message: true, minjung_number: true },
+        choices: [
+            { text: "\"I'll find a way. I promise.\"", target: "2_family_promise" },
+            { text: "\"What should I tell her about you?\"", target: "2_family_stories" },
+            { text: "Stay silent. Some promises can't be made.", target: "2_attack_supplies" }
+        ]
+    },
+
+    "2_sit_refuse": {
+        title: "THE REFUSAL",
+        thread: "yuna",
+        content: `
+            <p class="dialogue">"I can't. I'm sorry. I can't."</p>
+
+            <p class="narrative">The gun feels like poison in your hands. You set it down on the table between you.</p>
+
+            <p class="narrative">Mrs. Park watches you. No judgment. No disappointment. Just understanding.</p>
+
+            <p class="dialogue">"It's alright, dear. Not everyone can." She picks up the revolver. Checks it with practiced hands. "I've done harder things than this."</p>
+
+            <p class="narrative">She nods toward the door.</p>
+
+            <p class="dialogue">"Go. The lockbox is under my bed. Combination 1950. Take everything. The car keys are by the door."</p>
+
+            <p class="narrative">You stand. Your legs feel like water.</p>
+
+            <p class="dialogue">"Mrs. Park—"</p>
+
+            <p class="dialogue">"I know." She smiles. Peaceful. Ready. "Now go, girl. Before I change my mind about being brave."</p>
+        `,
+        flags: { couldnt_mercy: true, left_her_alive: true },
+        choices: [
+            { text: "Get the supplies and leave. Honor her choice.", target: "2_attack_supplies" },
+            { text: "\"Wait. Let me stay until—\"", target: "2_time_stay" },
+            { text: "Run. You can't be here for what comes next.", target: "2_refuse_run" }
+        ]
+    },
+
+    "2_sit_wait": {
+        title: "THE VIGIL EXTENDED",
+        thread: "yuna",
+        content: `
+            <p class="dialogue">"Let me stay until... until you're ready."</p>
+
+            <p class="narrative">Mrs. Park exhales slowly. Relief and sorrow mixed together.</p>
+
+            <p class="dialogue">"You're a good girl. Better than this world deserves."</p>
+
+            <p class="narrative">You sit together. The fires spread across Seoul. The screaming fades to distant echoes. Her breathing grows ragged, then steadier, then ragged again.</p>
+
+            <p class="narrative">She talks. About Taehyun. About the war. About the bakery they owned in the '80s. About her children's first steps. About growing old and watching everyone else grow older.</p>
+
+            <p class="narrative">The infection creeps up her arm. She pretends not to notice. You pretend not to see.</p>
+
+            <p class="narrative">When her words start to slur, she reaches for the gun.</p>
+
+            <p class="dialogue">"It's time," she says. Clear. Calm. "Thank you for the company."</p>
+        `,
+        flags: { extended_vigil: true, deep_bond: true },
+        choices: [
+            { text: "\"Thank you for the stories.\" Step back. Give her space.", target: "2_wait_step_back" },
+            { text: "\"I'll tell them. Your daughter. Everyone. I'll tell them who you were.\"", target: "2_wait_promise" },
+            { text: "Take the gun. \"Let me.\" Quick. Merciful.", target: "2_sit_mercy" }
+        ]
+    },
+
+    "2_mercy_search": {
+        title: "THE SEARCH",
+        thread: "yuna",
+        content: `
+            <p class="narrative">You search the apartment. Mrs. Park mentioned supplies—her husband's paranoia about the North. Emergency preparations that never got used.</p>
+
+            <p class="narrative">Under the bed: the lockbox. Combination 1950. Inside: a Daewoo K5 pistol, three magazines, water purification tablets, a first aid kit, a compass.</p>
+
+            <p class="narrative">Kitchen pantry: canned food, enough for a week. Rice. Dried noodles. A bottle of soju that looks older than you.</p>
+
+            <p class="narrative">Hall closet: a hiking backpack, barely used. Rope. A flashlight. Batteries.</p>
+
+            <p class="narrative">You pack everything you can carry. The backpack strains against your shoulders. The gun sits heavy on your hip.</p>
+
+            <p class="narrative">Mrs. Park's apartment has given you everything you need to survive. Now you just have to survive.</p>
+        `,
+        flags: { full_supplies: true, well_equipped: true },
+        choices: [
+            { text: "To the garage. Time to go.", target: "2_supplies_garage" },
+            { text: "Check the roof first. Scout the situation.", target: "2_search_roof" },
+            { text: "Knock on other doors. Anyone else alive up here?", target: "2_search_neighbors" }
+        ]
+    },
+
+    "2_grieve_ring": {
+        title: "THE RING",
+        thread: "yuna",
+        content: `
+            <p class="narrative">You kneel beside her chair. Her hands are cold. Still. Folded in her lap the way she arranged them.</p>
+
+            <p class="narrative">The ring is simple. Gold band, worn thin by fifty-four years of wear. You can barely read the inscription inside: <em>T+S 1952</em></p>
+
+            <p class="narrative">You hesitate. This feels wrong. Sacred. But—</p>
+
+            <p class="narrative">She wanted to be remembered. She wanted Taehyun to be remembered. Someone should carry their story forward.</p>
+
+            <p class="narrative">You slip the ring onto a chain from her jewelry box. Hang it around your neck. The gold is cold against your chest.</p>
+
+            <p class="dialogue">"I'll tell them," you whisper. "Someone will know you existed. Both of you."</p>
+
+            <p class="narrative">Her face is peaceful. You choose to believe she heard.</p>
+        `,
+        flags: { carries_ring: true, remembrance: true },
+        choices: [
+            { text: "Go. The garage. Survive.", target: "2_supplies_garage" },
+            { text: "One more look around. She might have had other things.", target: "2_mercy_search" },
+            { text: "The photo too. Take the photo.", target: "2_ring_photo" }
+        ]
+    },
+
+    "2_spray_check": {
+        title: "THE EXAMINATION",
+        thread: "yuna",
+        content: `
+            <p class="dialogue">"Are you okay? Are you hurt?"</p>
+
+            <p class="narrative">Mrs. Park looks down at herself. The cardigan is splattered with blood—Mr. Cho's, from the knife. Her hands shake slightly, but she examines them with clinical detachment.</p>
+
+            <p class="dialogue">"Nothing that won't bruise." She flexes her fingers. "I was a nurse, you know. In the war. You learn what pain matters and what doesn't."</p>
+
+            <p class="narrative">She looks at you. Really looks.</p>
+
+            <p class="dialogue">"You're the one I'm worried about. First time?"</p>
+
+            <p class="narrative">She means killing. You nod.</p>
+
+            <p class="dialogue">"It gets easier." A pause. "That's not comfort. That's warning. Don't let it get too easy."</p>
+
+            <p class="narrative">She moves toward her bedroom. Brisk. Purposeful.</p>
+
+            <p class="dialogue">"My husband left supplies. Come. We don't have much time."</p>
+        `,
+        flags: { mrs_park_unbitten: true, mrs_park_mentor: true },
+        choices: [
+            { text: "Follow her. Take the supplies.", target: "2_check_follow" },
+            { text: "\"What about the neighbors? Should we check on them?\"", target: "2_check_neighbors" },
+            { text: "\"You should come with me. It's not safe here.\"", target: "2_check_invite" }
+        ]
+    },
+
+    "2_spray_move": {
+        title: "THE URGENCY",
+        thread: "yuna",
+        content: `
+            <p class="dialogue">"We need to move. More might be coming."</p>
+
+            <p class="narrative">Mrs. Park nods sharply. No argument. No hesitation.</p>
+
+            <p class="dialogue">"The bedroom. Under the bed. Combination 1950." She's already moving as she talks. "My husband was prepared for the North. Turns out he was preparing for the wrong apocalypse."</p>
+
+            <p class="narrative">She laughs. It sounds almost normal.</p>
+
+            <p class="narrative">The lockbox is there. Heavy. Cold. Inside: weapons, supplies, everything you need.</p>
+
+            <p class="dialogue">"The car keys are by the door. Blue Hyundai, B2 garage." She presses a key into your palm. "Storage unit in Yeouido. More supplies. Enough for weeks."</p>
+
+            <p class="narrative">She's giving you everything. A survival kit. A plan. A chance.</p>
+
+            <p class="dialogue">"Now go. Before the noise draws more of them."</p>
+        `,
+        flags: { quick_exit: true, has_supplies: true },
+        choices: [
+            { text: "\"Come with me.\"", target: "2_move_invite" },
+            { text: "Take the supplies. Get to the car.", target: "2_supplies_garage" },
+            { text: "\"What about you?\"", target: "2_move_what_about" }
+        ]
+    },
+
+    "2_spray_stare": {
+        title: "THE WARRIOR",
+        thread: "yuna",
+        content: `
+            <p class="narrative">You stare at her. This grandmother. This warrior.</p>
+
+            <p class="narrative">Blood drips from the knife in her hand. Her white hair is streaked with red. Her eyes—her eyes are somewhere else. Somewhere decades away.</p>
+
+            <p class="dialogue">"You're looking at me like I'm a monster," she says. Matter-of-fact. "I'm not. I'm just old enough to remember what survival costs."</p>
+
+            <p class="narrative">She sets down the knife. Washes her hands in the kitchen sink. The water runs pink.</p>
+
+            <p class="dialogue">"I killed Japanese soldiers when I was sixteen. Killed Chinese soldiers at twenty. Killed a man who tried to rape my sister at twenty-two." She dries her hands. Turns to face you. "This world has always been violent. We just built pretty walls to hide it."</p>
+
+            <p class="narrative">She gestures at the window. The burning city.</p>
+
+            <p class="dialogue">"Now the walls are down. What are you going to do about it?"</p>
+        `,
+        flags: { witnessed_strength: true, mentor_moment: true },
+        choices: [
+            { text: "\"Survive. Whatever it takes.\"", target: "2_stare_survive" },
+            { text: "\"I don't know. I've never had to—\"", target: "2_stare_admit" },
+            { text: "\"Protect the people I love.\"", target: "2_stare_protect" }
+        ]
+    },
+
+    "2_distract_laugh": {
+        title: "THE ABSURDITY",
+        thread: "yuna",
+        content: `
+            <p class="narrative">You laugh. You can't help it. The absurdity of everything—the apocalypse, the neighbor you just killed, the eighty-three-year-old grandmother covered in blood and broken glass—it bubbles up and out before you can stop it.</p>
+
+            <p class="narrative">Mrs. Park stares at you. Then she laughs too. A dry, crackling sound that turns into something real.</p>
+
+            <p class="dialogue">"When Taehyun died, I cried for a week." She wipes tears from her eyes—laughter tears now. "When the world ends, I laugh with a stranger over a corpse. Fifty-four years of marriage didn't prepare me for this."</p>
+
+            <p class="narrative">The laughter fades. Reality settles back in. Mr. Cho is still dead on the floor. The city is still burning.</p>
+
+            <p class="dialogue">"Well." She smooths her cardigan. "I suppose we should figure out what comes next."</p>
+        `,
+        flags: { shared_absurdity: true, bonded: true },
+        choices: [
+            { text: "\"Supplies. Escape. Survival.\"", target: "2_laugh_plan" },
+            { text: "\"Are you coming with me?\"", target: "2_laugh_invite" },
+            { text: "\"What do YOU think comes next?\"", target: "2_laugh_wisdom" }
+        ]
+    },
+
+    "2_distract_hall": {
+        title: "THE HALLWAY",
+        thread: "yuna",
+        content: `
+            <p class="narrative">You move to the doorway. Check the hall.</p>
+
+            <p class="narrative">Empty. The elevator light blinks—stuck between floors. The stairwell door at the end hangs open. Beyond it: darkness and the echo of distant screaming.</p>
+
+            <p class="narrative">No more of them. For now.</p>
+
+            <p class="narrative">Mrs. Park appears beside you. She's found the fire extinguisher, holds it ready.</p>
+
+            <p class="dialogue">"Clear?"</p>
+
+            <p class="dialogue">"For now."</p>
+
+            <p class="narrative">She nods. Processing. Planning.</p>
+
+            <p class="dialogue">"My apartment has supplies. My husband was—well, he was paranoid. Prepared for things that never came." She gestures down the hall. "We should move quickly. Before more of them come."</p>
+        `,
+        flags: { checked_hall: true, tactical: true },
+        choices: [
+            { text: "Follow her to the supplies.", target: "2_hall_supplies" },
+            { text: "\"We should check the other apartments first.\"", target: "2_hall_check" },
+            { text: "\"Down the stairs. Now. Every second counts.\"", target: "2_hall_run" }
+        ]
+    },
+
+    "2_distract_shake": {
+        title: "THE BREAKDOWN",
+        thread: "yuna",
+        content: `
+            <p class="narrative">You collapse against the wall. Your legs give out. The fire extinguisher clatters to the floor.</p>
+
+            <p class="narrative">You just killed a man. You just—your hands are shaking—you can't breathe—</p>
+
+            <p class="narrative">Arms around you. Warm. Smelling of lavender and old books and blood.</p>
+
+            <p class="dialogue">"Breathe, girl. In. Out. That's it."</p>
+
+            <p class="narrative">Mrs. Park holds you while the world ends outside. Her voice is steady. Calm. Like she's soothed a thousand panics before.</p>
+
+            <p class="dialogue">"The first one is always the hardest. I threw up for an hour after mine." A pause. "Of course, I was sixteen and he was a Japanese soldier, but the principle's the same."</p>
+
+            <p class="narrative">Your breathing steadies. The shaking slows. You're still alive. Still here.</p>
+
+            <p class="dialogue">"Better?"</p>
+
+            <p class="narrative">You nod. Wipe your eyes. Stand.</p>
+
+            <p class="dialogue">"Good girl. Now let's get you out of here."</p>
+        `,
+        flags: { broke_down: true, comforted: true },
+        choices: [
+            { text: "Let her lead you to the supplies.", target: "2_shake_follow" },
+            { text: "\"I can do this. I can do this.\" Pull yourself together.", target: "2_shake_resolve" },
+            { text: "\"Thank you. I don't even know your name.\"", target: "2_shake_name" }
+        ]
+    },
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // GENERIC CONVERGENCE NODES - Same place, different context
+    // ═══════════════════════════════════════════════════════════════════════
+
+    "2_promise_apartments": {
+        title: "THE FLOOR",
+        thread: "yuna",
+        content: `
+            <p class="narrative">You knock on doors. Four apartments on this floor. No answer from any of them.</p>
+
+            <p class="narrative">Mr. Cho's door is open—his apartment empty, a meal half-eaten on the counter. The Kim family next door: silence. The young couple at the end: their door is locked, but you hear something inside. Movement. Not human movement.</p>
+
+            <p class="narrative">You back away slowly.</p>
+
+            <p class="narrative">This floor is lost. Anyone who could leave already did. Anyone who stayed—</p>
+
+            <p class="narrative">You don't finish the thought. You don't need to.</p>
+
+            <p class="narrative">Mrs. Park's supplies are in your pack. Her car waits in the garage. Her voice echoes in your mind: <em>Survive.</em></p>
+        `,
+        flags: { checked_floor: true, alone: true },
+        choices: [
+            { text: "To the garage. No more delays.", target: "2_supplies_garage" },
+            { text: "The roof. Get a view of what you're dealing with.", target: "2_promise_roof" },
+            { text: "Down the fire escape. Avoid the internal stairs.", target: "2_promise_fire_escape" }
+        ]
+    },
+
+    "2_promise_roof": {
+        title: "THE VIEW",
+        thread: "yuna",
+        content: `
+            <p class="narrative">The roof access door groans open. Morning light blinds you for a moment.</p>
+
+            <p class="narrative">Then you see it. All of it.</p>
+
+            <p class="narrative">Seoul is burning. Not everywhere—not yet—but the fires are spreading. Mapo. Yeongdeungpo. The smoke rises in columns that join together in a gray ceiling above the city.</p>
+
+            <p class="narrative">Helicopters circle in the distance. Military. Some are evacuating; others are just... watching. A plane spirals toward the Han River, trailing smoke.</p>
+
+            <p class="narrative">Below you: the streets are chaos. Cars piled against each other. People running. Things chasing them. You're too high to hear the screaming, but you can see it in the movement. The panic. The death.</p>
+
+            <p class="narrative">Itaewon is to the north. You can see the hill, the old base, the hotels. Minho is there. Somewhere.</p>
+
+            <p class="narrative">If he's still alive.</p>
+        `,
+        flags: { saw_panorama: true, knows_layout: true },
+        choices: [
+            { text: "To the garage. The car is the best option.", target: "2_supplies_garage" },
+            { text: "Try the phone again. Maybe there's signal up here.", target: "2_roof_phone" },
+            { text: "Look for a route to Itaewon. The streets look blocked.", target: "2_roof_route" }
+        ]
     }
 };
 

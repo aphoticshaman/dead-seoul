@@ -1,0 +1,30 @@
+{
+  "id": "conv_streets_vehicle",
+  "title": "THE ROAD",
+  "thread": "yuna",
+  "layer": 4,
+  "convergence_from": ["conv_garage_sneak", "conv_garage_shoot", "conv_garage_distract", "2_freeze_car"],
+  "content": "<p class=\"narrative\">The engine turns over on the first try. The dashboard lights up—half a tank, check engine light glowing orange, 47,000 kilometers on the odometer. Mrs. Park kept her husband's car well-maintained, even after he was gone. Even after there was no one left to drive it.</p>\n\n<p class=\"narrative\">You pull out of the parking space too fast. Tires scream on polished concrete. Behind you, something is moving—one of them, maybe more, drawn by the noise—but you're already accelerating toward the exit ramp, and they're not fast enough. Not this time.</p>\n\n<p class=\"narrative\">The garage exit spirals up. You take the curves too fast, scraping the wall on the second turn, sparks flying where metal meets concrete. Your hands are shaking on the wheel. Your heart is trying to escape through your ribcage. But you're moving. You're alive. You're out.</p>\n\n<p class=\"narrative\">Daylight hits you like a physical force.</p>\n\n<p class=\"narrative\">Seoul is not the city you remember.</p>\n\n<p class=\"narrative\">The street outside your building—your street, the one you've walked a thousand times on the way to the subway, the one lined with convenience stores and coffee shops and the pojangmacha where you used to drink soju with Minho—is unrecognizable. Cars are piled against each other in intersections. Bodies lie in the road, some still moving, some being fought over by things that used to be people. A bus has crashed through the front of a bank, and something inside is moving, throwing shadows against shattered glass.</p>\n\n<p class=\"narrative\">The Han River is to the south. Beyond it, maybe safety. Maybe the military. Maybe just more of the same.</p>\n\n<p class=\"narrative\">Itaewon is to the northeast. Minho. If he's still there. If he's still alive. If his \"I'm coming for you\" was a promise he could keep.</p>\n\n<p class=\"narrative\">Yeouido is to the west. The helicopters you saw from the rooftop. Maybe an evacuation. Maybe just documentation of the end.</p>\n\n<p class=\"narrative\">You have a car. You have half a tank of gas. You have three bullets left and a knife and Mrs. Park's wedding ring around your neck like a talisman against the dark.</p>\n\n<p class=\"narrative\">You need to choose a direction. Every second you sit here is a second something might notice you, might approach, might end the brief story of your survival before it really begins.</p>\n\n<p class=\"narrative\">In the rearview mirror, your apartment building rises against the gray sky. Mrs. Park is up there somewhere. Was up there. The place you've called home for three years is already becoming a memory, a before-photo in a world of after.</p>\n\n<p class=\"narrative\">Where do you go?</p>",
+  "choices": [
+    {
+      "text": "Itaewon. Find Minho. He said he was coming—maybe he's still there.",
+      "target": "end_itaewon_drive",
+      "flags": { "destination_minho": true, "romantic_priority": true }
+    },
+    {
+      "text": "Yeouido. The helicopters. The military. Evacuation.",
+      "target": "end_yeouido_drive",
+      "flags": { "destination_evac": true, "survival_priority": true }
+    },
+    {
+      "text": "South. The bridges. Out of the city entirely.",
+      "target": "end_escape_drive",
+      "flags": { "destination_escape": true, "flee_priority": true }
+    },
+    {
+      "text": "Someone's waving. On the sidewalk. A survivor.",
+      "target": "conv_streets_stranger",
+      "flags": { "noticed_survivor": true }
+    }
+  ]
+}

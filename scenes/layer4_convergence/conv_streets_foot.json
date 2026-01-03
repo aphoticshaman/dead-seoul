@@ -1,0 +1,25 @@
+{
+  "id": "conv_streets_foot",
+  "title": "THE LONG WALK",
+  "thread": "yuna",
+  "layer": 4,
+  "convergence_from": ["fire_escape", "lobby_exit", "rooftop_descent"],
+  "content": "<p class=\"narrative\">Your feet hit pavement. Real pavement. Outside.</p>\n\n<p class=\"narrative\">The air hits you first—smoke and rot and December cold, a cocktail of sensations that makes your eyes water and your lungs burn. You've been inside for hours. Days, maybe. Time stopped meaning anything when the world ended, and now you're standing in an alley behind your building, looking at a city you don't recognize.</p>\n\n<p class=\"narrative\">The street beyond the alley is chaos frozen in time. Abandoned cars. Broken glass. A bus tilted against a streetlight, its doors hanging open like a mouth mid-scream. Bodies—you don't look at the bodies. Can't look. The moment you start counting them is the moment you stop moving.</p>\n\n<p class=\"narrative\">You have no car. No vehicle. Just your legs and whatever weapons you're carrying and the desperate hope that somewhere in this broken city, there's still a way out.</p>\n\n<p class=\"narrative\">Itaewon is northeast. Minho might be there. Might be alive. Might be waiting for you, or fighting, or dead in a street you'll never find.</p>\n\n<p class=\"narrative\">Yeouido is west. The helicopters you saw from the rooftop. Military. Evacuation, maybe. Or just another false hope in a city full of them.</p>\n\n<p class=\"narrative\">The Han River is south. Bridges. Escape routes. Other districts that might not be as far gone as this one.</p>\n\n<p class=\"narrative\">You need to move. Standing still is death. But moving means choosing, and every choice feels like a gamble with stakes you can't afford to lose.</p>\n\n<p class=\"narrative\">A sound from the street. Shuffling. Dragging. Something moving wrong, the way they move, the hunger-driven locomotion that's faster than it should be.</p>\n\n<p class=\"narrative\">You press against the alley wall. Wait. Watch.</p>\n\n<p class=\"narrative\">One of them passes the alley mouth. Doesn't look in. Keeps moving, following some instinct or sound or memory of what it used to be. You hold your breath until it's gone.</p>\n\n<p class=\"narrative\">The coast is clear. For now. For this moment. For however long luck decides to stay on your side.</p>\n\n<p class=\"narrative\">Where do you go?</p>",
+  "choices": [
+    {
+      "text": "Northeast. Toward Itaewon. Toward Minho.",
+      "target": "end_itaewon_drive",
+      "flags": { "destination_minho": true }
+    },
+    {
+      "text": "West. Toward Yeouido. Toward the helicopters.",
+      "target": "end_yeouido_drive",
+      "flags": { "destination_evac": true }
+    },
+    {
+      "text": "South. Toward the river. Toward escape.",
+      "target": "end_escape_drive",
+      "flags": { "destination_out": true }
+    }
+  ]
+}

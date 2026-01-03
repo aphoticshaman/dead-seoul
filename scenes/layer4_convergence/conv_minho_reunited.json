@@ -1,0 +1,40 @@
+{
+  "id": "conv_minho_reunited",
+  "title": "THE AFTERMATH",
+  "thread": "minho",
+  "layer": 4,
+  "convergence_from": [
+    "3_open_fast",
+    "3_verify",
+    "3_comfort",
+    "3_alive_kiss",
+    "3_hold"
+  ],
+  "requires_flags": [
+    "minho_reunited"
+  ],
+  "content": "<p class=\"narrative\">You are together.</p>\n\n<p class=\"narrative\">After everything—after the silence, the distance, the way he left you standing in the airport with your heart in your hands—after the world ended and the phones died and the streets filled with things that used to be people—you are together. Sitting on the floor of your apartment with your backs against your grandmother's bookshelf, holding hands like teenagers at a movie, like nothing has changed, like everything has changed.</p>\n\n<p class=\"narrative\">Minho's face is streaked with blood that isn't his. His shirt is torn at the shoulder where something grabbed him and missed. His hands shake when he's not holding yours, a fine tremor that he tries to hide and fails.</p>\n\n<p class=\"narrative\">He drove through hell to get here. Through Itaewon as it burned, through Hannam as it fell, through streets choked with cars and bodies and things that ran faster than cars should be able to hit them. He tells you about it in fragments, in half-sentences that trail off into silences that say more than words could.</p>\n\n<p class=\"narrative\">He killed people. Things that used to be people. With his car. With a tire iron he found in the trunk. With his bare hands, once, when everything else failed. He doesn't look at you when he says that part.</p>\n\n<p class=\"dialogue\">\"I kept thinking about you,\"</p>\n\n<p class=\"narrative\">he says, and his voice cracks on the last word.</p>\n\n<p class=\"dialogue\">\"Every time I had to—every time I did something I couldn't take back—I just kept thinking, <em>Yuna is waiting. Yuna is alive. Get to Yuna.</em>\"</p>\n\n<p class=\"narrative\">Your throat is too tight to speak. You squeeze his hand instead. He squeezes back.</p>\n\n<p class=\"dialogue\">\"I should have stayed,\"</p>\n\n<p class=\"narrative\">he whispers.</p>\n\n<p class=\"dialogue\">\"Six months ago. Tokyo was—it doesn't matter. I should have stayed. Should have asked you to come. Should have done anything except what I did.\"</p>\n\n<p class=\"narrative\">You've imagined this conversation a thousand times. In the months after he left, you scripted what you'd say if you ever got the chance. The accusations. The questions. The pain you'd make him understand. But now, sitting here in your barricaded apartment while Seoul dies around you, none of those words seem to matter anymore.</p>\n\n<p class=\"dialogue\">\"You came back.\"</p>\n\n<p class=\"narrative\">That's all you say. That's all there is to say.</p>\n\n<p class=\"dialogue\">\"I came back.\"</p>\n\n<p class=\"narrative\">Silence settles between you. Not uncomfortable—just heavy with things unsaid, with futures that might never happen, with a present that demands attention whether you're ready or not.</p>\n\n<p class=\"narrative\">Outside, the sounds of the apocalypse continue. Screaming. Sirens. Helicopters somewhere distant. The constant, low roar of a city consuming itself. Your building has been quiet for hours, but that doesn't mean it's safe. Doesn't mean anything is safe.</p>\n\n<p class=\"narrative\">Minho's car is parked three blocks away. He couldn't get closer—the streets were too crowded, too dangerous. But it's there. Waiting. A way out, if you can reach it.</p>\n\n<p class=\"narrative\">Your neighbor, Mrs. Park—you don't know what happened to her. Her apartment has been quiet since you barricaded your door. You could check on her. Or you could go now, while the hallway is empty, before whatever is out there decides to try your door again.</p>\n\n<p class=\"narrative\">Minho looks at you. Really looks, for the first time since he walked through the door. His eyes are red, but clear. Something has settled in him. Something that was broken when he left is trying to find its pieces again.</p>\n\n<p class=\"dialogue\">\"What do you want to do?\"</p>\n\n<p class=\"narrative\">He's asking you. After all this time, after all his grand plans and Tokyo dreams, he's asking you.</p>\n\n<p class=\"narrative\">What do you do?</p>",
+  "choices": [
+    {
+      "text": "\"We need to get to your car. Now, while we can.\"",
+      "target": "end_together_escape",
+      "flags": {
+        "prioritized_escape": true
+      }
+    },
+    {
+      "text": "\"Mrs. Park. Next door. I have to know if she's okay.\"",
+      "target": "conv_garage_companion",
+      "flags": {
+        "prioritized_compassion": true
+      }
+    },
+    {
+      "text": "\"The roof. We need to see what we're dealing with before we move.\"",
+      "target": "conv_rooftop_survey",
+      "flags": {
+        "prioritized_intel": true
+      }
+    }
+  ]
+}

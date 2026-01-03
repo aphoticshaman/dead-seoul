@@ -1,0 +1,20 @@
+{
+  "title": "THE CLOCK",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"How long? How long do you have?\"</p>\n\n            <p class=\"narrative\">Mrs. Park checks the wound on her arm. Pulls back the kitchen towel. The bite is ragged—Mr. Cho's teeth weren't sharp, just persistent. The skin around it is already darkening. Veins spreading like cracks in ice.</p>\n\n            <p class=\"dialogue\">\"The news said... varied. Some turned in minutes. Some took hours. The younger ones seemed faster.\"</p>\n\n            <p class=\"narrative\">She looks at her own hands. Wrinkled. Spotted. Old.</p>\n\n            <p class=\"dialogue\">\"I'm hoping my stubborn old body is too slow to give up quickly.\" A dry laugh. \"First time I've been grateful for arthritis.\"</p>\n\n            <p class=\"narrative\">She walks to the kitchen. Opens a drawer. Pulls out a small revolver—snub-nosed, well-oiled, loved.</p>\n\n            <p class=\"dialogue\">\"My husband taught me to shoot in 1952. I've kept this loaded ever since. Just in case the North ever came.\" She sets it on the counter. \"I'll handle things. When the time comes.\"</p>\n\n            <p class=\"narrative\">Her eyes meet yours.</p>\n\n            <p class=\"dialogue\">\"Now. Will you stay and help me count down? Or will you run while you can?\"</p>\n        ",
+  "choices": [
+    {
+      "text": "Stay. She shouldn't be alone for this.",
+      "target": "2_time_stay"
+    },
+    {
+      "text": "\"Is there anyone I should call? Family?\"",
+      "target": "2_time_family"
+    },
+    {
+      "text": "Take the supplies. Go. She made her choice.",
+      "target": "2_attack_supplies"
+    }
+  ],
+  "id": "2_attack_time"
+}

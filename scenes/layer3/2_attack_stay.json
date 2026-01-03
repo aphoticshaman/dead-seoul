@@ -1,0 +1,20 @@
+{
+  "title": "THE REFUSAL",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"I'm not leaving you. We can find help. A hospital. Something—\"</p>\n\n            <p class=\"narrative\">Mrs. Park's hand closes around your wrist. Strong. Stronger than an eighty-three-year-old hand should be.</p>\n\n            <p class=\"dialogue\">\"Listen to me.\" Her eyes bore into yours. \"I have watched people turn. This morning. On the news. Then out my window. It takes hours. Sometimes minutes. I have maybe—\" she checks the clock \"—an hour if I'm lucky.\"</p>\n\n            <p class=\"narrative\">She pulls you closer. Her breath smells like green tea and blood.</p>\n\n            <p class=\"dialogue\">\"I'm not afraid to die, girl. I've been ready since my husband passed. But I will NOT become one of those things. And I will NOT let you throw your life away watching me become one.\"</p>\n\n            <p class=\"narrative\">She presses the lockbox key into your palm.</p>\n\n            <p class=\"dialogue\">\"There's a gun in there. You take it. You survive. And if I'm still moving when you come back this way—\"</p>\n\n            <p class=\"narrative\">She doesn't finish the sentence. She doesn't have to.</p>\n        ",
+  "choices": [
+    {
+      "text": "\"I'll come back. I promise.\"",
+      "target": "2_stay_promise"
+    },
+    {
+      "text": "\"Tell me about your husband. Before I go.\"",
+      "target": "2_stay_husband"
+    },
+    {
+      "text": "Take the key. Leave without another word. Words are useless now.",
+      "target": "2_attack_supplies"
+    }
+  ],
+  "id": "2_attack_stay"
+}

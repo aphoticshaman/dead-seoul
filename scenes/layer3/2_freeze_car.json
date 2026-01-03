@@ -1,0 +1,24 @@
+{
+  "title": "IGNITION",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">Key in the lock. Door open. Slide in. Key in the ignition.</p>\n\n            <p class=\"narrative\">The engine turns over. Catches. The dashboard lights up—half a tank, check engine light on, 47,000 kilometers.</p>\n\n            <p class=\"narrative\">The garage exit is blocked. But the entrance ramp—</p>\n\n            <p class=\"narrative\">You reverse. Tires scream on polished concrete. The three things hear. Turn. Start running toward you.</p>\n\n            <p class=\"narrative\">Gear shift. Drive. Floor it.</p>\n\n            <p class=\"narrative\">The entrance ramp spirals up. You take the curves too fast, scraping the wall, sparks flying. Behind you, feet on concrete. Getting closer.</p>\n\n            <p class=\"narrative\">Daylight. You burst onto the street and—</p>\n\n            <p class=\"narrative\">Seoul is burning. The Han River reflects orange and black. Helicopters spiral in the distance. The roads are chaos—abandoned cars, running figures, things that chase them.</p>\n\n            <p class=\"narrative\">Where do you go?</p>\n        ",
+  "choices": [
+    {
+      "text": "Minho said Itaewon. Go find him.",
+      "target": "2_car_itaewon"
+    },
+    {
+      "text": "The storage unit. Mrs. Park's key. Yeouido.",
+      "target": "end_yeouido_drive"
+    },
+    {
+      "text": "Away. Just away. Drive until the city ends.",
+      "target": "end_escape_drive"
+    },
+    {
+      "text": "Someone's waving. On the sidewalk. A survivor.",
+      "target": "2_car_survivor"
+    }
+  ],
+  "id": "2_freeze_car"
+}

@@ -1,0 +1,20 @@
+{
+  "title": "THE REUNION",
+  "thread": "minho",
+  "content": "\n            <p class=\"narrative\">You tear down the barricade. Mattress. Desk. Bookshelf scraping the floor. Your grandmother's books spilling everywhere.</p>\n\n            <p class=\"narrative\">The door opens.</p>\n\n            <p class=\"narrative\">Minho stands in the hallway, covered in blood that isn't his. His face is pale. His eyes are wet. He's shaking.</p>\n\n            <p class=\"dialogue\">\"Yuna—\"</p>\n\n            <p class=\"narrative\">You pull him inside. Slam the door. Check the hallway—empty, for now—and start rebuilding the barricade.</p>\n\n            <p class=\"narrative\">He just stands there. Watching you. Shaking.</p>\n\n            <p class=\"dialogue\">\"I came back.\"</p>\n\n            <p class=\"narrative\">His voice cracks.</p>\n\n            <p class=\"dialogue\">\"I came back for you. The whole city is—and I just—I had to—\"</p>\n\n            <p class=\"narrative\">He breaks. Right there in your apartment. Six months of silence and then the end of the world and he's sobbing against your shoulder like a child.</p>\n\n            <p class=\"narrative\">You hold him. What else can you do?</p>\n        ",
+  "choices": [
+    {
+      "text": "\"It's okay. You're here now. That's what matters.\"",
+      "target": "3_comfort"
+    },
+    {
+      "text": "\"We need to move. We can't stay here.\"",
+      "target": "3_plan"
+    },
+    {
+      "text": "Hold him. Say nothing. Let him break.",
+      "target": "3_hold"
+    }
+  ],
+  "id": "3_open_fast"
+}

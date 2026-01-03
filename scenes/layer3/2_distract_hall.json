@@ -1,0 +1,12 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 246 (char 305)",
+  "title": "THE HALLWAY",
+  "content": "<p class=\"narrative\">You move to the doorway. Check the hall.</p>\n\n            <p class=\"narrative\">Empty. The elevator light blinks—stuck between floors. The stairwell door at the end hangs open. Beyond it: darkness and the echo of distant screaming.</p>\n\n            <p class=\"narrative\">No more of them. For now.</p>\n\n            <p class=\"narrative\">Mrs. Park appears beside you. She's found the fire extinguisher, holds it ready.</p>\n\n            <p class=\"dialogue\">\"Clear?\"</p>\n\n            <p class=\"dialogue\">\"For now.\"</p>\n\n            <p class=\"narrative\">She nods. Processing. Planning.</p>\n\n            <p class=\"dialogue\">\"My apartment has supplies. My husband was—well, he was paranoid. Prepared for things that never came.\" She gestures down the hall. \"We should move quickly. Before more of them come.\"</p>",
+  "choices": [
+    {
+      "text": "Follow her to the supplies.",
+      "target": "conv_garage_companion"
+    }
+  ],
+  "id": "2_distract_hall"
+}

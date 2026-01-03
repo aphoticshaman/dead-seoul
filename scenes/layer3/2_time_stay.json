@@ -1,0 +1,24 @@
+{
+  "title": "THE WATCH",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"I'll stay. You shouldn't be alone for this.\"</p>\n\n            <p class=\"narrative\">Mrs. Park stares at you. Something shifts in her expression—surprise, gratitude, and then a fierce, proud joy.</p>\n\n            <p class=\"dialogue\">\"You remind me of myself. Sixty years ago.\" She pats the chair beside her. \"Sit. We'll watch the world end together.\"</p>\n\n            <p class=\"narrative\">You sit. The city burns. Time passes in strange ways—minutes feeling like hours, hours like heartbeats.</p>\n\n            <p class=\"narrative\">She tells you stories. The war. Her husband. Her children who live in America now, who she'll never see again. She doesn't cry. Neither do you.</p>\n\n            <p class=\"narrative\">When her hand starts to shake, when the veins in her arm turn black, she reaches for the revolver.</p>\n\n            <p class=\"dialogue\">\"It's time, dear. Will you—\" She swallows. \"Will you hold my hand? Just at the end?\"</p>\n        ",
+  "flags": {
+    "stayed_with_mrs_park": true,
+    "witnessed_transformation": true
+  },
+  "choices": [
+    {
+      "text": "Take her hand. Be there until the end.",
+      "target": "end_mrs_park_gift"
+    },
+    {
+      "text": "\"Let me do it. You shouldn't have to.\"",
+      "target": "end_mrs_park_gift"
+    },
+    {
+      "text": "\"I can't watch. I'm sorry.\" Leave now.",
+      "target": "conv_garage_alone"
+    }
+  ],
+  "id": "2_time_stay"
+}

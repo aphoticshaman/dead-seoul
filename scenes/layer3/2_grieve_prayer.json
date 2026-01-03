@@ -1,0 +1,24 @@
+{
+  "title": "THE WORDS",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You never learned to pray. Your family wasn't religious. But words come anyway.</p>\n\n            <p class=\"dialogue\">\"Thank you. For the soup. For the kindness. For showing me what strength looks like.\"</p>\n\n            <p class=\"narrative\">You look at her face. Peaceful. Gone.</p>\n\n            <p class=\"dialogue\">\"I hope Taehyun was waiting. I hope you found him.\"</p>\n\n            <p class=\"narrative\">The words feel hollow. Insufficient. But they're all you have.</p>\n\n            <p class=\"dialogue\">\"I'll survive. I promise. I'll make it worth it.\"</p>\n\n            <p class=\"narrative\">You touch her hand one last time. Cold now. Still.</p>\n\n            <p class=\"narrative\">Then you take the supplies, the keys, the photograph, and you leave.</p>\n\n            <p class=\"narrative\">The hallway is empty. The stairwell waits. The city burns.</p>\n\n            <p class=\"narrative\">You've made a promise. Time to keep it.</p>\n        ",
+  "flags": {
+    "made_promise": true,
+    "spiritual_moment": true
+  },
+  "choices": [
+    {
+      "text": "Down to the garage. Mrs. Park's car.",
+      "target": "2_supplies_garage"
+    },
+    {
+      "text": "Check other apartments. Survivors?",
+      "target": "conv_building_trapped"
+    },
+    {
+      "text": "The roof first. Get bearings.",
+      "target": "conv_rooftop_survey"
+    }
+  ],
+  "id": "2_grieve_prayer"
+}

@@ -1,0 +1,16 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 182 (char 242)",
+  "title": "THE WAITING",
+  "content": "<p class=\"narrative\">You don't answer. Don't move. Barely breathe.</p>\n\n            <p class=\"narrative\">The voice on the other side waits. Then:</p>\n\n            <p class=\"dialogue\">\"Yuna, I know you're in there. Your lights are on. I can see your shadow under the door.\"</p>\n\n            <p class=\"narrative\">Shit.</p>\n\n            <p class=\"dialogue\">\"Look, I know you're scared. I am too. But I came halfway across the city to find you. Through... through everything. The least you can do is let me know you're alive.\"</p>\n\n            <p class=\"narrative\">His voice breaks on the last word.</p>\n\n            <p class=\"dialogue\">\"Please. Say something. Anything. I need to know you're okay.\"</p>\n\n            <p class=\"narrative\">The silence stretches. Outside, somewhere distant, something screams.</p>\n\n            <p class=\"narrative\">Then—footsteps in the hallway. Not from Minho. Something else. Getting closer.</p>\n\n            <p class=\"dialogue\">\"Yuna? Yuna, there's something coming. Please—\"</p>",
+  "choices": [
+    {
+      "text": "Open the door. Fast. Pull him in.",
+      "target": "conv_minho_reunited"
+    },
+    {
+      "text": "Stay silent. He led them here. This is his problem.",
+      "target": "conv_building_trapped"
+    }
+  ],
+  "id": "3_silent"
+}

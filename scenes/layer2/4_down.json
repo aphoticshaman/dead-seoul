@@ -1,0 +1,20 @@
+{
+  "title": "THE STAIRWELL",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You pass the slumped figure. It was Mr. Cho from 4B. His head is caved in. Someone already handled him. You don't look too closely at who.</p>\n\n            <p class=\"narrative\">The stairwell is dark. Emergency lights dead. Your phone flashlight cuts a small cone of reality into the black.</p>\n\n            <p class=\"narrative\">Fifteen floors down. Each landing a potential ambush. Your footsteps echo. Blood roars in your ears.</p>\n\n            <p class=\"narrative\">Third floor. A sound. Breathing. Heavy. Wet. Something in the shadows below.</p>\n\n            <p class=\"narrative\">You stop. It stops.</p>\n\n            <p class=\"narrative\">You shine the light down. Two flights below—a figure. Standing in the corner. Facing the wall. Shoulders moving with each ragged breath.</p>\n\n            <p class=\"narrative\">It hasn't noticed you. Yet.</p>\n        ",
+  "choices": [
+    {
+      "text": "Continue down. Quietly. It's just one.",
+      "target": "4_down_quiet"
+    },
+    {
+      "text": "Go back up. Find another way.",
+      "target": "conv_building_trapped"
+    },
+    {
+      "text": "Throw something. Draw it out. Then kill it.",
+      "target": "conv_garage_alone"
+    }
+  ],
+  "id": "4_down"
+}

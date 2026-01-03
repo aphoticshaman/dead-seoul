@@ -1,0 +1,16 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 654 (char 710)",
+  "title": "THE VIEW",
+  "content": "<p class=\"narrative\">The roof access door groans open. Morning light blinds you for a moment.</p>\n\n            <p class=\"narrative\">Then you see it. All of it.</p>\n\n            <p class=\"narrative\">Seoul is burning. Not everywhere—not yet—but the fires are spreading. Mapo. Yeongdeungpo. The smoke rises in columns that join together in a gray ceiling above the city.</p>\n\n            <p class=\"narrative\">Helicopters circle in the distance. Military. Some are evacuating; others are just... watching. A plane spirals toward the Han River, trailing smoke.</p>\n\n            <p class=\"narrative\">Below you: the streets are chaos. Cars piled against each other. People running. Things chasing them. You're too high to hear the screaming, but you can see it in the movement. The panic. The death.</p>\n\n            <p class=\"narrative\">Itaewon is to the north. You can see the hill, the old base, the hotels. Minho is there. Somewhere.</p>\n\n            <p class=\"narrative\">If he's still alive.</p>",
+  "choices": [
+    {
+      "text": "To the garage. The car is the best option.",
+      "target": "2_supplies_garage"
+    },
+    {
+      "text": "Look for a route to Itaewon. The streets look blocked.",
+      "target": "conv_streets_foot"
+    }
+  ],
+  "id": "2_promise_roof"
+}

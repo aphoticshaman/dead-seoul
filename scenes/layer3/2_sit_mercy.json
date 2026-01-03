@@ -1,0 +1,24 @@
+{
+  "title": "THE GIFT",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">Your hands shake. The gun feels heavier than anything you've ever held.</p>\n\n            <p class=\"narrative\">Mrs. Park closes her eyes. Smiles. Reaches up and touches your cheek—her fingers cold, wrong, already changing.</p>\n\n            <p class=\"dialogue\">\"You're a good girl, Yuna. Your parents would be proud.\"</p>\n\n            <p class=\"narrative\">She folds her hands in her lap. Faces the window. The burning city. Her burning home.</p>\n\n            <p class=\"dialogue\">\"Taehyun is waiting. I can almost see him.\"</p>\n\n            <p class=\"narrative\">You raise the gun. Your hand steadies. Strange, how calm comes when there's no other choice.</p>\n\n            <p class=\"narrative\">The sound is enormous in the small apartment. Then silence.</p>\n\n            <p class=\"narrative\">She looks peaceful. Finally. Free.</p>\n\n            <p class=\"narrative\">You stand there for a long moment. Then you take the car keys. The lockbox. The photograph of her and Taehyun, young and in love and alive, from the wall.</p>\n\n            <p class=\"narrative\">You owe her that much. To remember.</p>\n        ",
+  "flags": {
+    "mrs_park_mercy": true,
+    "carries_photo": true
+  },
+  "choices": [
+    {
+      "text": "To the garage. Keep moving.",
+      "target": "2_supplies_garage"
+    },
+    {
+      "text": "Take a moment. Grieve. Then go.",
+      "target": "2_mercy_grieve"
+    },
+    {
+      "text": "Check her apartment thoroughly. She mentioned supplies.",
+      "target": "2_mercy_search"
+    }
+  ],
+  "id": "2_sit_mercy"
+}

@@ -1,0 +1,24 @@
+{
+  "title": "THE EXAMINATION",
+  "thread": "yuna",
+  "content": "\n            <p class=\"dialogue\">\"Are you okay? Are you hurt?\"</p>\n\n            <p class=\"narrative\">Mrs. Park looks down at herself. The cardigan is splattered with blood—Mr. Cho's, from the knife. Her hands shake slightly, but she examines them with clinical detachment.</p>\n\n            <p class=\"dialogue\">\"Nothing that won't bruise.\" She flexes her fingers. \"I was a nurse, you know. In the war. You learn what pain matters and what doesn't.\"</p>\n\n            <p class=\"narrative\">She looks at you. Really looks.</p>\n\n            <p class=\"dialogue\">\"You're the one I'm worried about. First time?\"</p>\n\n            <p class=\"narrative\">She means killing. You nod.</p>\n\n            <p class=\"dialogue\">\"It gets easier.\" A pause. \"That's not comfort. That's warning. Don't let it get too easy.\"</p>\n\n            <p class=\"narrative\">She moves toward her bedroom. Brisk. Purposeful.</p>\n\n            <p class=\"dialogue\">\"My husband left supplies. Come. We don't have much time.\"</p>\n        ",
+  "flags": {
+    "mrs_park_unbitten": true,
+    "mrs_park_mentor": true
+  },
+  "choices": [
+    {
+      "text": "Follow her. Take the supplies.",
+      "target": "conv_garage_companion"
+    },
+    {
+      "text": "\"What about the neighbors? Should we check on them?\"",
+      "target": "conv_building_trapped"
+    },
+    {
+      "text": "\"You should come with me. It's not safe here.\"",
+      "target": "conv_garage_companion"
+    }
+  ],
+  "id": "2_spray_check"
+}

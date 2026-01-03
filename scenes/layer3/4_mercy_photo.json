@@ -1,0 +1,16 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 437 (char 495)",
+  "title": "THE MEMORY",
+  "content": "<p class=\"narrative\">You pry the photograph from her stiff fingers. It's creased, worn from years of handling. Two young people in military uniforms, arms around each other, smiling at a future that seemed infinite.</p>\n\n            <p class=\"narrative\">Park Taehyun and Kim Soonhee. 1952. Incheon.</p>\n\n            <p class=\"narrative\">Their names are written on the back in faded ink. And below: <em>The day you said yes.</em></p>\n\n            <p class=\"narrative\">You tuck the photograph into your pocket. Next to your phone. Next to the only connection to the person who might still be looking for you.</p>\n\n            <p class=\"narrative\">Mrs. Park's apartment is quiet now. The scratching, the breathing, the wrongness—all gone. Just an old woman in her bed, finally at peace.</p>\n\n            <p class=\"narrative\">You should search the apartment. She mentioned supplies. An emergency kit. Something her husband left behind.</p>\n\n            <p class=\"narrative\">But first, you pull the blanket over her. Cover what remains. Give her that dignity, at least.</p>",
+  "choices": [
+    {
+      "text": "Search for the emergency supplies.",
+      "target": "conv_garage_alone"
+    },
+    {
+      "text": "Check the rest of the floor. Other survivors?",
+      "target": "conv_building_trapped"
+    }
+  ],
+  "id": "4_mercy_photo"
+}

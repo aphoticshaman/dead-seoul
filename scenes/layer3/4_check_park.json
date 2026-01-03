@@ -1,0 +1,12 @@
+{
+  "_parse_error": "Expecting ',' delimiter: line 4 column 877 (char 933)",
+  "title": "THE DOOR",
+  "content": "<p class=\"narrative\">Mrs. Park's door is open. Not broken—open. Swinging gently in a draft from somewhere.</p>\n\n            <p class=\"narrative\">Inside: overturned furniture. Shattered vase. Blood on the kitchen floor—a lot of it. Drag marks leading to the bedroom.</p>\n\n            <p class=\"narrative\">You grip the bat tighter. Step inside.</p>\n\n            <p class=\"dialogue\">\"Mrs. Park?\"</p>\n\n            <p class=\"narrative\">No answer. The bedroom door is closed.</p>\n\n            <p class=\"narrative\">You cross the living room. Photos on the wall catch your eye—Mrs. Park young, in military uniform. Her husband beside her. A Korea that doesn't exist anymore.</p>\n\n            <p class=\"narrative\">Your hand finds the bedroom doorknob. Cold metal. You pause.</p>\n\n            <p class=\"narrative\">From inside: a sound. Breathing. But wrong. Too wet. Too rhythmic.</p>\n\n            <p class=\"narrative\">Something is in there. Something that used to be Mrs. Park.</p>",
+  "choices": [
+    {
+      "text": "Search the apartment first. She mentioned supplies.",
+      "target": "conv_garage_alone"
+    }
+  ],
+  "id": "4_check_park"
+}

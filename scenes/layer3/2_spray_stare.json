@@ -1,0 +1,24 @@
+{
+  "title": "THE WARRIOR",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">You stare at her. This grandmother. This warrior.</p>\n\n            <p class=\"narrative\">Blood drips from the knife in her hand. Her white hair is streaked with red. Her eyes—her eyes are somewhere else. Somewhere decades away.</p>\n\n            <p class=\"dialogue\">\"You're looking at me like I'm a monster,\" she says. Matter-of-fact. \"I'm not. I'm just old enough to remember what survival costs.\"</p>\n\n            <p class=\"narrative\">She sets down the knife. Washes her hands in the kitchen sink. The water runs pink.</p>\n\n            <p class=\"dialogue\">\"I killed Japanese soldiers when I was sixteen. Killed Chinese soldiers at twenty. Killed a man who tried to rape my sister at twenty-two.\" She dries her hands. Turns to face you. \"This world has always been violent. We just built pretty walls to hide it.\"</p>\n\n            <p class=\"narrative\">She gestures at the window. The burning city.</p>\n\n            <p class=\"dialogue\">\"Now the walls are down. What are you going to do about it?\"</p>\n        ",
+  "flags": {
+    "witnessed_strength": true,
+    "mentor_moment": true
+  },
+  "choices": [
+    {
+      "text": "\"Survive. Whatever it takes.\"",
+      "target": "conv_garage_companion"
+    },
+    {
+      "text": "\"I don't know. I've never had to—\"",
+      "target": "conv_garage_companion"
+    },
+    {
+      "text": "\"Protect the people I love.\"",
+      "target": "conv_garage_companion"
+    }
+  ],
+  "id": "2_spray_stare"
+}

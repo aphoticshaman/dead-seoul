@@ -1,0 +1,20 @@
+{
+  "title": "THE ROOF",
+  "thread": "yuna",
+  "content": "\n            <p class=\"narrative\">The roof access door is unlocked. Strange. Usually the landlord keeps it padlocked—liability, he always said.</p>\n\n            <p class=\"narrative\">You push it open. Morning light blinds you for a moment. Then your eyes adjust.</p>\n\n            <p class=\"narrative\">Seoul burns beneath you.</p>\n\n            <p class=\"narrative\">From up here, you can see the scope of it. Fires spreading through Mapo. Smoke rising from Gangnam. Helicopters circling Yeouido—military, from the look of them. The Han River reflects orange and black.</p>\n\n            <p class=\"narrative\">The roof is empty except for the water tanks, the satellite dishes, and—</p>\n\n            <p class=\"narrative\">Someone is sitting on the edge. Legs dangling over the sixteen-story drop. A woman. White dress, stained red. Looking out at the apocalypse.</p>\n\n            <p class=\"narrative\">She hears you. Turns.</p>\n\n            <p class=\"narrative\">Her face is untouched. Human. Tears tracking through soot and blood. She smiles. It's the saddest thing you've ever seen.</p>\n\n            <p class=\"dialogue\">\"Beautiful, isn't it? In a horrible way?\"</p>\n        ",
+  "choices": [
+    {
+      "text": "\"Are you okay? Are you hurt?\"",
+      "target": "4_roof_concern"
+    },
+    {
+      "text": "\"What are you doing up here?\"",
+      "target": "conv_rooftop_professor"
+    },
+    {
+      "text": "Keep your distance. Watch her hands.",
+      "target": "conv_rooftop_survey"
+    }
+  ],
+  "id": "4_up"
+}
